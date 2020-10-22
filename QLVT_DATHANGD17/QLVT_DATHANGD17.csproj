@@ -151,6 +151,27 @@
   <ItemGroup>
     <None Include="Resources\signin.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\add-user.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\delete-user.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\user.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\undo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\floppy-disk.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\reload.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\exchange.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
