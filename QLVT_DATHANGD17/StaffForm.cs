@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Text;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using DevExpress.XtraBars;
 
@@ -15,6 +9,7 @@ namespace QLVT_DATHANGD17
     {
         public int vitri;
         public string macn;
+        private bool insertSession = false;
         public StaffForm()
         {
             InitializeComponent();
@@ -44,7 +39,7 @@ namespace QLVT_DATHANGD17
             if (Program.userRole == "CONGTY")
             {
                 comboBoxBranch.Enabled = true;
-                detailGroup.Enabled = false;updateBtn.Enabled = saveBtn.Enabled = undoBtn.Enabled = exchangeBtn.Enabled = false;
+                detailGroup.Enabled = false;updateBtn.Enabled = saveBtn.Enabled  = exchangeBtn.Enabled = false;
             }
             else // Các phân quyền khác như CHINHANH, USER thì không thể lựa chọn chi nhánh khác
             {
@@ -52,17 +47,16 @@ namespace QLVT_DATHANGD17
                 //groupBox1.Enabled = false;
                 detailGroup.Enabled = false;
                 exchangeGroup.Enabled = false;
-                saveBtn.Enabled = undoBtn.Enabled = false;
+                saveBtn.Enabled  = false;
             }
             macn = ((DataRowView)chiNhanhBDS[0])["MACN"].ToString();
 
-            //   textEditMaCN.ReadOnly = true;
+        
             luongSpin.Properties.MinValue = 4000000;
             luongSpin.Properties.MaxValue = 1000000000;
             hoTE.Properties.MaxLength = 40;
             tenTE.Properties.MaxLength = 10;
             diaChiTE.Properties.MaxLength = 100;
-           // textEditMaCN.Properties.MaxLength = 10;
             //textBoxTenCNHienTai.Text = comboBoxBranch.Text;
             //textBoxTenCNHienTai.ReadOnly = true;
         }
@@ -95,7 +89,7 @@ namespace QLVT_DATHANGD17
                     return;
                 // Gán chi nhánh mới
                 Program.servername = comboBoxBranch.SelectedValue.ToString();
-                // Dùng SUPPORT_CONNECT để kết nối tới server mới thay cho login cũ nếu như thay đổi chi nhánh mới trên comboBoxBranch
+                // Dùng htkn để kết nối tới server mới thay cho login cũ nếu như thay đổi chi nhánh mới trên comboBoxBranch
                 if (Program.mChinhanh != comboBoxBranch.SelectedIndex)
                 {
                     Program.mlogin = Program.remotelogin;
@@ -131,36 +125,40 @@ namespace QLVT_DATHANGD17
             detailGroup.Enabled = true;
             exchangeGroup.Enabled = false;
             // Gọi tập lệnh của Binding Source, bất chế độ chỉnh sửa BDS
-            nhanVienBDS.AddNew();
+           CommandManager cmdManager = CommandManager.getInstance();
+            cmdManager.execute(new InsertAction(nhanVienBDS));
             ModifyUIState();
             // Vô hiệu hóa phần xem grid
             nhanVienDataGridView.Enabled = false;
             // Cho phép nhập mới mã nhân viên và mà chi nhánh
             maNVSpin.Enabled = true;
             maCNTE.Text = macn;
-            MessageBox.Show(maCNTE.Text);
+            undoBtn.Enabled = true;
+            // MessageBox.Show(maCNTE.Text);
+            insertSession = true;
         }
 
         private void ModifyUIState()
         {
-            saveBtn.Enabled = undoBtn.Enabled = true;
+            saveBtn.Enabled  = true;
             addBtn.Enabled = deleteBtn.Enabled = updateBtn.Enabled = refreshBtn.Enabled = exchangeBtn.Enabled = false;
         }
 
         private void ViewUIState()
         {
-            saveBtn.Enabled = undoBtn.Enabled = false;
+            saveBtn.Enabled = false;
             addBtn.Enabled = deleteBtn.Enabled = updateBtn.Enabled = refreshBtn.Enabled = exchangeBtn.Enabled = true;
         }
 
         private void startChangingBranchMode()
         {
-            saveBtn.Enabled = undoBtn.Enabled = exchangeBtn.Enabled = false;
+            saveBtn.Enabled  = exchangeBtn.Enabled = false;
             addBtn.Enabled = deleteBtn.Enabled = updateBtn.Enabled = refreshBtn.Enabled = false;
         }
 
         private void saveBtn_ItemClick(object sender, ItemClickEventArgs e)
         {
+            
             //switch (lastPressed)
             //{
             //    case LastPressedButton.ButtonAddNew:
@@ -219,37 +217,27 @@ namespace QLVT_DATHANGD17
                 luongSpin.Focus();
                 return;
             }
-            //if (textEditMaCN.Text.Trim() == "")
-            //{
-            //    MessageBox.Show("Mã chi nhánh không được bỏ trống", "Thiếu thông tin", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //    textEditMaCN.Focus();
-            //    return;
-            //}
-            //if (textEditMaCN.Text.Trim() != macn.Trim())
-            //{
-            //    MessageBox.Show($"Mã chi nhánh không chính xác đối với chi nhánh hiện tại, bạn nên sửa lại thành {macn}", "Sai thông tin", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //    textEditMaCN.Text = macn;
-            //    textEditMaCN.Focus();
-            //    return;
-            //}
+  
             // Goi sp tim ma nhan vien
             //MessageBox.Show(spinEditMaNV.Text.ToString().Trim('.'));
             try
             {
-                //if (lastPressed == LastPressedButton.ButtonAddNew || lastPressed == LastPressedButton.ButtonAddNew_CheckError)
-                //{
-                    //string command = "exec sp_TimNV " + maNVSpin.Text.ToString().Trim('.');
-                    //Program.myReader = Program.ExecSqlDataReader(command);
-                    //if (Program.myReader != null)
-                    //{
-                    //    Program.myReader.Read();
+                // chay sp kiem tra ma nv da ton tai chua neu save insert moi, update thi khong can kiem tra
+                if (insertSession)
+                {
+                    string command = "exec SP_TimNV " + maNVSpin.Text.ToString().Trim('.');
+                    Program.myReader = Program.ExecSqlDataReader(command);
+                    if (Program.myReader != null)
+                    {
+                        Program.myReader.Read();
 
-                    //    MessageBox.Show($"Mã nhân viên đã tồn tại với thông tin: {Program.myReader.GetString(0)} {Program.myReader.GetString(1)} - {Program.myReader.GetString(2)}");
-                    //    Program.myReader.Close();
-                    //    //lastPressed = LastPressedButton.ButtonAddNew_CheckError;
-                    //    return;
-                    //}
-        //        }
+                        MessageBox.Show($"Mã nhân viên đã tồn tại với thông tin: {Program.myReader.GetString(0)} {Program.myReader.GetString(1)} - {Program.myReader.GetString(2)}");
+                        Program.myReader.Close();
+                        //lastPressed = LastPressedButton.ButtonAddNew_CheckError;
+                        return;
+                    }
+                    insertSession = false;
+                }
                 // Cập nhật xuống database
                 updateTableAdapter();
                 // Tùy chỉnh lại trạng thái các button sau khi hoàn tất
@@ -272,6 +260,167 @@ namespace QLVT_DATHANGD17
             this.nhanVienTableAdapter.Connection.ConnectionString = Program.connstr;
             this.nhanVienTableAdapter.Update(this.qLVT_DATHANGDataSet.NhanVien);
 
+        }
+
+        private void updateBtn_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            // save lai trang thai de undo
+            CommandManager cmdManager = CommandManager.getInstance();
+            cmdManager.execute(new UpdateAction(nhanVienBDS));
+            undoBtn.Enabled = true;
+
+            vitri = nhanVienBDS.Position;
+            // lastPressed = LastPressedButton.ButtonModify;
+            ModifyUIState();
+            nhanVienDataGridView.Enabled = false;
+            detailGroup.Enabled = true;
+            maNVSpin.Enabled = false;
+        }
+
+        private void refreshBtn_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            try
+            {
+                // Đưa BindingSource của nhân viên về mặc định
+                //  BDSStaff.RemoveFilter();
+                //this.nHANVIENTableAdapter.Fill(this.DS.NHANVIEN);
+                refreshTable();
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show($" <3 {exception.Message}", "Không thể cập nhật", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void deleteBtn_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            // Nếu nhân viên đã được tạo tài khoản đăng nhập hệ thống thì không được phép xóa
+            // Chạy SP kiểm tra sự tồn tại tài khoản đăng nhập cho nhân viên hiện tại 
+
+
+            // SP xac dinh username co tai khoan login
+            string command = $"exec SP_TimLogin '{maNVSpin.Text}'";
+            Program.myReader = Program.ExecSqlDataReader(command);
+            if (Program.myReader != null)
+            {
+                if (Program.myReader.Read()) // Đã tồn tại
+                {
+                    MessageBox.Show($"Nhân viên này đã có tài khoản đăng nhập là {Program.myReader.GetString(0)} \nKhông được phép xóa thông tin nhân viên", "Xóa nhân viên thất bại", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    Program.myReader.Close();
+                    return;
+                }
+                Program.myReader.Close();
+            }
+
+            //MessageBox.Show($"Số phiếu xuất: {BDSPhieuXuat.Count} \nSố phiếu nhập: {BDSPhieuNhap.Count} \nSố đơn đặt hàng: {BDSDatHang.Count}");
+            // Nếu nhân viên đã lập bất kì một phiếu nào thì không đươc phép xóa
+            if (datHangBDS.Count > 0 || phieuNhapBDS.Count > 0 || phieuXuatBDS.Count > 0)
+                MessageBox.Show($"Nhân viên {hoTE.Text} {tenTE.Text} đã tạo phiếu nên không thể xóa :3", "Xóa nhân viên thất bại", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            else
+            {
+                int delMaNV = 0;
+                if (MessageBox.Show("Bạn có thật sự muốn xóa nhân viên này ?? ", "Xác nhận", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+                    try
+                    {
+                        delMaNV = int.Parse(((DataRowView)nhanVienBDS[nhanVienBDS.Position])["MANV"].ToString());
+                        CommandManager cmdmanager = CommandManager.getInstance();
+                        cmdmanager.execute(new DeleteAction(nhanVienBDS));
+                        this.nhanVienTableAdapter.Connection.ConnectionString = Program.connstr;
+                        this.nhanVienTableAdapter.Update(this.qLVT_DATHANGDataSet.NhanVien);
+                        undoBtn.Enabled = true;
+                    }
+                    catch (Exception exception)
+                    {
+                        MessageBox.Show("Xóa nhân viên không thành công :3", "Lỗi khi xóa", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        this.nhanVienTableAdapter.Fill(this.qLVT_DATHANGDataSet.NhanVien);
+                        nhanVienBDS.Position = nhanVienBDS.Find("MANV", delMaNV);
+                    }
+            }
+            if (nhanVienBDS.Count == 0)
+                deleteBtn.Enabled = false;
+        }
+
+       
+      
+        private void undoBtn_ItemClick(object sender, ItemClickEventArgs e)
+        {
+          
+           CommandManager cmdmanager = CommandManager.getInstance();
+            cmdmanager.undo();
+            updateTableAdapter();
+            if (cmdmanager.undoStackSize() == 0) {
+                undoBtn.Enabled = false;
+            } 
+           
+        }
+
+        private void exchangeBtn_ItemClick(object sender, ItemClickEventArgs e)
+        {
+ 
+            // kiem tra co lien ket phieu chua
+            if (datHangBDS.Count > 0 || phieuNhapBDS.Count > 0 || phieuXuatBDS.Count > 0)
+            {
+                // show messsage ton tai phieu
+                return;
+            }
+
+            // kiem tra nhan vien dc chon da la trang thai xoa chua
+            if (((DataRowView)nhanVienBDS.Current)["TrangThaiXoa"].ToString() == "1") {
+                //show message da dc xoa
+                return;
+            }
+
+            // kiem tra co lien ket tai khoan dang nhap khong
+            // su dung sp tim login tu user (maNV)
+
+
+            // mo mode chuyen chi nhanh cho user chon chi nhanh dich
+          
+            exchangeGroup.Enabled = true;
+            detailGroup.Enabled = false;
+            startChangingBranchMode();
+        }
+
+        private void chuyenBtn_Click(object sender, EventArgs e)
+        {
+            // goi sp chuyen chi nhanh
+        }
+
+        private void huyChuyenBtn_Click(object sender, EventArgs e)
+        {
+            ViewUIState();
+            exchangeGroup.Enabled = false;
+        }
+
+        Object[] data;
+
+        private void cancelBtn_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            //switch (lastPressed)
+            //{
+            //    case LastPressedButton.ButtonAddNew:
+            //    case LastPressedButton.ButtonAddNew_CheckError:
+            //        BDSStaff.CancelEdit();
+            //        BDSStaff.Position = vitri;
+            //        break;
+            //}
+            // Bặt tắt các phần nhập dữ liệu tương ứng
+            nhanVienDataGridView.Enabled = true;
+            detailGroup.Enabled = false;
+            exchangeGroup.Enabled = false;
+
+            ViewUIState();
+            refreshBtn.PerformClick();
+
+            phieuNhapBDS.Position = vitri;
+            // cancel
+           CommandManager cmdmanager = CommandManager.getInstance();
+            cmdmanager.clearLastNode();
+            if (cmdmanager.undoStackSize() == 0)
+            {
+                undoBtn.Enabled = false;
+            }
+            insertSession = false;
         }
     }
 }

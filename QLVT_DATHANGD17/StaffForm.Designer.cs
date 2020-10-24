@@ -44,6 +44,7 @@
             this.refreshBtn = new DevExpress.XtraBars.BarButtonItem();
             this.saveBtn = new DevExpress.XtraBars.BarButtonItem();
             this.exchangeBtn = new DevExpress.XtraBars.BarButtonItem();
+            this.cancelBtn = new DevExpress.XtraBars.BarButtonItem();
             this.bar3 = new DevExpress.XtraBars.Bar();
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
@@ -78,8 +79,14 @@
             this.chiNhanhTableAdapter = new QLVT_DATHANGD17.QLVT_DATHANGDataSetTableAdapters.ChiNhanhTableAdapter();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.exchangeGroup = new System.Windows.Forms.GroupBox();
+            this.huyChuyenBtn = new System.Windows.Forms.Button();
+            this.chuyenBtn = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.chiNhanhChuyenCb = new System.Windows.Forms.ComboBox();
+            this.v_DS_PHANMANHBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
             this.detailGroup = new System.Windows.Forms.GroupBox();
+            this.maCNTE = new DevExpress.XtraEditors.TextEdit();
             this.maNVSpin = new DevExpress.XtraEditors.SpinEdit();
             this.tenTE = new DevExpress.XtraEditors.TextEdit();
             this.hoTE = new DevExpress.XtraEditors.TextEdit();
@@ -88,7 +95,6 @@
             this.luongSpin = new DevExpress.XtraEditors.SpinEdit();
             this.ngaySinhDE = new DevExpress.XtraEditors.DateEdit();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.maCNTE = new DevExpress.XtraEditors.TextEdit();
             nGAYSINHLabel = new System.Windows.Forms.Label();
             lUONGLabel = new System.Windows.Forms.Label();
             dIACHILabel = new System.Windows.Forms.Label();
@@ -108,9 +114,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.chiNhanhBDS)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
+            this.exchangeGroup.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.v_DS_PHANMANHBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
             this.panelControl2.SuspendLayout();
             this.detailGroup.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.maCNTE.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.maNVSpin.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tenTE.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.hoTE.Properties)).BeginInit();
@@ -119,60 +128,65 @@
             ((System.ComponentModel.ISupportInitialize)(this.luongSpin.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ngaySinhDE.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ngaySinhDE.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.maCNTE.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // nGAYSINHLabel
             // 
             nGAYSINHLabel.AutoSize = true;
-            nGAYSINHLabel.Location = new System.Drawing.Point(149, 34);
+            nGAYSINHLabel.Location = new System.Drawing.Point(224, 50);
+            nGAYSINHLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             nGAYSINHLabel.Name = "nGAYSINHLabel";
-            nGAYSINHLabel.Size = new System.Drawing.Size(54, 13);
+            nGAYSINHLabel.Size = new System.Drawing.Size(79, 19);
             nGAYSINHLabel.TabIndex = 38;
             nGAYSINHLabel.Text = "Ngày sinh";
             // 
             // lUONGLabel
             // 
             lUONGLabel.AutoSize = true;
-            lUONGLabel.Location = new System.Drawing.Point(287, 96);
+            lUONGLabel.Location = new System.Drawing.Point(430, 140);
+            lUONGLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             lUONGLabel.Name = "lUONGLabel";
-            lUONGLabel.Size = new System.Drawing.Size(37, 13);
+            lUONGLabel.Size = new System.Drawing.Size(54, 19);
             lUONGLabel.TabIndex = 39;
             lUONGLabel.Text = "Lương";
             // 
             // dIACHILabel
             // 
             dIACHILabel.AutoSize = true;
-            dIACHILabel.Location = new System.Drawing.Point(287, 34);
+            dIACHILabel.Location = new System.Drawing.Point(430, 50);
+            dIACHILabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             dIACHILabel.Name = "dIACHILabel";
-            dIACHILabel.Size = new System.Drawing.Size(39, 13);
+            dIACHILabel.Size = new System.Drawing.Size(57, 19);
             dIACHILabel.TabIndex = 40;
             dIACHILabel.Text = "Địa chỉ";
             // 
             // trangThaiXoaLabel
             // 
             trangThaiXoaLabel.AutoSize = true;
-            trangThaiXoaLabel.Location = new System.Drawing.Point(418, 96);
+            trangThaiXoaLabel.Location = new System.Drawing.Point(627, 140);
+            trangThaiXoaLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             trangThaiXoaLabel.Name = "trangThaiXoaLabel";
-            trangThaiXoaLabel.Size = new System.Drawing.Size(77, 13);
+            trangThaiXoaLabel.Size = new System.Drawing.Size(112, 19);
             trangThaiXoaLabel.TabIndex = 41;
             trangThaiXoaLabel.Text = "Trạng thái xóa";
             // 
             // hOLabel
             // 
             hOLabel.AutoSize = true;
-            hOLabel.Location = new System.Drawing.Point(30, 96);
+            hOLabel.Location = new System.Drawing.Point(45, 140);
+            hOLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             hOLabel.Name = "hOLabel";
-            hOLabel.Size = new System.Drawing.Size(41, 13);
+            hOLabel.Size = new System.Drawing.Size(61, 19);
             hOLabel.TabIndex = 42;
             hOLabel.Text = "Họ Tên";
             // 
             // mANVLabel
             // 
             mANVLabel.AutoSize = true;
-            mANVLabel.Location = new System.Drawing.Point(30, 34);
+            mANVLabel.Location = new System.Drawing.Point(45, 50);
+            mANVLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             mANVLabel.Name = "mANVLabel";
-            mANVLabel.Size = new System.Drawing.Size(39, 13);
+            mANVLabel.Size = new System.Drawing.Size(59, 19);
             mANVLabel.TabIndex = 44;
             mANVLabel.Text = "MANV:";
             // 
@@ -193,9 +207,10 @@
             this.undoBtn,
             this.saveBtn,
             this.refreshBtn,
-            this.exchangeBtn});
+            this.exchangeBtn,
+            this.cancelBtn});
             this.barManager1.MainMenu = this.bar2;
-            this.barManager1.MaxItemId = 7;
+            this.barManager1.MaxItemId = 10;
             this.barManager1.StatusBar = this.bar3;
             // 
             // bar2
@@ -210,6 +225,7 @@
             new DevExpress.XtraBars.LinkPersistInfo(this.deleteBtn),
             new DevExpress.XtraBars.LinkPersistInfo(this.undoBtn),
             new DevExpress.XtraBars.LinkPersistInfo(this.refreshBtn),
+            new DevExpress.XtraBars.LinkPersistInfo(this.cancelBtn),
             new DevExpress.XtraBars.LinkPersistInfo(this.saveBtn),
             new DevExpress.XtraBars.LinkPersistInfo(this.exchangeBtn)});
             this.bar2.OptionsBar.MultiLine = true;
@@ -232,6 +248,7 @@
             this.updateBtn.ImageOptions.Image = global::QLVT_DATHANGD17.Properties.Resources.user;
             this.updateBtn.Name = "updateBtn";
             this.updateBtn.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.updateBtn.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.updateBtn_ItemClick);
             // 
             // deleteBtn
             // 
@@ -240,14 +257,17 @@
             this.deleteBtn.ImageOptions.Image = global::QLVT_DATHANGD17.Properties.Resources.delete_user;
             this.deleteBtn.Name = "deleteBtn";
             this.deleteBtn.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.deleteBtn.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.deleteBtn_ItemClick);
             // 
             // undoBtn
             // 
             this.undoBtn.Caption = "Undo";
+            this.undoBtn.Enabled = false;
             this.undoBtn.Id = 3;
             this.undoBtn.ImageOptions.Image = global::QLVT_DATHANGD17.Properties.Resources.undo;
             this.undoBtn.Name = "undoBtn";
             this.undoBtn.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.undoBtn.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.undoBtn_ItemClick);
             // 
             // refreshBtn
             // 
@@ -256,6 +276,7 @@
             this.refreshBtn.ImageOptions.Image = global::QLVT_DATHANGD17.Properties.Resources.reload;
             this.refreshBtn.Name = "refreshBtn";
             this.refreshBtn.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.refreshBtn.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.refreshBtn_ItemClick);
             // 
             // saveBtn
             // 
@@ -273,6 +294,16 @@
             this.exchangeBtn.ImageOptions.Image = global::QLVT_DATHANGD17.Properties.Resources.exchange;
             this.exchangeBtn.Name = "exchangeBtn";
             this.exchangeBtn.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.exchangeBtn.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.exchangeBtn_ItemClick);
+            // 
+            // cancelBtn
+            // 
+            this.cancelBtn.Caption = "Hủy";
+            this.cancelBtn.Id = 9;
+            this.cancelBtn.ImageOptions.Image = global::QLVT_DATHANGD17.Properties.Resources.remove;
+            this.cancelBtn.Name = "cancelBtn";
+            this.cancelBtn.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.cancelBtn.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.cancelBtn_ItemClick);
             // 
             // bar3
             // 
@@ -292,48 +323,52 @@
             this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
             this.barDockControlTop.Manager = this.barManager1;
-            this.barDockControlTop.Size = new System.Drawing.Size(1004, 40);
+            this.barDockControlTop.Margin = new System.Windows.Forms.Padding(4);
+            this.barDockControlTop.Size = new System.Drawing.Size(1944, 58);
             // 
             // barDockControlBottom
             // 
             this.barDockControlBottom.CausesValidation = false;
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControlBottom.Location = new System.Drawing.Point(0, 593);
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 605);
             this.barDockControlBottom.Manager = this.barManager1;
-            this.barDockControlBottom.Size = new System.Drawing.Size(1004, 20);
+            this.barDockControlBottom.Margin = new System.Windows.Forms.Padding(4);
+            this.barDockControlBottom.Size = new System.Drawing.Size(1944, 20);
             // 
             // barDockControlLeft
             // 
             this.barDockControlLeft.CausesValidation = false;
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
-            this.barDockControlLeft.Location = new System.Drawing.Point(0, 40);
+            this.barDockControlLeft.Location = new System.Drawing.Point(0, 58);
             this.barDockControlLeft.Manager = this.barManager1;
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 553);
+            this.barDockControlLeft.Margin = new System.Windows.Forms.Padding(4);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 547);
             // 
             // barDockControlRight
             // 
             this.barDockControlRight.CausesValidation = false;
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(1004, 40);
+            this.barDockControlRight.Location = new System.Drawing.Point(1944, 58);
             this.barDockControlRight.Manager = this.barManager1;
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 553);
+            this.barDockControlRight.Margin = new System.Windows.Forms.Padding(4);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 547);
             // 
             // panel1
             // 
             this.panel1.Controls.Add(this.comboBoxBranch);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 40);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2);
+            this.panel1.Location = new System.Drawing.Point(0, 58);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1004, 47);
+            this.panel1.Size = new System.Drawing.Size(1944, 69);
             this.panel1.TabIndex = 4;
             // 
             // comboBoxBranch
             // 
             this.comboBoxBranch.FormattingEnabled = true;
-            this.comboBoxBranch.Location = new System.Drawing.Point(12, 6);
+            this.comboBoxBranch.Location = new System.Drawing.Point(18, 9);
+            this.comboBoxBranch.Margin = new System.Windows.Forms.Padding(4);
             this.comboBoxBranch.Name = "comboBoxBranch";
-            this.comboBoxBranch.Size = new System.Drawing.Size(300, 21);
+            this.comboBoxBranch.Size = new System.Drawing.Size(448, 27);
             this.comboBoxBranch.TabIndex = 0;
             this.comboBoxBranch.SelectedIndexChanged += new System.EventHandler(this.comboBoxBranch_SelectedIndexChanged);
             // 
@@ -395,12 +430,11 @@
             this.trangThaiXoaDataGridViewTextBoxColumn});
             this.nhanVienDataGridView.DataSource = this.nhanVienBDS;
             this.nhanVienDataGridView.Dock = System.Windows.Forms.DockStyle.Top;
-            this.nhanVienDataGridView.Location = new System.Drawing.Point(0, 87);
-            this.nhanVienDataGridView.Margin = new System.Windows.Forms.Padding(2);
+            this.nhanVienDataGridView.Location = new System.Drawing.Point(0, 127);
             this.nhanVienDataGridView.Name = "nhanVienDataGridView";
             this.nhanVienDataGridView.ReadOnly = true;
             this.nhanVienDataGridView.RowTemplate.Height = 28;
-            this.nhanVienDataGridView.Size = new System.Drawing.Size(1004, 333);
+            this.nhanVienDataGridView.Size = new System.Drawing.Size(1944, 207);
             this.nhanVienDataGridView.TabIndex = 6;
             // 
             // mANVDataGridViewTextBoxColumn
@@ -510,28 +544,81 @@
             // 
             this.panelControl1.Controls.Add(this.exchangeGroup);
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panelControl1.Location = new System.Drawing.Point(560, 420);
+            this.panelControl1.Location = new System.Drawing.Point(1278, 334);
+            this.panelControl1.Margin = new System.Windows.Forms.Padding(4);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(444, 173);
+            this.panelControl1.Size = new System.Drawing.Size(666, 271);
             this.panelControl1.TabIndex = 12;
             // 
             // exchangeGroup
             // 
+            this.exchangeGroup.Controls.Add(this.huyChuyenBtn);
+            this.exchangeGroup.Controls.Add(this.chuyenBtn);
+            this.exchangeGroup.Controls.Add(this.label1);
+            this.exchangeGroup.Controls.Add(this.chiNhanhChuyenCb);
             this.exchangeGroup.Dock = System.Windows.Forms.DockStyle.Fill;
             this.exchangeGroup.Location = new System.Drawing.Point(2, 2);
+            this.exchangeGroup.Margin = new System.Windows.Forms.Padding(4);
             this.exchangeGroup.Name = "exchangeGroup";
-            this.exchangeGroup.Size = new System.Drawing.Size(440, 169);
+            this.exchangeGroup.Padding = new System.Windows.Forms.Padding(4);
+            this.exchangeGroup.Size = new System.Drawing.Size(662, 267);
             this.exchangeGroup.TabIndex = 0;
             this.exchangeGroup.TabStop = false;
             this.exchangeGroup.Text = "Chuyển CN";
+            // 
+            // huyChuyenBtn
+            // 
+            this.huyChuyenBtn.Location = new System.Drawing.Point(302, 135);
+            this.huyChuyenBtn.Name = "huyChuyenBtn";
+            this.huyChuyenBtn.Size = new System.Drawing.Size(85, 32);
+            this.huyChuyenBtn.TabIndex = 3;
+            this.huyChuyenBtn.Text = "Hủy";
+            this.huyChuyenBtn.UseVisualStyleBackColor = true;
+            this.huyChuyenBtn.Click += new System.EventHandler(this.huyChuyenBtn_Click);
+            // 
+            // chuyenBtn
+            // 
+            this.chuyenBtn.Location = new System.Drawing.Point(167, 135);
+            this.chuyenBtn.Name = "chuyenBtn";
+            this.chuyenBtn.Size = new System.Drawing.Size(81, 32);
+            this.chuyenBtn.TabIndex = 2;
+            this.chuyenBtn.Text = "Chuyển";
+            this.chuyenBtn.UseVisualStyleBackColor = true;
+            this.chuyenBtn.Click += new System.EventHandler(this.chuyenBtn_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(20, 69);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(115, 19);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "Chi nhánh đích";
+            // 
+            // chiNhanhChuyenCb
+            // 
+            this.chiNhanhChuyenCb.DataSource = this.v_DS_PHANMANHBindingSource1;
+            this.chiNhanhChuyenCb.DisplayMember = "TENCN";
+            this.chiNhanhChuyenCb.FormattingEnabled = true;
+            this.chiNhanhChuyenCb.Location = new System.Drawing.Point(141, 61);
+            this.chiNhanhChuyenCb.Name = "chiNhanhChuyenCb";
+            this.chiNhanhChuyenCb.Size = new System.Drawing.Size(300, 27);
+            this.chiNhanhChuyenCb.TabIndex = 0;
+            this.chiNhanhChuyenCb.ValueMember = "TENSERVER";
+            // 
+            // v_DS_PHANMANHBindingSource1
+            // 
+            this.v_DS_PHANMANHBindingSource1.DataMember = "V_DS_PHANMANH";
+            this.v_DS_PHANMANHBindingSource1.DataSource = this.qLVT_DATHANG_DSPM;
             // 
             // panelControl2
             // 
             this.panelControl2.Controls.Add(this.detailGroup);
             this.panelControl2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelControl2.Location = new System.Drawing.Point(0, 420);
+            this.panelControl2.Location = new System.Drawing.Point(0, 334);
+            this.panelControl2.Margin = new System.Windows.Forms.Padding(4);
             this.panelControl2.Name = "panelControl2";
-            this.panelControl2.Size = new System.Drawing.Size(560, 173);
+            this.panelControl2.Size = new System.Drawing.Size(1278, 271);
             this.panelControl2.TabIndex = 13;
             // 
             // detailGroup
@@ -552,11 +639,24 @@
             this.detailGroup.Controls.Add(this.ngaySinhDE);
             this.detailGroup.Dock = System.Windows.Forms.DockStyle.Fill;
             this.detailGroup.Location = new System.Drawing.Point(2, 2);
+            this.detailGroup.Margin = new System.Windows.Forms.Padding(4);
             this.detailGroup.Name = "detailGroup";
-            this.detailGroup.Size = new System.Drawing.Size(556, 169);
+            this.detailGroup.Padding = new System.Windows.Forms.Padding(4);
+            this.detailGroup.Size = new System.Drawing.Size(1274, 267);
             this.detailGroup.TabIndex = 0;
             this.detailGroup.TabStop = false;
             this.detailGroup.Text = "Thông tin";
+            // 
+            // maCNTE
+            // 
+            this.maCNTE.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.nhanVienBDS, "MACN", true));
+            this.maCNTE.Location = new System.Drawing.Point(632, 82);
+            this.maCNTE.Margin = new System.Windows.Forms.Padding(4);
+            this.maCNTE.MenuManager = this.barManager1;
+            this.maCNTE.Name = "maCNTE";
+            this.maCNTE.Size = new System.Drawing.Size(150, 28);
+            this.maCNTE.TabIndex = 46;
+            this.maCNTE.Visible = false;
             // 
             // maNVSpin
             // 
@@ -566,30 +666,36 @@
             0,
             0,
             0});
-            this.maNVSpin.Location = new System.Drawing.Point(33, 57);
+            this.maNVSpin.Location = new System.Drawing.Point(50, 83);
+            this.maNVSpin.Margin = new System.Windows.Forms.Padding(4);
             this.maNVSpin.MenuManager = this.barManager1;
             this.maNVSpin.Name = "maNVSpin";
             this.maNVSpin.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.maNVSpin.Size = new System.Drawing.Size(100, 20);
+            this.maNVSpin.Properties.IsFloatValue = false;
+            this.maNVSpin.Properties.Mask.AutoComplete = DevExpress.XtraEditors.Mask.AutoCompleteType.None;
+            this.maNVSpin.Properties.Mask.EditMask = "N00";
+            this.maNVSpin.Size = new System.Drawing.Size(150, 28);
             this.maNVSpin.TabIndex = 45;
             // 
             // tenTE
             // 
             this.tenTE.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.nhanVienBDS, "TEN", true));
-            this.tenTE.Location = new System.Drawing.Point(139, 118);
+            this.tenTE.Location = new System.Drawing.Point(208, 172);
+            this.tenTE.Margin = new System.Windows.Forms.Padding(4);
             this.tenTE.MenuManager = this.barManager1;
             this.tenTE.Name = "tenTE";
-            this.tenTE.Size = new System.Drawing.Size(100, 20);
+            this.tenTE.Size = new System.Drawing.Size(150, 28);
             this.tenTE.TabIndex = 44;
             // 
             // hoTE
             // 
             this.hoTE.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.nhanVienBDS, "HO", true));
-            this.hoTE.Location = new System.Drawing.Point(33, 118);
+            this.hoTE.Location = new System.Drawing.Point(50, 172);
+            this.hoTE.Margin = new System.Windows.Forms.Padding(4);
             this.hoTE.MenuManager = this.barManager1;
             this.hoTE.Name = "hoTE";
-            this.hoTE.Size = new System.Drawing.Size(100, 20);
+            this.hoTE.Size = new System.Drawing.Size(150, 28);
             this.hoTE.TabIndex = 43;
             // 
             // trangThaiXoaSpin
@@ -600,21 +706,26 @@
             0,
             0,
             0});
-            this.trangThaiXoaSpin.Location = new System.Drawing.Point(421, 118);
+            this.trangThaiXoaSpin.Enabled = false;
+            this.trangThaiXoaSpin.Location = new System.Drawing.Point(632, 172);
+            this.trangThaiXoaSpin.Margin = new System.Windows.Forms.Padding(4);
             this.trangThaiXoaSpin.MenuManager = this.barManager1;
             this.trangThaiXoaSpin.Name = "trangThaiXoaSpin";
             this.trangThaiXoaSpin.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.trangThaiXoaSpin.Size = new System.Drawing.Size(100, 20);
+            this.trangThaiXoaSpin.Properties.IsFloatValue = false;
+            this.trangThaiXoaSpin.Properties.Mask.EditMask = "N00";
+            this.trangThaiXoaSpin.Size = new System.Drawing.Size(150, 28);
             this.trangThaiXoaSpin.TabIndex = 42;
             // 
             // diaChiTE
             // 
             this.diaChiTE.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.nhanVienBDS, "DIACHI", true));
-            this.diaChiTE.Location = new System.Drawing.Point(290, 57);
+            this.diaChiTE.Location = new System.Drawing.Point(435, 83);
+            this.diaChiTE.Margin = new System.Windows.Forms.Padding(4);
             this.diaChiTE.MenuManager = this.barManager1;
             this.diaChiTE.Name = "diaChiTE";
-            this.diaChiTE.Size = new System.Drawing.Size(100, 20);
+            this.diaChiTE.Size = new System.Drawing.Size(150, 28);
             this.diaChiTE.TabIndex = 41;
             // 
             // luongSpin
@@ -625,26 +736,28 @@
             0,
             0,
             0});
-            this.luongSpin.Location = new System.Drawing.Point(290, 119);
+            this.luongSpin.Location = new System.Drawing.Point(435, 174);
+            this.luongSpin.Margin = new System.Windows.Forms.Padding(4);
             this.luongSpin.MenuManager = this.barManager1;
             this.luongSpin.Name = "luongSpin";
             this.luongSpin.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.luongSpin.Size = new System.Drawing.Size(100, 20);
+            this.luongSpin.Size = new System.Drawing.Size(150, 28);
             this.luongSpin.TabIndex = 40;
             // 
             // ngaySinhDE
             // 
             this.ngaySinhDE.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.nhanVienBDS, "NGAYSINH", true));
             this.ngaySinhDE.EditValue = null;
-            this.ngaySinhDE.Location = new System.Drawing.Point(139, 56);
+            this.ngaySinhDE.Location = new System.Drawing.Point(208, 82);
+            this.ngaySinhDE.Margin = new System.Windows.Forms.Padding(4);
             this.ngaySinhDE.MenuManager = this.barManager1;
             this.ngaySinhDE.Name = "ngaySinhDE";
             this.ngaySinhDE.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.ngaySinhDE.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.ngaySinhDE.Size = new System.Drawing.Size(100, 20);
+            this.ngaySinhDE.Size = new System.Drawing.Size(150, 28);
             this.ngaySinhDE.TabIndex = 39;
             // 
             // dataGridViewTextBoxColumn1
@@ -654,21 +767,12 @@
             this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
             this.dataGridViewTextBoxColumn1.Width = 137;
             // 
-            // maCNTE
-            // 
-            this.maCNTE.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.nhanVienBDS, "MACN", true));
-            this.maCNTE.Location = new System.Drawing.Point(421, 56);
-            this.maCNTE.MenuManager = this.barManager1;
-            this.maCNTE.Name = "maCNTE";
-            this.maCNTE.Size = new System.Drawing.Size(100, 20);
-            this.maCNTE.TabIndex = 46;
-            this.maCNTE.Visible = false;
-            // 
             // StaffForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1004, 613);
+            this.AutoScroll = true;
+            this.ClientSize = new System.Drawing.Size(1944, 625);
             this.Controls.Add(this.panelControl2);
             this.Controls.Add(this.panelControl1);
             this.Controls.Add(this.nhanVienDataGridView);
@@ -677,6 +781,7 @@
             this.Controls.Add(this.barDockControlRight);
             this.Controls.Add(this.barDockControlBottom);
             this.Controls.Add(this.barDockControlTop);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "StaffForm";
             this.Text = "StaffForm";
             this.Load += new System.EventHandler(this.StaffForm_Load);
@@ -693,10 +798,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.chiNhanhBDS)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
+            this.exchangeGroup.ResumeLayout(false);
+            this.exchangeGroup.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.v_DS_PHANMANHBindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
             this.panelControl2.ResumeLayout(false);
             this.detailGroup.ResumeLayout(false);
             this.detailGroup.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.maCNTE.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.maNVSpin.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tenTE.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.hoTE.Properties)).EndInit();
@@ -705,7 +814,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.luongSpin.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ngaySinhDE.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ngaySinhDE.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.maCNTE.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -767,5 +875,11 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn mACNDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn trangThaiXoaDataGridViewTextBoxColumn;
         private DevExpress.XtraEditors.TextEdit maCNTE;
+        private System.Windows.Forms.Button huyChuyenBtn;
+        private System.Windows.Forms.Button chuyenBtn;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox chiNhanhChuyenCb;
+        private System.Windows.Forms.BindingSource v_DS_PHANMANHBindingSource1;
+        private DevExpress.XtraBars.BarButtonItem cancelBtn;
     }
 }
