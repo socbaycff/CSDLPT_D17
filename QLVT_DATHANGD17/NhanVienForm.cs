@@ -5,16 +5,18 @@ using DevExpress.XtraBars;
 
 namespace QLVT_DATHANGD17
 {
-    public partial class StaffForm : DevExpress.XtraEditors.XtraForm
+    public partial class NhanVienForm : DevExpress.XtraEditors.XtraForm
     {
         public int vitri;
         public string macn;
         private bool insertSession = false;
-        public StaffForm()
+        private CommandManager cmdManager;
+        public NhanVienForm()
         {
             InitializeComponent();
             vitri = 0;
             macn = "";
+            cmdManager = new CommandManager();
         }
 
         private void nhanVienBindingNavigatorSaveItem_Click(object sender, EventArgs e)
@@ -27,19 +29,21 @@ namespace QLVT_DATHANGD17
 
         private void StaffForm_Load(object sender, EventArgs e)
         {
-            detailGroup.Enabled = false;
-            this.chiNhanhTableAdapter.Fill(this.qLVT_DATHANGDataSet.ChiNhanh);
             qLVT_DATHANGDataSet.EnforceConstraints = false;
+           
+            this.chiNhanhTableAdapter.Fill(this.qLVT_DATHANGDataSet.ChiNhanh);
             refreshTable();
+            detailGroup.Enabled = false;
+            // khoi tao chinhanh combobox
             comboBoxBranch.DataSource = Program.bds_dspm;
             comboBoxBranch.DisplayMember = "TENCN";
             comboBoxBranch.ValueMember = "TENSERVER";
             comboBoxBranch.SelectedIndex = Program.mChinhanh;
 
-            if (Program.userRole == "CONGTY")
+            if (Program.userRole == "CongTy")
             {
                 comboBoxBranch.Enabled = true;
-                detailGroup.Enabled = false;updateBtn.Enabled = saveBtn.Enabled  = exchangeBtn.Enabled = false;
+                addBtn.Enabled = deleteBtn.Enabled = cancelBtn.Enabled = detailGroup.Enabled = false; updateBtn.Enabled = saveBtn.Enabled = exchangeBtn.Enabled = false;
             }
             else // Các phân quyền khác như CHINHANH, USER thì không thể lựa chọn chi nhánh khác
             {
@@ -47,21 +51,22 @@ namespace QLVT_DATHANGD17
                 //groupBox1.Enabled = false;
                 detailGroup.Enabled = false;
                 exchangeGroup.Enabled = false;
-                saveBtn.Enabled  = false;
+                saveBtn.Enabled = false;
             }
+            // khoi tao gia tri macn
             macn = ((DataRowView)chiNhanhBDS[0])["MACN"].ToString();
 
-        
+
             luongSpin.Properties.MinValue = 4000000;
             luongSpin.Properties.MaxValue = 1000000000;
             hoTE.Properties.MaxLength = 40;
             tenTE.Properties.MaxLength = 10;
             diaChiTE.Properties.MaxLength = 100;
-            //textBoxTenCNHienTai.Text = comboBoxBranch.Text;
-            //textBoxTenCNHienTai.ReadOnly = true;
         }
 
-        private void refreshTable() {
+        // fill lai data tu db
+        private void refreshTable()
+        {
             // cap nhat connection string + load lai cac bang
             this.nhanVienTableAdapter.Connection.ConnectionString = Program.connstr;
             this.nhanVienTableAdapter.Fill(this.qLVT_DATHANGDataSet.NhanVien);
@@ -71,14 +76,24 @@ namespace QLVT_DATHANGD17
 
             this.phieuNhapTableAdapter.Connection.ConnectionString = Program.connstr;
             this.phieuNhapTableAdapter.Fill(this.qLVT_DATHANGDataSet.PhieuNhap);
-            
+
             this.datHangTableAdapter.Connection.ConnectionString = Program.connstr;
             this.datHangTableAdapter.Fill(this.qLVT_DATHANGDataSet.DatHang);
 
             // load danh sach phan manh
-        //    this.v_DS_PHANMANHTableAdapter.Fill(this.qLVT_DATHANG_DSPM.V_DS_PHANMANH);
+            //    this.v_DS_PHANMANHTableAdapter.Fill(this.qLVT_DATHANG_DSPM.V_DS_PHANMANH);
 
         }
+
+        // update data xuong db
+        private void updateTableAdapter()
+        {
+            nhanVienBDS.EndEdit();
+            nhanVienBDS.ResetCurrentItem();
+            this.nhanVienTableAdapter.Connection.ConnectionString = Program.connstr;
+            this.nhanVienTableAdapter.Update(this.qLVT_DATHANGDataSet.NhanVien);
+        }
+
 
         private void comboBoxBranch_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -107,8 +122,8 @@ namespace QLVT_DATHANGD17
                 {
                     refreshTable();
                     // Lấy mã chi nhánh hiện tại
-                 //   macn = ((DataRowView)chiNhanhBDS[0])["MACN"].ToString();
-                 //   MessageBox.Show(macn);
+                    //  macn = ((DataRowView)chiNhanhBDS[0])["MACN"].ToString(); // khong can do khong su dung macn khac ma dang nhap khi write data (constraint phan quyen)
+                    //   MessageBox.Show(macn);
                 }
             }
             catch (NullReferenceException nullRef)
@@ -119,68 +134,35 @@ namespace QLVT_DATHANGD17
 
         private void addBtn_ItemClick(object sender, ItemClickEventArgs e)
         {
-            vitri = nhanVienBDS.Position;
-            // lastPressed = LastPressedButton.ButtonAddNew;
-            // 
-            detailGroup.Enabled = true;
-            exchangeGroup.Enabled = false;
-            // Gọi tập lệnh của Binding Source, bất chế độ chỉnh sửa BDS
-           CommandManager cmdManager = CommandManager.getInstance();
+            // thuc thi insert  
             cmdManager.execute(new InsertAction(nhanVienBDS));
-            ModifyUIState();
-            // Vô hiệu hóa phần xem grid
-            nhanVienDataGridView.Enabled = false;
+            modifyUIButtonState();
             // Cho phép nhập mới mã nhân viên và mà chi nhánh
             maNVSpin.Enabled = true;
             maCNTE.Text = macn;
-            undoBtn.Enabled = true;
-            // MessageBox.Show(maCNTE.Text);
             insertSession = true;
         }
 
-        private void ModifyUIState()
+        private void updateBtn_ItemClick(object sender, ItemClickEventArgs e)
         {
-            saveBtn.Enabled  = true;
-            addBtn.Enabled = deleteBtn.Enabled = updateBtn.Enabled = refreshBtn.Enabled = exchangeBtn.Enabled = false;
+            // save lai trang thai de undo
+            cmdManager.execute(new UpdateAction(nhanVienBDS));
+            modifyUIButtonState();
+            maNVSpin.Enabled = false; // update k dc doi ma nv
         }
 
-        private void ViewUIState()
-        {
-            saveBtn.Enabled = false;
-            addBtn.Enabled = deleteBtn.Enabled = updateBtn.Enabled = refreshBtn.Enabled = exchangeBtn.Enabled = true;
-        }
-
-        private void startChangingBranchMode()
-        {
-            saveBtn.Enabled  = exchangeBtn.Enabled = false;
-            addBtn.Enabled = deleteBtn.Enabled = updateBtn.Enabled = refreshBtn.Enabled = false;
-        }
 
         private void saveBtn_ItemClick(object sender, ItemClickEventArgs e)
         {
-            
-            //switch (lastPressed)
-            //{
-            //    case LastPressedButton.ButtonAddNew:
-            //        lastPressed = LastPressedButton.ButtonAddNew_CheckError;
-            //        break;
-            //    case LastPressedButton.ButtonModify:
-            //        lastPressed = LastPressedButton.ButtonModify_CheckError;
-            //        break;
-            //}
+
             if (maNVSpin.Text.Trim() == "")
             {
                 MessageBox.Show("Mã nhân viên không được để trống", "Thiếu thông tin", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 maNVSpin.Focus();
                 return;
             }
-            //if (lastPressed == LastPressedButton.ButtonAddNew_CheckError && (int)spinEditMaNV.Value < 0)
-            //{
-            //    MessageBox.Show("Mã nhân viên âm chỉ đuọc phép sử dụng cho nhân viên đã chuyển chi nhánh, hãy chọn một mã khác", "Sai thông tin", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //    spinEditMaNV.Focus();
-            //    return;
-            //}
-            if ( (int)maNVSpin.Value < 0)
+
+            if ((int)maNVSpin.Value < 0)
             {
                 MessageBox.Show("Mã nhân viên âm chỉ đuọc phép sử dụng cho nhân viên đã chuyển chi nhánh, hãy chọn một mã khác", "Sai thông tin", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 maNVSpin.Focus();
@@ -217,7 +199,7 @@ namespace QLVT_DATHANGD17
                 luongSpin.Focus();
                 return;
             }
-  
+
             // Goi sp tim ma nhan vien
             //MessageBox.Show(spinEditMaNV.Text.ToString().Trim('.'));
             try
@@ -233,18 +215,26 @@ namespace QLVT_DATHANGD17
 
                         MessageBox.Show($"Mã nhân viên đã tồn tại với thông tin: {Program.myReader.GetString(0)} {Program.myReader.GetString(1)} - {Program.myReader.GetString(2)}");
                         Program.myReader.Close();
-                        //lastPressed = LastPressedButton.ButtonAddNew_CheckError;
                         return;
                     }
+                    ((DataRowView)nhanVienBDS.Current)["MACN"] = macn; // set chi nhanh la chi nhanh server dang nhap
+                    ((DataRowView)nhanVienBDS.Current)["TrangThaiXoa"] = 0; // set trang thai xoa cho record vua moi insert la 0
                     insertSession = false;
+                    ((InsertAction)cmdManager.getLastUndoNode()).getData(); // lay data cho redo
+                    updateTableAdapter();
+                    
+                }
+                else {
+                    ((UpdateAction)cmdManager.getLastUndoNode()).getData(); // lay data cho redo
+                    updateTableAdapter();
+
                 }
                 // Cập nhật xuống database
-                updateTableAdapter();
+                
+                undoBtn.Enabled = true;
                 // Tùy chỉnh lại trạng thái các button sau khi hoàn tất
-                ViewUIState();
-                nhanVienDataGridView.Enabled = true;
-                detailGroup.Enabled = false;
-                exchangeGroup.Enabled = false;
+                viewUIButtonState();
+               
             }
             catch (Exception exception)
             {
@@ -252,37 +242,34 @@ namespace QLVT_DATHANGD17
             }
         }
 
-        private void updateTableAdapter()
+        private void cancelBtn_ItemClick(object sender, ItemClickEventArgs e)
         {
-            ((DataRowView)nhanVienBDS.Current)["MACN"] = macn; // set chi nhanh la chi nhanh server dang nhap
-            nhanVienBDS.EndEdit();
-            nhanVienBDS.ResetCurrentItem();
-            this.nhanVienTableAdapter.Connection.ConnectionString = Program.connstr;
-            this.nhanVienTableAdapter.Update(this.qLVT_DATHANGDataSet.NhanVien);
+            // them moi thi cancel edit, update thi k can cancel
+            if (insertSession)
+            {
+                nhanVienBDS.CancelEdit();
+                insertSession = false;
+            }
+            // Bặt tắt các phần nhập dữ liệu tương ứng
+            viewUIButtonState();
+            refreshBtn.PerformClick();
+            phieuNhapBDS.Position = vitri;
+            // update trang thai stack 
+            cmdManager.clearLastNode();
+            if (cmdManager.undoStackSize() == 0)
+            {
+                undoBtn.Enabled = false;
+            }
 
         }
 
-        private void updateBtn_ItemClick(object sender, ItemClickEventArgs e)
-        {
-            // save lai trang thai de undo
-            CommandManager cmdManager = CommandManager.getInstance();
-            cmdManager.execute(new UpdateAction(nhanVienBDS));
-            undoBtn.Enabled = true;
-
-            vitri = nhanVienBDS.Position;
-            // lastPressed = LastPressedButton.ButtonModify;
-            ModifyUIState();
-            nhanVienDataGridView.Enabled = false;
-            detailGroup.Enabled = true;
-            maNVSpin.Enabled = false;
-        }
 
         private void refreshBtn_ItemClick(object sender, ItemClickEventArgs e)
         {
             try
             {
                 // Đưa BindingSource của nhân viên về mặc định
-                //  BDSStaff.RemoveFilter();
+                  nhanVienBDS.RemoveFilter();
                 //this.nHANVIENTableAdapter.Fill(this.DS.NHANVIEN);
                 refreshTable();
             }
@@ -296,8 +283,6 @@ namespace QLVT_DATHANGD17
         {
             // Nếu nhân viên đã được tạo tài khoản đăng nhập hệ thống thì không được phép xóa
             // Chạy SP kiểm tra sự tồn tại tài khoản đăng nhập cho nhân viên hiện tại 
-
-
             // SP xac dinh username co tai khoan login
             string command = $"exec SP_TimLogin '{maNVSpin.Text}'";
             Program.myReader = Program.ExecSqlDataReader(command);
@@ -323,8 +308,8 @@ namespace QLVT_DATHANGD17
                     try
                     {
                         delMaNV = int.Parse(((DataRowView)nhanVienBDS[nhanVienBDS.Position])["MANV"].ToString());
-                        CommandManager cmdmanager = CommandManager.getInstance();
-                        cmdmanager.execute(new DeleteAction(nhanVienBDS));
+                       
+                        cmdManager.execute(new DeleteAction(nhanVienBDS));
                         this.nhanVienTableAdapter.Connection.ConnectionString = Program.connstr;
                         this.nhanVienTableAdapter.Update(this.qLVT_DATHANGDataSet.NhanVien);
                         undoBtn.Enabled = true;
@@ -340,45 +325,35 @@ namespace QLVT_DATHANGD17
                 deleteBtn.Enabled = false;
         }
 
-       
-      
-        private void undoBtn_ItemClick(object sender, ItemClickEventArgs e)
-        {
-          
-           CommandManager cmdmanager = CommandManager.getInstance();
-            cmdmanager.undo();
-            updateTableAdapter();
-            if (cmdmanager.undoStackSize() == 0) {
-                undoBtn.Enabled = false;
-            } 
-           
-        }
+
+
 
         private void exchangeBtn_ItemClick(object sender, ItemClickEventArgs e)
         {
- 
-            // kiem tra co lien ket phieu chua
-            if (datHangBDS.Count > 0 || phieuNhapBDS.Count > 0 || phieuXuatBDS.Count > 0)
-            {
-                // show messsage ton tai phieu
-                return;
-            }
 
-            // kiem tra nhan vien dc chon da la trang thai xoa chua
-            if (((DataRowView)nhanVienBDS.Current)["TrangThaiXoa"].ToString() == "1") {
-                //show message da dc xoa
-                return;
-            }
+            //// kiem tra co lien ket phieu chua
+            //if (datHangBDS.Count > 0 || phieuNhapBDS.Count > 0 || phieuXuatBDS.Count > 0)
+            //{
+            //    // show messsage ton tai phieu
+            //    return;
+            //}
 
-            // kiem tra co lien ket tai khoan dang nhap khong
-            // su dung sp tim login tu user (maNV)
+            //// kiem tra nhan vien dc chon da la trang thai xoa chua
+            //if (((DataRowView)nhanVienBDS.Current)["TrangThaiXoa"].ToString() == "1")
+            //{
+            //    //show message da dc xoa
+            //    return;
+            //}
+
+            //// kiem tra co lien ket tai khoan dang nhap khong
+            //// su dung sp tim login tu user (maNV)
 
 
-            // mo mode chuyen chi nhanh cho user chon chi nhanh dich
-          
-            exchangeGroup.Enabled = true;
-            detailGroup.Enabled = false;
-            startChangingBranchMode();
+            //// mo mode chuyen chi nhanh cho user chon chi nhanh dich
+
+            //exchangeGroup.Enabled = true;
+            //detailGroup.Enabled = false;
+            //startChangingBranchMode();
         }
 
         private void chuyenBtn_Click(object sender, EventArgs e)
@@ -388,39 +363,57 @@ namespace QLVT_DATHANGD17
 
         private void huyChuyenBtn_Click(object sender, EventArgs e)
         {
-            ViewUIState();
-            exchangeGroup.Enabled = false;
+            //ViewUIState();
+            //exchangeGroup.Enabled = false;
         }
 
-        Object[] data;
-
-        private void cancelBtn_ItemClick(object sender, ItemClickEventArgs e)
+        private void modifyUIButtonState()
         {
-            //switch (lastPressed)
-            //{
-            //    case LastPressedButton.ButtonAddNew:
-            //    case LastPressedButton.ButtonAddNew_CheckError:
-            //        BDSStaff.CancelEdit();
-            //        BDSStaff.Position = vitri;
-            //        break;
-            //}
-            // Bặt tắt các phần nhập dữ liệu tương ứng
-            nhanVienDataGridView.Enabled = true;
-            detailGroup.Enabled = false;
+            vitri = nhanVienBDS.Position; // luu vi tri truoc khi update/ins
             exchangeGroup.Enabled = false;
+            detailGroup.Enabled = true;
+            nhanVienDataGridView.Enabled = false;
+            saveBtn.Enabled = true;
+            addBtn.Enabled = deleteBtn.Enabled = updateBtn.Enabled = refreshBtn.Enabled = exchangeBtn.Enabled = false;
+        }
 
-            ViewUIState();
-            refreshBtn.PerformClick();
+        private void viewUIButtonState()
+        {
+            exchangeGroup.Enabled = false;
+            detailGroup.Enabled = false;
+            nhanVienDataGridView.Enabled = true;
+            saveBtn.Enabled = false;
+            addBtn.Enabled = deleteBtn.Enabled = updateBtn.Enabled = refreshBtn.Enabled = exchangeBtn.Enabled = true;
+        }
 
-            phieuNhapBDS.Position = vitri;
-            // cancel
-           CommandManager cmdmanager = CommandManager.getInstance();
-            cmdmanager.clearLastNode();
-            if (cmdmanager.undoStackSize() == 0)
+        private void startChangingBranchModeUIButtonState()
+        {
+            saveBtn.Enabled = exchangeBtn.Enabled = false;
+            addBtn.Enabled = deleteBtn.Enabled = updateBtn.Enabled = refreshBtn.Enabled = false;
+        }
+
+
+
+        private void undoBtn_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            cmdManager.undo();
+            updateTableAdapter();
+            if (cmdManager.undoStackSize() == 0)
             {
                 undoBtn.Enabled = false;
             }
-            insertSession = false;
+            redoBtn.Enabled = true;
+        }
+
+        private void redoBtn_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            cmdManager.redo();
+            updateTableAdapter();
+            if (cmdManager.redoStackSize() == 0)
+            {
+                redoBtn.Enabled = false;
+            }
+            undoBtn.Enabled = true;
         }
     }
 }

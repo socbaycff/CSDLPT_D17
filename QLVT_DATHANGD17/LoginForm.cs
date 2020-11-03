@@ -72,7 +72,7 @@ namespace QLVT_DATHANGD17
                     //// Hiện thông tin người làm việc hiện tại trên thanh status bar của Main Form
                     this.Hide();
                     //Program.mainForm.LoginState = CurrentSessionState.Activated;
-                    StaffForm staffForm = new StaffForm();
+                    NhanVienForm staffForm = new NhanVienForm();
                     staffForm.MdiParent = Program.mainForm;
                     staffForm.Show();
                 }

@@ -102,4 +102,9 @@ C:\Users\Khang\documents\visual studio 2015\Projects\QLVT_DATHANGD17\QLVT_DATHAN
 C:\Users\Khang\documents\visual studio 2015\Projects\QLVT_DATHANGD17\QLVT_DATHANGD17\bin\Debug\es\DevExpress.XtraNavBar.v19.2.resources.dll
 C:\Users\Khang\documents\visual studio 2015\Projects\QLVT_DATHANGD17\QLVT_DATHANGD17\bin\Debug\ja\DevExpress.XtraNavBar.v19.2.resources.dll
 C:\Users\Khang\documents\visual studio 2015\Projects\QLVT_DATHANGD17\QLVT_DATHANGD17\bin\Debug\ru\DevExpress.XtraNavBar.v19.2.resources.dll
-C:\Users\Khang\documents\visual studio 2015\Projects\QLVT_DATHANGD17\QLVT_DATHANGD17\obj\Debug\QLVT_DATHANGD17.StaffForm.resources
+C:\Users\Khang\documents\visual studio 2015\Projects\QLVT_DATHANGD17\QLVT_DATHANGD17\obj\Debug\QLVT_DATHANGD17.NhanVienForm.resources
+C:\Users\Khang\documents\visual studio 2015\Projects\QLVT_DATHANGD17\QLVT_DATHANGD17\obj\Debug\QLVT_DATHANGD17.VatTuForm.resources
+C:\Users\Khang\documents\visual studio 2015\Projects\QLVT_DATHANGD17\QLVT_DATHANGD17\obj\Debug\QLVT_DATHANGD17.KhoForm.resources
+C:\Users\Khang\documents\visual studio 2015\Projects\QLVT_DATHANGD17\QLVT_DATHANGD17\obj\Debug\QLVT_DATHANGD17.DDHForm.resources
+C:\Users\Khang\documents\visual studio 2015\Projects\QLVT_DATHANGD17\QLVT_DATHANGD17\obj\Debug\QLVT_DATHANGD17.PhieuXuatForm.resources
+C:\Users\Khang\documents\visual studio 2015\Projects\QLVT_DATHANGD17\QLVT_DATHANGD17\obj\Debug\QLVT_DATHANGD17.PhieuNhapForm.resources

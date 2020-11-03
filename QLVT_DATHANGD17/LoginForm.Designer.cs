@@ -69,6 +69,7 @@
             // 
             this.comboBoxSVName.DataSource = this.BDS_View_DSPM;
             this.comboBoxSVName.DisplayMember = "TENCN";
+            this.comboBoxSVName.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxSVName.Font = new System.Drawing.Font("Tahoma", 16F);
             this.comboBoxSVName.FormattingEnabled = true;
             this.comboBoxSVName.Location = new System.Drawing.Point(424, 66);
@@ -161,7 +162,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.comboBoxSVName);
             this.Name = "LoginForm";
-            this.Text = "LoginForm";
+            this.Text = "Đăng nhập";
             this.Load += new System.EventHandler(this.LoginForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.qLVT_DATHANG_DSPM)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.BDS_View_DSPM)).EndInit();

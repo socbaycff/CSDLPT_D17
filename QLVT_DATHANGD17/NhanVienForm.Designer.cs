@@ -1,6 +1,6 @@
 ﻿namespace QLVT_DATHANGD17
 {
-    partial class StaffForm
+    partial class NhanVienForm
     {
         /// <summary>
         /// Required designer variable.
@@ -41,16 +41,18 @@
             this.updateBtn = new DevExpress.XtraBars.BarButtonItem();
             this.deleteBtn = new DevExpress.XtraBars.BarButtonItem();
             this.undoBtn = new DevExpress.XtraBars.BarButtonItem();
+            this.redoBtn = new DevExpress.XtraBars.BarButtonItem();
             this.refreshBtn = new DevExpress.XtraBars.BarButtonItem();
+            this.cancelBtn = new DevExpress.XtraBars.BarButtonItem();
             this.saveBtn = new DevExpress.XtraBars.BarButtonItem();
             this.exchangeBtn = new DevExpress.XtraBars.BarButtonItem();
-            this.cancelBtn = new DevExpress.XtraBars.BarButtonItem();
             this.bar3 = new DevExpress.XtraBars.Bar();
+            this.nameLoginLB = new DevExpress.XtraBars.BarStaticItem();
+            this.roleLB = new DevExpress.XtraBars.BarStaticItem();
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.comboBoxBranch = new System.Windows.Forms.ComboBox();
             this.v_DS_PHANMANHBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.qLVT_DATHANG_DSPM = new QLVT_DATHANGD17.QLVT_DATHANG_DSPM();
@@ -102,7 +104,6 @@
             hOLabel = new System.Windows.Forms.Label();
             mANVLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
-            this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.v_DS_PHANMANHBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.qLVT_DATHANG_DSPM)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.qLVT_DATHANGDataSet)).BeginInit();
@@ -208,9 +209,12 @@
             this.saveBtn,
             this.refreshBtn,
             this.exchangeBtn,
-            this.cancelBtn});
+            this.cancelBtn,
+            this.redoBtn,
+            this.nameLoginLB,
+            this.roleLB});
             this.barManager1.MainMenu = this.bar2;
-            this.barManager1.MaxItemId = 10;
+            this.barManager1.MaxItemId = 13;
             this.barManager1.StatusBar = this.bar3;
             // 
             // bar2
@@ -224,6 +228,7 @@
             new DevExpress.XtraBars.LinkPersistInfo(this.updateBtn),
             new DevExpress.XtraBars.LinkPersistInfo(this.deleteBtn),
             new DevExpress.XtraBars.LinkPersistInfo(this.undoBtn),
+            new DevExpress.XtraBars.LinkPersistInfo(this.redoBtn),
             new DevExpress.XtraBars.LinkPersistInfo(this.refreshBtn),
             new DevExpress.XtraBars.LinkPersistInfo(this.cancelBtn),
             new DevExpress.XtraBars.LinkPersistInfo(this.saveBtn),
@@ -269,6 +274,16 @@
             this.undoBtn.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             this.undoBtn.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.undoBtn_ItemClick);
             // 
+            // redoBtn
+            // 
+            this.redoBtn.Caption = "Redo";
+            this.redoBtn.Enabled = false;
+            this.redoBtn.Id = 10;
+            this.redoBtn.ImageOptions.Image = global::QLVT_DATHANGD17.Properties.Resources.download;
+            this.redoBtn.Name = "redoBtn";
+            this.redoBtn.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.redoBtn.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.redoBtn_ItemClick);
+            // 
             // refreshBtn
             // 
             this.refreshBtn.Caption = "Refresh";
@@ -277,6 +292,15 @@
             this.refreshBtn.Name = "refreshBtn";
             this.refreshBtn.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             this.refreshBtn.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.refreshBtn_ItemClick);
+            // 
+            // cancelBtn
+            // 
+            this.cancelBtn.Caption = "Hủy";
+            this.cancelBtn.Id = 9;
+            this.cancelBtn.ImageOptions.Image = global::QLVT_DATHANGD17.Properties.Resources.remove;
+            this.cancelBtn.Name = "cancelBtn";
+            this.cancelBtn.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.cancelBtn.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.cancelBtn_ItemClick);
             // 
             // saveBtn
             // 
@@ -296,15 +320,6 @@
             this.exchangeBtn.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             this.exchangeBtn.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.exchangeBtn_ItemClick);
             // 
-            // cancelBtn
-            // 
-            this.cancelBtn.Caption = "Hủy";
-            this.cancelBtn.Id = 9;
-            this.cancelBtn.ImageOptions.Image = global::QLVT_DATHANGD17.Properties.Resources.remove;
-            this.cancelBtn.Name = "cancelBtn";
-            this.cancelBtn.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
-            this.cancelBtn.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.cancelBtn_ItemClick);
-            // 
             // bar3
             // 
             this.bar3.BarName = "Status bar";
@@ -312,10 +327,25 @@
             this.bar3.DockCol = 0;
             this.bar3.DockRow = 0;
             this.bar3.DockStyle = DevExpress.XtraBars.BarDockStyle.Bottom;
+            this.bar3.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
+            new DevExpress.XtraBars.LinkPersistInfo(this.nameLoginLB),
+            new DevExpress.XtraBars.LinkPersistInfo(this.roleLB)});
             this.bar3.OptionsBar.AllowQuickCustomization = false;
             this.bar3.OptionsBar.DrawDragBorder = false;
             this.bar3.OptionsBar.UseWholeRow = true;
             this.bar3.Text = "Status bar";
+            // 
+            // nameLoginLB
+            // 
+            this.nameLoginLB.Caption = "barStaticItem1";
+            this.nameLoginLB.Id = 11;
+            this.nameLoginLB.Name = "nameLoginLB";
+            // 
+            // roleLB
+            // 
+            this.roleLB.Caption = "barStaticItem2";
+            this.roleLB.Id = 12;
+            this.roleLB.Name = "roleLB";
             // 
             // barDockControlTop
             // 
@@ -324,48 +354,40 @@
             this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
             this.barDockControlTop.Manager = this.barManager1;
             this.barDockControlTop.Margin = new System.Windows.Forms.Padding(4);
-            this.barDockControlTop.Size = new System.Drawing.Size(1944, 58);
+            this.barDockControlTop.Size = new System.Drawing.Size(2408, 63);
             // 
             // barDockControlBottom
             // 
             this.barDockControlBottom.CausesValidation = false;
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControlBottom.Location = new System.Drawing.Point(0, 605);
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 700);
             this.barDockControlBottom.Manager = this.barManager1;
             this.barDockControlBottom.Margin = new System.Windows.Forms.Padding(4);
-            this.barDockControlBottom.Size = new System.Drawing.Size(1944, 20);
+            this.barDockControlBottom.Size = new System.Drawing.Size(2408, 29);
             // 
             // barDockControlLeft
             // 
             this.barDockControlLeft.CausesValidation = false;
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
-            this.barDockControlLeft.Location = new System.Drawing.Point(0, 58);
+            this.barDockControlLeft.Location = new System.Drawing.Point(0, 63);
             this.barDockControlLeft.Manager = this.barManager1;
             this.barDockControlLeft.Margin = new System.Windows.Forms.Padding(4);
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 547);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 637);
             // 
             // barDockControlRight
             // 
             this.barDockControlRight.CausesValidation = false;
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(1944, 58);
+            this.barDockControlRight.Location = new System.Drawing.Point(2408, 63);
             this.barDockControlRight.Manager = this.barManager1;
             this.barDockControlRight.Margin = new System.Windows.Forms.Padding(4);
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 547);
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.comboBoxBranch);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 58);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1944, 69);
-            this.panel1.TabIndex = 4;
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 637);
             // 
             // comboBoxBranch
             // 
+            this.comboBoxBranch.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxBranch.FormattingEnabled = true;
-            this.comboBoxBranch.Location = new System.Drawing.Point(18, 9);
+            this.comboBoxBranch.Location = new System.Drawing.Point(1294, 17);
             this.comboBoxBranch.Margin = new System.Windows.Forms.Padding(4);
             this.comboBoxBranch.Name = "comboBoxBranch";
             this.comboBoxBranch.Size = new System.Drawing.Size(448, 27);
@@ -430,11 +452,11 @@
             this.trangThaiXoaDataGridViewTextBoxColumn});
             this.nhanVienDataGridView.DataSource = this.nhanVienBDS;
             this.nhanVienDataGridView.Dock = System.Windows.Forms.DockStyle.Top;
-            this.nhanVienDataGridView.Location = new System.Drawing.Point(0, 127);
+            this.nhanVienDataGridView.Location = new System.Drawing.Point(0, 63);
             this.nhanVienDataGridView.Name = "nhanVienDataGridView";
             this.nhanVienDataGridView.ReadOnly = true;
             this.nhanVienDataGridView.RowTemplate.Height = 28;
-            this.nhanVienDataGridView.Size = new System.Drawing.Size(1944, 207);
+            this.nhanVienDataGridView.Size = new System.Drawing.Size(2408, 207);
             this.nhanVienDataGridView.TabIndex = 6;
             // 
             // mANVDataGridViewTextBoxColumn
@@ -544,10 +566,10 @@
             // 
             this.panelControl1.Controls.Add(this.exchangeGroup);
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panelControl1.Location = new System.Drawing.Point(1278, 334);
+            this.panelControl1.Location = new System.Drawing.Point(1742, 270);
             this.panelControl1.Margin = new System.Windows.Forms.Padding(4);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(666, 271);
+            this.panelControl1.Size = new System.Drawing.Size(666, 430);
             this.panelControl1.TabIndex = 12;
             // 
             // exchangeGroup
@@ -561,7 +583,7 @@
             this.exchangeGroup.Margin = new System.Windows.Forms.Padding(4);
             this.exchangeGroup.Name = "exchangeGroup";
             this.exchangeGroup.Padding = new System.Windows.Forms.Padding(4);
-            this.exchangeGroup.Size = new System.Drawing.Size(662, 267);
+            this.exchangeGroup.Size = new System.Drawing.Size(662, 426);
             this.exchangeGroup.TabIndex = 0;
             this.exchangeGroup.TabStop = false;
             this.exchangeGroup.Text = "Chuyển CN";
@@ -615,10 +637,10 @@
             // 
             this.panelControl2.Controls.Add(this.detailGroup);
             this.panelControl2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelControl2.Location = new System.Drawing.Point(0, 334);
+            this.panelControl2.Location = new System.Drawing.Point(0, 270);
             this.panelControl2.Margin = new System.Windows.Forms.Padding(4);
             this.panelControl2.Name = "panelControl2";
-            this.panelControl2.Size = new System.Drawing.Size(1278, 271);
+            this.panelControl2.Size = new System.Drawing.Size(1742, 430);
             this.panelControl2.TabIndex = 13;
             // 
             // detailGroup
@@ -642,7 +664,7 @@
             this.detailGroup.Margin = new System.Windows.Forms.Padding(4);
             this.detailGroup.Name = "detailGroup";
             this.detailGroup.Padding = new System.Windows.Forms.Padding(4);
-            this.detailGroup.Size = new System.Drawing.Size(1274, 267);
+            this.detailGroup.Size = new System.Drawing.Size(1738, 426);
             this.detailGroup.TabIndex = 0;
             this.detailGroup.TabStop = false;
             this.detailGroup.Text = "Thông tin";
@@ -767,26 +789,25 @@
             this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
             this.dataGridViewTextBoxColumn1.Width = 137;
             // 
-            // StaffForm
+            // NhanVienForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(1944, 625);
+            this.ClientSize = new System.Drawing.Size(1944, 755);
+            this.Controls.Add(this.comboBoxBranch);
             this.Controls.Add(this.panelControl2);
             this.Controls.Add(this.panelControl1);
             this.Controls.Add(this.nhanVienDataGridView);
-            this.Controls.Add(this.panel1);
             this.Controls.Add(this.barDockControlLeft);
             this.Controls.Add(this.barDockControlRight);
             this.Controls.Add(this.barDockControlBottom);
             this.Controls.Add(this.barDockControlTop);
             this.Margin = new System.Windows.Forms.Padding(4);
-            this.Name = "StaffForm";
-            this.Text = "StaffForm";
+            this.Name = "NhanVienForm";
+            this.Text = "Nhân Viên";
             this.Load += new System.EventHandler(this.StaffForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
-            this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.v_DS_PHANMANHBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.qLVT_DATHANG_DSPM)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.qLVT_DATHANGDataSet)).EndInit();
@@ -831,7 +852,6 @@
         private DevExpress.XtraBars.BarButtonItem addBtn;
         private System.Windows.Forms.BindingSource nhanVienBDS;
         private QLVT_DATHANGDataSet qLVT_DATHANGDataSet;
-        private System.Windows.Forms.Panel panel1;
         private QLVT_DATHANGDataSetTableAdapters.NhanVienTableAdapter nhanVienTableAdapter;
         private QLVT_DATHANGDataSetTableAdapters.TableAdapterManager tableAdapterManager;
         private System.Windows.Forms.DataGridView nhanVienDataGridView;
@@ -881,5 +901,8 @@
         private System.Windows.Forms.ComboBox chiNhanhChuyenCb;
         private System.Windows.Forms.BindingSource v_DS_PHANMANHBindingSource1;
         private DevExpress.XtraBars.BarButtonItem cancelBtn;
+        private DevExpress.XtraBars.BarButtonItem redoBtn;
+        private DevExpress.XtraBars.BarStaticItem nameLoginLB;
+        private DevExpress.XtraBars.BarStaticItem roleLB;
     }
 }
