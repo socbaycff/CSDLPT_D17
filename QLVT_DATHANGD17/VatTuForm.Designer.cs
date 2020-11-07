@@ -430,6 +430,7 @@
             this.SLTTE.Name = "SLTTE";
             this.SLTTE.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.SLTTE.Properties.Mask.EditMask = "n0";
             this.SLTTE.Size = new System.Drawing.Size(286, 28);
             this.SLTTE.TabIndex = 7;
             // 

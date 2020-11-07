@@ -296,6 +296,7 @@
             // cancelBtn
             // 
             this.cancelBtn.Caption = "Hủy";
+            this.cancelBtn.Enabled = false;
             this.cancelBtn.Id = 9;
             this.cancelBtn.ImageOptions.Image = global::QLVT_DATHANGD17.Properties.Resources.remove;
             this.cancelBtn.Name = "cancelBtn";
@@ -360,7 +361,7 @@
             // 
             this.barDockControlBottom.CausesValidation = false;
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControlBottom.Location = new System.Drawing.Point(0, 700);
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 856);
             this.barDockControlBottom.Manager = this.barManager1;
             this.barDockControlBottom.Margin = new System.Windows.Forms.Padding(4);
             this.barDockControlBottom.Size = new System.Drawing.Size(2408, 29);
@@ -372,7 +373,7 @@
             this.barDockControlLeft.Location = new System.Drawing.Point(0, 63);
             this.barDockControlLeft.Manager = this.barManager1;
             this.barDockControlLeft.Margin = new System.Windows.Forms.Padding(4);
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 637);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 793);
             // 
             // barDockControlRight
             // 
@@ -381,7 +382,7 @@
             this.barDockControlRight.Location = new System.Drawing.Point(2408, 63);
             this.barDockControlRight.Manager = this.barManager1;
             this.barDockControlRight.Margin = new System.Windows.Forms.Padding(4);
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 637);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 793);
             // 
             // comboBoxBranch
             // 
@@ -569,7 +570,7 @@
             this.panelControl1.Location = new System.Drawing.Point(1742, 270);
             this.panelControl1.Margin = new System.Windows.Forms.Padding(4);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(666, 430);
+            this.panelControl1.Size = new System.Drawing.Size(666, 586);
             this.panelControl1.TabIndex = 12;
             // 
             // exchangeGroup
@@ -583,7 +584,7 @@
             this.exchangeGroup.Margin = new System.Windows.Forms.Padding(4);
             this.exchangeGroup.Name = "exchangeGroup";
             this.exchangeGroup.Padding = new System.Windows.Forms.Padding(4);
-            this.exchangeGroup.Size = new System.Drawing.Size(662, 426);
+            this.exchangeGroup.Size = new System.Drawing.Size(662, 582);
             this.exchangeGroup.TabIndex = 0;
             this.exchangeGroup.TabStop = false;
             this.exchangeGroup.Text = "Chuyển CN";
@@ -640,7 +641,7 @@
             this.panelControl2.Location = new System.Drawing.Point(0, 270);
             this.panelControl2.Margin = new System.Windows.Forms.Padding(4);
             this.panelControl2.Name = "panelControl2";
-            this.panelControl2.Size = new System.Drawing.Size(1742, 430);
+            this.panelControl2.Size = new System.Drawing.Size(1742, 586);
             this.panelControl2.TabIndex = 13;
             // 
             // detailGroup
@@ -664,7 +665,7 @@
             this.detailGroup.Margin = new System.Windows.Forms.Padding(4);
             this.detailGroup.Name = "detailGroup";
             this.detailGroup.Padding = new System.Windows.Forms.Padding(4);
-            this.detailGroup.Size = new System.Drawing.Size(1738, 426);
+            this.detailGroup.Size = new System.Drawing.Size(1738, 582);
             this.detailGroup.TabIndex = 0;
             this.detailGroup.TabStop = false;
             this.detailGroup.Text = "Thông tin";
@@ -696,7 +697,7 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.maNVSpin.Properties.IsFloatValue = false;
             this.maNVSpin.Properties.Mask.AutoComplete = DevExpress.XtraEditors.Mask.AutoCompleteType.None;
-            this.maNVSpin.Properties.Mask.EditMask = "N00";
+            this.maNVSpin.Properties.Mask.EditMask = "n0";
             this.maNVSpin.Size = new System.Drawing.Size(150, 28);
             this.maNVSpin.TabIndex = 45;
             // 
@@ -736,7 +737,7 @@
             this.trangThaiXoaSpin.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.trangThaiXoaSpin.Properties.IsFloatValue = false;
-            this.trangThaiXoaSpin.Properties.Mask.EditMask = "N00";
+            this.trangThaiXoaSpin.Properties.Mask.EditMask = "n0";
             this.trangThaiXoaSpin.Size = new System.Drawing.Size(150, 28);
             this.trangThaiXoaSpin.TabIndex = 42;
             // 
@@ -764,6 +765,7 @@
             this.luongSpin.Name = "luongSpin";
             this.luongSpin.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.luongSpin.Properties.Mask.EditMask = "n0";
             this.luongSpin.Size = new System.Drawing.Size(150, 28);
             this.luongSpin.TabIndex = 40;
             // 
@@ -794,7 +796,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(1944, 755);
+            this.ClientSize = new System.Drawing.Size(1944, 911);
             this.Controls.Add(this.comboBoxBranch);
             this.Controls.Add(this.panelControl2);
             this.Controls.Add(this.panelControl1);
