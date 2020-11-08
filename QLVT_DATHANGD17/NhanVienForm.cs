@@ -154,7 +154,7 @@ namespace QLVT_DATHANGD17
 
         private void saveBtn_ItemClick(object sender, ItemClickEventArgs e)
         {
-
+            detailGroup.Focus();
             if (maNVSpin.Text.Trim() == "")
             {
                 MessageBox.Show("Mã nhân viên không được để trống", "Thiếu thông tin", MessageBoxButtons.OK, MessageBoxIcon.Error);

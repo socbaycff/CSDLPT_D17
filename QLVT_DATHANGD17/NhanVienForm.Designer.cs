@@ -361,7 +361,7 @@
             // 
             this.barDockControlBottom.CausesValidation = false;
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControlBottom.Location = new System.Drawing.Point(0, 856);
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 908);
             this.barDockControlBottom.Manager = this.barManager1;
             this.barDockControlBottom.Margin = new System.Windows.Forms.Padding(4);
             this.barDockControlBottom.Size = new System.Drawing.Size(2408, 29);
@@ -373,7 +373,7 @@
             this.barDockControlLeft.Location = new System.Drawing.Point(0, 63);
             this.barDockControlLeft.Manager = this.barManager1;
             this.barDockControlLeft.Margin = new System.Windows.Forms.Padding(4);
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 793);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 845);
             // 
             // barDockControlRight
             // 
@@ -382,7 +382,7 @@
             this.barDockControlRight.Location = new System.Drawing.Point(2408, 63);
             this.barDockControlRight.Manager = this.barManager1;
             this.barDockControlRight.Margin = new System.Windows.Forms.Padding(4);
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 793);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 845);
             // 
             // comboBoxBranch
             // 
@@ -570,7 +570,7 @@
             this.panelControl1.Location = new System.Drawing.Point(1742, 270);
             this.panelControl1.Margin = new System.Windows.Forms.Padding(4);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(666, 586);
+            this.panelControl1.Size = new System.Drawing.Size(666, 638);
             this.panelControl1.TabIndex = 12;
             // 
             // exchangeGroup
@@ -584,7 +584,7 @@
             this.exchangeGroup.Margin = new System.Windows.Forms.Padding(4);
             this.exchangeGroup.Name = "exchangeGroup";
             this.exchangeGroup.Padding = new System.Windows.Forms.Padding(4);
-            this.exchangeGroup.Size = new System.Drawing.Size(662, 582);
+            this.exchangeGroup.Size = new System.Drawing.Size(662, 634);
             this.exchangeGroup.TabIndex = 0;
             this.exchangeGroup.TabStop = false;
             this.exchangeGroup.Text = "Chuyển CN";
@@ -641,7 +641,7 @@
             this.panelControl2.Location = new System.Drawing.Point(0, 270);
             this.panelControl2.Margin = new System.Windows.Forms.Padding(4);
             this.panelControl2.Name = "panelControl2";
-            this.panelControl2.Size = new System.Drawing.Size(1742, 586);
+            this.panelControl2.Size = new System.Drawing.Size(1742, 638);
             this.panelControl2.TabIndex = 13;
             // 
             // detailGroup
@@ -665,7 +665,7 @@
             this.detailGroup.Margin = new System.Windows.Forms.Padding(4);
             this.detailGroup.Name = "detailGroup";
             this.detailGroup.Padding = new System.Windows.Forms.Padding(4);
-            this.detailGroup.Size = new System.Drawing.Size(1738, 582);
+            this.detailGroup.Size = new System.Drawing.Size(1738, 634);
             this.detailGroup.TabIndex = 0;
             this.detailGroup.TabStop = false;
             this.detailGroup.Text = "Thông tin";
@@ -796,7 +796,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(1944, 911);
+            this.ClientSize = new System.Drawing.Size(1944, 963);
             this.Controls.Add(this.comboBoxBranch);
             this.Controls.Add(this.panelControl2);
             this.Controls.Add(this.panelControl1);

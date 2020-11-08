@@ -165,11 +165,11 @@ namespace QLVT_DATHANGD17
 
         private void deleteVTBtn_ItemClick(object sender, ItemClickEventArgs e)
         {
-            string delCTDDH = "";
+        
             if (MessageBox.Show("Bạn có thật sự muốn xóa đơn đặt hàng này ?? ", "Xác nhận", MessageBoxButtons.OKCancel) == DialogResult.OK)
                 try
                 {
-                    delCTDDH = ((DataRowView)datHangBDS[datHangBDS.Position])["MasoDDH"].ToString();
+
                     cmdManager.execute(new DeleteAction(ctddhBDS));
                     updateCTDDHTableAdapter();
                     undoBtn.Enabled = true;
@@ -177,8 +177,8 @@ namespace QLVT_DATHANGD17
                 catch (Exception exception)
                 {
                     MessageBox.Show("Xóa chi tiết đơn hàng không thành công :3", "Lỗi khi xóa", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    this.datHangTableAdapter.Fill(this.qLVT_DATHANGDataSet.DatHang);
-                    datHangBDS.Position = datHangBDS.Find("MasoDDH", delCTDDH);
+                    this.cTDDHTableAdapter.Fill(this.qLVT_DATHANGDataSet.CTDDH);
+
                 }
 
             if (ctddhBDS.Count == 0)
@@ -187,7 +187,7 @@ namespace QLVT_DATHANGD17
 
         private void saveVTBtn_ItemClick(object sender, ItemClickEventArgs e)
         {
-          
+            chiTietGroup.Focus();
 
             if (soLuongSE.Text.Trim() == "" || soLuongSE.Value < 0)
             {
@@ -248,7 +248,14 @@ namespace QLVT_DATHANGD17
 
         private void cancelBtn_ItemClick(object sender, ItemClickEventArgs e)
         {
-            ctddhBDS.CancelEdit();
+            if (insertSession)
+            {
+
+                datHangBDS.CancelEdit();
+                ctddhBDS.CancelEdit();
+                insertSession = false;
+            }
+     
             datHangDataGridView.Enabled = true;
             cTDDHDataGridView.Enabled = true;
             thongTinGroup.Enabled = false;
@@ -261,6 +268,12 @@ namespace QLVT_DATHANGD17
 
             refreshBtn.PerformClick();
             ctddhBDS.Position = vitri2;
+            datHangBDS.Position = vitri1;
+            cmdManager.clearLastNode();
+            if (cmdManager.undoStackSize() == 0)
+            {
+                undoBtn.Enabled = false;
+            }
         }
 
         private void undoBtn_ItemClick(object sender, ItemClickEventArgs e)
@@ -307,7 +320,7 @@ namespace QLVT_DATHANGD17
 
         private void saveBtn_ItemClick(object sender, ItemClickEventArgs e)
         {
-            
+            thongTinGroup.Focus();
             if (masoDDHTE.Text.Trim() == "")
             {
                 MessageBox.Show("Mã đơn đặt hàng không được để trống", "Thiếu thông tin", MessageBoxButtons.OK, MessageBoxIcon.Error);

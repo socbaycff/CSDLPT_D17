@@ -40,23 +40,15 @@ namespace QLVT_DATHANGD17
             // TODO: This line of code loads data into the 'DS.CTPN' table. You can move, or remove it, as needed.
             this.cTPNTableAdapter.Connection.ConnectionString = Program.connstr;
             this.cTPNTableAdapter.Fill(this.qLVT_DATHANGDataSet.CTPN);
+            // TODO: This line of code loads data into the 'qLVT_DATHANGDataSet.DatHang' table. You can move, or remove it, as needed.
+            this.datHangTableAdapter.Fill(this.qLVT_DATHANGDataSet.DatHang);
+            // TODO: This line of code loads data into the 'qLVT_DATHANGDataSet.Kho' table. You can move, or remove it, as needed.
+            this.khoTableAdapter.Fill(this.qLVT_DATHANGDataSet.Kho);
+            // TODO: This line of code loads data into the 'qLVT_DATHANGDataSet.NhanVien' table. You can move, or remove it, as needed.
+            this.nhanVienTableAdapter.Fill(this.qLVT_DATHANGDataSet.NhanVien);
+            // TODO: This line of code loads data into the 'qLVT_DATHANGDataSet.CTDDH' table. You can move, or remove it, as needed.
+            this.cTDDHTableAdapter.Fill(this.qLVT_DATHANGDataSet.CTDDH);
 
-            // TODO: This line of code loads data into the 'DS.KHO' table. You can move, or remove it, as needed.
-            //this.kHOTableAdapter.Connection.ConnectionString = Program.connstr;
-            //this.kHOTableAdapter.Fill(this.DS.KHO);
-            //TODO: This line of code loads data into the 'DS.NHANVIEN' table.You can move, or remove it, as needed.
-            //this.nHANVIENTableAdapter.Connection.ConnectionString = Program.connstr;
-            //this.nHANVIENTableAdapter.Fill(this.DS.NHANVIEN);
-            //TODO: This line of code loads data into the 'DS.SP_InDanhSachNhanVien' table.You can move, or remove it, as needed.
-            //this.sP_InDanhSachNhanVienTableAdapter.Connection.ConnectionString = Program.connstr;
-            //this.sP_InDanhSachNhanVienTableAdapter.Fill(this.DS.SP_InDanhSachNhanVien);
-            //TODO: This line of code loads data into the 'DS.DATHANG' table.You can move, or remove it, as needed.
-            //this.dATHANGTableAdapter.Connection.ConnectionString = Program.connstr;
-            //this.dATHANGTableAdapter.Fill(this.DS.DATHANG);
-
-            //TODO: This line of code loads data into the 'DS.CTDDH' table.You can move, or remove it, as needed.
-            //this.cTDDHTableAdapter.Connection.ConnectionString = Program.connstr;
-            //this.cTDDHTableAdapter.Fill(this.DS.CTDDH);
         }
         private void updatePNTableAdapter()
         {
@@ -97,16 +89,8 @@ namespace QLVT_DATHANGD17
 
         private void PhieuNhapForm_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'qLVT_DATHANGDataSet.DatHang' table. You can move, or remove it, as needed.
-            this.datHangTableAdapter.Fill(this.qLVT_DATHANGDataSet.DatHang);
-            // TODO: This line of code loads data into the 'qLVT_DATHANGDataSet.Kho' table. You can move, or remove it, as needed.
-            this.khoTableAdapter.Fill(this.qLVT_DATHANGDataSet.Kho);
-            // TODO: This line of code loads data into the 'qLVT_DATHANGDataSet.NhanVien' table. You can move, or remove it, as needed.
-            this.nhanVienTableAdapter.Fill(this.qLVT_DATHANGDataSet.NhanVien);
-            //// TODO: This line of code loads data into the 'qLVT_DATHANGDataSet.CTPN' table. You can move, or remove it, as needed.
-            //this.cTPNTableAdapter.Fill(this.qLVT_DATHANGDataSet.CTPN);
-            //// TODO: This line of code loads data into the 'qLVT_DATHANGDataSet.PhieuNhap' table. You can move, or remove it, as needed.
-            //this.phieuNhapTableAdapter.Fill(this.qLVT_DATHANGDataSet.PhieuNhap);
+  
+
             // Thiết lập một số thuộc tính mặc đinh cho các widget nhập dữ liệu theo ràng buộc của database
             dONGIASpinEdit.Properties.MinValue = 1;
             dONGIASpinEdit.Properties.MaxValue = 1000000000;
@@ -196,6 +180,7 @@ namespace QLVT_DATHANGD17
 
         private void saveBtn_ItemClick(object sender, ItemClickEventArgs e)
         {
+            thongTinGroupBox.Focus();
             if (mAPNTextEdit.Text.Trim() == "")
             {
                 MessageBox.Show("Mã phiếu nhập không được để trống", "Thiếu thông tin", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -236,17 +221,18 @@ namespace QLVT_DATHANGD17
 
             try
             {
+                // Kiểm tra tính unique của MasoDDH
+                int checkIndex = phieuNhapBDS.Find("MasoDDH", masoDDHTextEdit.Text.Trim());
+
+                //MessageBox.Show($"{checkIndex}  {BDSPhieuNhap.Position}");
+                if (checkIndex >= 0 && checkIndex != phieuNhapBDS.Position)
+                {
+                    MessageBox.Show($"Đơn đặt hàng {masoDDHTextEdit.Text} đã được lập phiếu nhập, không thể tạo thêm phiếu nhập cho đơn hàng này", "Sai thông tin", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
                 if (insertSession)
                 {
-                    // Kiểm tra tính unique của MasoDDH
-                    int checkIndex = phieuNhapBDS.Find("MasoDDH", masoDDHTextEdit.Text.Trim());
-
-                    //MessageBox.Show($"{checkIndex}  {BDSPhieuNhap.Position}");
-                    if (checkIndex >= 0 && checkIndex != phieuNhapBDS.Position)
-                    {
-                        MessageBox.Show($"Đơn đặt hàng {masoDDHTextEdit.Text} đã được lập phiếu nhập, không thể tạo thêm phiếu nhập cho đơn hàng này", "Sai thông tin", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
-                    }
+                   
                     // Kiểm tra tính hợp lệ của MAPN
                     string command = $"exec SP_KiemTraPhieuNhap '{mAPNTextEdit.Text.Trim()}'";
                     Program.myReader = Program.ExecSqlDataReader(command);
@@ -335,6 +321,230 @@ namespace QLVT_DATHANGD17
             }
             if (phieuNhapBDS.Count == 0)
                 deleteBtn.Enabled = false;
+        }
+
+        private void updateBtn_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            vitri1 = phieuNhapBDS.Position;
+            cmdManager.execute(new UpdateAction(phieuNhapBDS));
+            thongTinGroupBox.Enabled = true;
+            addBtn.Enabled = updateBtn.Enabled = deleteBtn.Enabled = refreshBtn.Enabled = false;
+            saveBtn.Enabled = cancelBtn.Enabled = true;
+            phieuNhapDataGridView.Enabled = false;
+            mAPNTextEdit.ReadOnly = true;
+            masoDDHTextEdit.Enabled = true;
+            mANVSpinEdit.Enabled = true;
+            mAKHOTextEdit.Enabled = true;
+        }
+
+        private void cancelBtn_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            if (insertSession)
+            {
+                phieuNhapBDS.CancelEdit();
+                cTPNBDS.CancelEdit();
+                insertSession = false;
+            }
+
+
+            phieuNhapDataGridView.Enabled = true;
+            cTPNDataGridView.Enabled = true;
+            thongTinGroupBox.Enabled = false;
+            chiTietGroupBox.Enabled = false;
+
+            addBtn.Enabled = updateBtn.Enabled = deleteBtn.Enabled = refreshBtn.Enabled = true;
+            addVTBtn.Enabled = deleteVTBtn.Enabled = true;
+            saveBtn.Enabled = cancelBtn.Enabled = false;
+            saveVTBtn.Enabled  = false;
+
+            refreshBtn.PerformClick();
+            cTPNBDS.Position = vitri2;
+            phieuNhapBDS.Position = vitri1;
+            cmdManager.clearLastNode();
+            if (cmdManager.undoStackSize() == 0)
+            {
+                undoBtn.Enabled = false;
+            }
+
+        }
+
+        private void refreshBtn_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            try
+            {
+                // Đưa BindingSource của nhân viên về mặc định
+                phieuNhapBDS.RemoveFilter();
+                cTPNBDS.RemoveFilter();
+                //this.nHANVIENTableAdapter.Fill(this.DS.NHANVIEN);
+                refreshTableAdapter();
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show($" <3 {exception.Message}", "Không thể cập nhật", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void addVTBtn_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            // Nạp mã đơn đặt hàng vào để lấy thông tin chi tiết của đơn đặt hàng - vặt tư đặt - số lượng đặt
+          //  comboBoxFMaDonDH.SelectedValue = textEditMaDDH.Text;
+        //    Kiểm tra xem thử đơn đặt hàng đã có chi tiết đơn hàng chưa nếu chưa thì không cho phép tạo chi tiết phiếu nhập
+            if (cTDDHBDS.Count == 0)
+            {
+                MessageBox.Show($"Không thể tạo chi tiết cho phiếu nhập {mAPNTextEdit.Text} này vì đơn đặt hàng {masoDDHTextEdit.Text} chưa có chi tiết", "Thiếu thông tin", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            // Gọi tập lệnh của Binding Source;
+            cmdManager.execute(new InsertAction(cTPNBDS));
+            // Khởi động lại các giá trị hiện tại từ phiếu nhập sang chi tiết phiếu nhập
+
+
+            mAVTTextEdit.Text = cTDDHComboBox.Text;
+
+            vitri2 = cTPNBDS.Position;
+
+            // Vô hiẹu hóa phần /Grid Control của đơn đặt hàng
+            cTPNDataGridView.Enabled = false;
+            chiTietGroupBox.Enabled = cancelBtn.Enabled = true;
+            saveBtn.Enabled  = addBtn.Enabled = deleteBtn.Enabled = updateBtn.Enabled = refreshBtn.Enabled = false;
+            addVTBtn.Enabled = false;
+            saveVTBtn.Enabled  = true;
+
+            // Mở phần chỉnh sửa
+            phieuNhapDataGridView.Enabled = false;
+            thongTinGroupBox.Enabled = false;
+
+            enableGroupControl2Input(true);
+
+            //groupControl2.Enabled = false;
+            mAPNTextEdit1.Text = mAPNTextEdit.Text;
+            insertSession = true;
+            sOLUONGSpinEdit.ReadOnly = false;
+            dONGIASpinEdit.ReadOnly = false;
+            //spinEditMaNV.Value = int.Parse(comboBoxFMaNV.SelectedValue.ToString().Trim());
+            //textEditMaKho.Text = comboBoxFMaKho.SelectedValue.ToString().Trim();
+            //textEditMaDDH.Text = comboBoxFMaDonDH.SelectedValue.ToString().Trim();
+        }
+
+        private void datHangComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                masoDDHTextEdit.Text = datHangComboBox.SelectedValue.ToString();
+            }
+            catch (Exception nullRef)
+            {
+                return;
+            }
+        }
+
+        private void phieuNhapDataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            // cap nhat combobox dat hang
+            datHangBDS.Position = datHangBDS.Find("MasoDDH", ((DataRowView)phieuNhapBDS.Current)["MasoDDH"].ToString());
+        }
+
+        private void cTDDHComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                 mAVTTextEdit.Text = cTDDHComboBox.SelectedValue.ToString();
+               ((DataRowView) cTPNBDS.Current)["MAVT"] = cTDDHComboBox.SelectedValue.ToString();
+            }
+            catch (Exception nullRef)
+            {
+                return;
+            }
+           
+        }
+
+        private void saveVTBtn_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            chiTietGroupBox.Focus();
+            if (sOLUONGSpinEdit.Text == "")
+            {
+                MessageBox.Show("Số lượng nhập không được để trống", "Thiếu thông tin", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                sOLUONGSpinEdit.Focus();
+                return;
+            }
+            if (dONGIASpinEdit.Text == "")
+            {
+                MessageBox.Show("Đơn giá không được để trống", "Thiếu thông tin", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                dONGIASpinEdit.Focus();
+                return;
+            }
+
+            // Kiểm tra tính unique của MasoDDH
+            //int checkIndex = BDSCTPN.Find("MAVT", textEditMaVT.Text.Trim());
+
+            int checkIndex = -1;
+            for (int i = 0; i < cTPNBDS.Count; i++)
+            {
+                if (mAVTTextEdit.Text.Trim() == ((DataRowView)cTPNBDS[i])["MAVT"].ToString())
+                {
+                    checkIndex = i;
+                    break;
+                }
+            }
+
+            if (checkIndex >= 0 && checkIndex != cTPNBDS.Position)
+            {
+                MessageBox.Show($"Chi tiết phiếu nhập này đã được lập vui lòng chọn lại vât tư khác", "Sai thông tin", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            string mapn = mAPNTextEdit1.Text.Trim();
+            string mavt = mAVTTextEdit.Text.Trim();
+            try
+            {
+                ((InsertAction)cmdManager.getLastUndoNode()).getData(); // lay data cho redo
+                updateCTPNTableAdapter();
+                insertSession = false;
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(exception.Message);
+                return;
+            }
+
+            // tam thoi chua cap nhat so luong trong kho
+            // Cập nhật số lượng vật tư
+            //string command = $"exec SP_CapNhapVatTuNhap '{mapn}', '{mavt}'";
+            //Program.myReader = Program.ExecSqlDataReader(command);
+            //if (Program.myReader != null)
+            //    Program.myReader.Close();
+
+            phieuNhapDataGridView.Enabled = true;
+            cTPNDataGridView.Enabled = true;
+
+            thongTinGroupBox.Enabled = false;
+            chiTietGroupBox.Enabled = false;
+
+            addBtn.Enabled = updateBtn.Enabled = deleteBtn.Enabled = refreshBtn.Enabled = true;
+            addVTBtn.Enabled = true;
+            saveBtn.Enabled = cancelBtn.Enabled = false;
+            saveVTBtn.Enabled  = false;
+        }
+
+        private void deleteVTBtn_ItemClick(object sender, ItemClickEventArgs e)
+        {
+
+            if (MessageBox.Show("Bạn có thật sự muốn xóa đơn đặt hàng này ?? ", "Xác nhận", MessageBoxButtons.OKCancel) == DialogResult.OK)
+                try
+                {
+
+                    cmdManager.execute(new DeleteAction(cTPNBDS));
+                    updateCTPNTableAdapter();
+                    undoBtn.Enabled = true;
+                }
+                catch (Exception exception)
+                {
+                    MessageBox.Show("Xóa chi tiết đơn hàng không thành công :3", "Lỗi khi xóa", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.cTPNTableAdapter.Fill(this.qLVT_DATHANGDataSet.CTPN);
+
+                }
+
+            if (cTPNBDS.Count == 0)
+                deleteVTBtn.Enabled = false;
         }
     }
 }

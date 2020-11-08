@@ -189,6 +189,7 @@ namespace QLVT_DATHANGD17
 
         private void saveBtn_ItemClick(object sender, ItemClickEventArgs e)
         {
+            groupControl1.Focus();
             if (maKhoTE.Text.Trim() == "")
             {
                 MessageBox.Show("Mã kho không được để trống", "Thiếu thông tin", MessageBoxButtons.OK, MessageBoxIcon.Error);
