@@ -117,5 +117,65 @@ namespace QLVT_DATHANGD17
                 newForm.Show();
             }
         }
+
+        private void rpt_dsnv_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            Form form = this.CheckExists(typeof(DSNVReportForm));
+            if (form != null) form.Focus();
+            else
+            {
+                DSNVReportForm newForm = new DSNVReportForm();
+                newForm.MdiParent = this;
+                newForm.Show();
+            }
+        }
+
+        private void rpt_dsvt_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            Form form = this.CheckExists(typeof(DSVTReportForm));
+            if (form != null) form.Focus();
+            else
+            {
+                DSVTReportForm newForm = new DSVTReportForm();
+                newForm.MdiParent = this;
+                newForm.Show();
+            }
+        }
+
+        private void rpt_soLuongTriGia_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            Form form = this.CheckExists(typeof(SoLuongTriGiaReportForm));
+            if (form != null) form.Focus();
+            else
+            {
+                SoLuongTriGiaReportForm newForm = new SoLuongTriGiaReportForm();
+                newForm.MdiParent = this;
+                newForm.Show();
+            }
+        }
+
+        private void rpt_hoatdongNV_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            Form form = this.CheckExists(typeof(HoatDongNVReportForm));
+            if (form != null) form.Focus();
+            else
+            {
+                HoatDongNVReportForm newForm = new HoatDongNVReportForm();
+                newForm.MdiParent = this;
+                newForm.Show();
+            }
+        }
+
+        private void rpt_ddhChuanhap_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            Form form = this.CheckExists(typeof(DDHChuaNhapReportForm));
+            if (form != null) form.Focus();
+            else
+            {
+                DDHChuaNhapReportForm newForm = new DDHChuaNhapReportForm();
+                newForm.MdiParent = this;
+                newForm.Show();
+            }
+        }
     }
 }

@@ -38,6 +38,13 @@
             this.showDDHFromBtn = new DevExpress.XtraBars.BarButtonItem();
             this.showPNBtn = new DevExpress.XtraBars.BarButtonItem();
             this.showPXBtn = new DevExpress.XtraBars.BarButtonItem();
+            this.rpt_dsnv = new DevExpress.XtraBars.BarButtonItem();
+            this.rpt_dsvt = new DevExpress.XtraBars.BarButtonItem();
+            this.rpt_soLuongTriGia = new DevExpress.XtraBars.BarButtonItem();
+            this.roleText = new DevExpress.XtraBars.BarStaticItem();
+            this.hotenText = new DevExpress.XtraBars.BarStaticItem();
+            this.MaNVText = new DevExpress.XtraBars.BarButtonItem();
+            this.rpt_hoatdongNV = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -48,6 +55,7 @@
             this.ribbonPageGroup5 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonStatusBar = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
             this.xtraTabbedMdiManager1 = new DevExpress.XtraTabbedMdi.XtraTabbedMdiManager(this.components);
+            this.rpt_ddhChuanhap = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabbedMdiManager1)).BeginInit();
             this.SuspendLayout();
@@ -65,14 +73,23 @@
             this.showKhoFormBtn,
             this.showDDHFromBtn,
             this.showPNBtn,
-            this.showPXBtn});
+            this.showPXBtn,
+            this.rpt_dsnv,
+            this.rpt_dsvt,
+            this.rpt_soLuongTriGia,
+            this.roleText,
+            this.hotenText,
+            this.MaNVText,
+            this.rpt_hoatdongNV,
+            this.rpt_ddhChuanhap});
             this.ribbon.Location = new System.Drawing.Point(0, 0);
-            this.ribbon.MaxItemId = 11;
+            this.ribbon.Margin = new System.Windows.Forms.Padding(2);
+            this.ribbon.MaxItemId = 20;
             this.ribbon.Name = "ribbon";
             this.ribbon.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPage1,
             this.ribbonPage2});
-            this.ribbon.Size = new System.Drawing.Size(1628, 229);
+            this.ribbon.Size = new System.Drawing.Size(1085, 157);
             this.ribbon.StatusBar = this.ribbonStatusBar;
             // 
             // loginBtn
@@ -146,6 +163,52 @@
             this.showPXBtn.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
             this.showPXBtn.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.showPXBtn_ItemClick);
             // 
+            // rpt_dsnv
+            // 
+            this.rpt_dsnv.Caption = "Danh sách nhân viên";
+            this.rpt_dsnv.Id = 11;
+            this.rpt_dsnv.Name = "rpt_dsnv";
+            this.rpt_dsnv.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.rpt_dsnv_ItemClick);
+            // 
+            // rpt_dsvt
+            // 
+            this.rpt_dsvt.Caption = "Danh sách vật tư";
+            this.rpt_dsvt.Id = 12;
+            this.rpt_dsvt.Name = "rpt_dsvt";
+            this.rpt_dsvt.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.rpt_dsvt_ItemClick);
+            // 
+            // rpt_soLuongTriGia
+            // 
+            this.rpt_soLuongTriGia.Caption = "Số lượng trị giá ";
+            this.rpt_soLuongTriGia.Id = 13;
+            this.rpt_soLuongTriGia.Name = "rpt_soLuongTriGia";
+            this.rpt_soLuongTriGia.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.rpt_soLuongTriGia_ItemClick);
+            // 
+            // roleText
+            // 
+            this.roleText.Caption = "Role";
+            this.roleText.Id = 15;
+            this.roleText.Name = "roleText";
+            // 
+            // hotenText
+            // 
+            this.hotenText.Caption = "HOTEN";
+            this.hotenText.Id = 16;
+            this.hotenText.Name = "hotenText";
+            // 
+            // MaNVText
+            // 
+            this.MaNVText.Caption = "MANV";
+            this.MaNVText.Id = 17;
+            this.MaNVText.Name = "MaNVText";
+            // 
+            // rpt_hoatdongNV
+            // 
+            this.rpt_hoatdongNV.Caption = "Hoạt động nhân viên";
+            this.rpt_hoatdongNV.Id = 18;
+            this.rpt_hoatdongNV.Name = "rpt_hoatdongNV";
+            this.rpt_hoatdongNV.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.rpt_hoatdongNV_ItemClick);
+            // 
             // ribbonPage1
             // 
             this.ribbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
@@ -194,28 +257,45 @@
             // 
             // ribbonPageGroup5
             // 
+            this.ribbonPageGroup5.ItemLinks.Add(this.rpt_dsnv);
+            this.ribbonPageGroup5.ItemLinks.Add(this.rpt_dsvt);
+            this.ribbonPageGroup5.ItemLinks.Add(this.rpt_soLuongTriGia);
+            this.ribbonPageGroup5.ItemLinks.Add(this.rpt_hoatdongNV);
+            this.ribbonPageGroup5.ItemLinks.Add(this.rpt_ddhChuanhap);
             this.ribbonPageGroup5.Name = "ribbonPageGroup5";
             // 
             // ribbonStatusBar
             // 
-            this.ribbonStatusBar.Location = new System.Drawing.Point(0, 733);
+            this.ribbonStatusBar.ItemLinks.Add(this.MaNVText);
+            this.ribbonStatusBar.ItemLinks.Add(this.hotenText);
+            this.ribbonStatusBar.ItemLinks.Add(this.roleText);
+            this.ribbonStatusBar.Location = new System.Drawing.Point(0, 501);
+            this.ribbonStatusBar.Margin = new System.Windows.Forms.Padding(2);
             this.ribbonStatusBar.Name = "ribbonStatusBar";
             this.ribbonStatusBar.Ribbon = this.ribbon;
-            this.ribbonStatusBar.Size = new System.Drawing.Size(1628, 32);
+            this.ribbonStatusBar.Size = new System.Drawing.Size(1085, 22);
             // 
             // xtraTabbedMdiManager1
             // 
             this.xtraTabbedMdiManager1.MdiParent = this;
             // 
+            // rpt_ddhChuanhap
+            // 
+            this.rpt_ddhChuanhap.Caption = "DDH chưa nhập";
+            this.rpt_ddhChuanhap.Id = 19;
+            this.rpt_ddhChuanhap.Name = "rpt_ddhChuanhap";
+            this.rpt_ddhChuanhap.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.rpt_ddhChuanhap_ItemClick);
+            // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1628, 765);
+            this.ClientSize = new System.Drawing.Size(1085, 523);
             this.Controls.Add(this.ribbonStatusBar);
             this.Controls.Add(this.ribbon);
             this.IconOptions.Image = global::QLVT_DATHANGD17.Properties.Resources.icons8_warehouse_32;
             this.IsMdiContainer = true;
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "MainForm";
             this.Ribbon = this.ribbon;
             this.StatusBar = this.ribbonStatusBar;
@@ -248,5 +328,13 @@
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup6;
         private DevExpress.XtraBars.BarButtonItem showPNBtn;
         private DevExpress.XtraBars.BarButtonItem showPXBtn;
+        private DevExpress.XtraBars.BarButtonItem rpt_dsnv;
+        private DevExpress.XtraBars.BarButtonItem rpt_dsvt;
+        private DevExpress.XtraBars.BarButtonItem rpt_soLuongTriGia;
+        public DevExpress.XtraBars.BarStaticItem roleText;
+        public DevExpress.XtraBars.BarStaticItem hotenText;
+        public DevExpress.XtraBars.BarButtonItem MaNVText;
+        private DevExpress.XtraBars.BarButtonItem rpt_hoatdongNV;
+        private DevExpress.XtraBars.BarButtonItem rpt_ddhChuanhap;
     }
 }

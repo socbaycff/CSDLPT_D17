@@ -34,18 +34,32 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="DevExpress.BonusSkins.v19.2" />
+    <Reference Include="DevExpress.Charts.v19.2.Core, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.CodeParser.v19.2, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Data.v19.2" />
+    <Reference Include="DevExpress.DataAccess.v19.2, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Dialogs.v19.2.Core, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Office.v19.2.Core, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Pdf.v19.2.Core, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.PivotGrid.v19.2.Core, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Printing.v19.2.Core" />
+    <Reference Include="DevExpress.RichEdit.v19.2.Core, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.RichEdit.v19.2.Export, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Utils.v19.2" />
+    <Reference Include="DevExpress.Utils.v19.2.UI, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Xpo.v19.2, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraBars.v19.2" />
     <Reference Include="DevExpress.Sparkline.v19.2.Core" />
+    <Reference Include="DevExpress.XtraCharts.v19.2, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraDialogs.v19.2, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraEditors.v19.2" />
+    <Reference Include="DevExpress.XtraGauges.v19.2.Core, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraGrid.v19.2, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraLayout.v19.2, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraNavBar.v19.2, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraPrinting.v19.2, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraReports.v19.2, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraReports.v19.2.Extensions, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraTreeList.v19.2, Version=19.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -61,11 +75,35 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Action.cs" />
+    <Compile Include="DDHChuaNhapReportForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DDHChuaNhapReportForm.Designer.cs">
+      <DependentUpon>DDHChuaNhapReportForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="DDHForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="DDHForm.Designer.cs">
       <DependentUpon>DDHForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DSNVReportForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DSNVReportForm.Designer.cs">
+      <DependentUpon>DSNVReportForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DSVTReportForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DSVTReportForm.Designer.cs">
+      <DependentUpon>DSVTReportForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HoatDongNVReportForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HoatDongNVReportForm.Designer.cs">
+      <DependentUpon>HoatDongNVReportForm.cs</DependentUpon>
     </Compile>
     <Compile Include="KhoForm.cs">
       <SubType>Form</SubType>
@@ -118,14 +156,62 @@
     <Compile Include="NhanVienForm.Designer.cs">
       <DependentUpon>NhanVienForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="SoLuongTriGiaReportForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SoLuongTriGiaReportForm.Designer.cs">
+      <DependentUpon>SoLuongTriGiaReportForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="VatTuForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="VatTuForm.Designer.cs">
       <DependentUpon>VatTuForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="XtraReport_DDHChuaNhap.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="XtraReport_DDHChuaNhap.Designer.cs">
+      <DependentUpon>XtraReport_DDHChuaNhap.cs</DependentUpon>
+    </Compile>
+    <Compile Include="XtraReport_DSNV.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="XtraReport_DSNV.Designer.cs">
+      <DependentUpon>XtraReport_DSNV.cs</DependentUpon>
+    </Compile>
+    <Compile Include="XtraReport_DSVT.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="XtraReport_DSVT.Designer.cs">
+      <DependentUpon>XtraReport_DSVT.cs</DependentUpon>
+    </Compile>
+    <Compile Include="XtraReport_HoatDongNV.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="XtraReport_HoatDongNV.Designer.cs">
+      <DependentUpon>XtraReport_HoatDongNV.cs</DependentUpon>
+    </Compile>
+    <Compile Include="XtraReport_SoLuongTriGia.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="XtraReport_SoLuongTriGia.Designer.cs">
+      <DependentUpon>XtraReport_SoLuongTriGia.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="DDHChuaNhapReportForm.resx">
+      <DependentUpon>DDHChuaNhapReportForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DDHForm.resx">
       <DependentUpon>DDHForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DSNVReportForm.resx">
+      <DependentUpon>DSNVReportForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DSVTReportForm.resx">
+      <DependentUpon>DSVTReportForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HoatDongNVReportForm.resx">
+      <DependentUpon>HoatDongNVReportForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="KhoForm.resx">
       <DependentUpon>KhoForm.cs</DependentUpon>
@@ -156,8 +242,26 @@
     <EmbeddedResource Include="NhanVienForm.resx">
       <DependentUpon>NhanVienForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="SoLuongTriGiaReportForm.resx">
+      <DependentUpon>SoLuongTriGiaReportForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="VatTuForm.resx">
       <DependentUpon>VatTuForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="XtraReport_DDHChuaNhap.resx">
+      <DependentUpon>XtraReport_DDHChuaNhap.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="XtraReport_DSNV.resx">
+      <DependentUpon>XtraReport_DSNV.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="XtraReport_DSVT.resx">
+      <DependentUpon>XtraReport_DSVT.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="XtraReport_HoatDongNV.resx">
+      <DependentUpon>XtraReport_HoatDongNV.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="XtraReport_SoLuongTriGia.resx">
+      <DependentUpon>XtraReport_SoLuongTriGia.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="App.config">
       <SubType>Designer</SubType>

@@ -62,7 +62,7 @@ namespace QLVT_DATHANGD17
                         }
                         Program.userName = Program.myReader.GetString(1);
                         Program.userRole = Program.myReader.GetString(2);
-                       // MessageBox.Show($"{Program.userName} {Program.userRole} {Program.userID}");
+                     
                         Program.myReader.Close();
                         Program.conn.Close();
                     }
@@ -70,6 +70,9 @@ namespace QLVT_DATHANGD17
 
 
                     //// Hiện thông tin người làm việc hiện tại trên thanh status bar của Main Form
+                    Program.mainForm.roleText.Caption = Program.userRole;
+                    Program.mainForm.hotenText.Caption = Program.userName;
+                    Program.mainForm.MaNVText.Caption = Program.userID;
                     this.Hide();
                     //Program.mainForm.LoginState = CurrentSessionState.Activated;
                     NhanVienForm staffForm = new NhanVienForm();
