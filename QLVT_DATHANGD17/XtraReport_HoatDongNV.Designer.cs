@@ -324,7 +324,9 @@
             this.titleLabel.Name = "titleLabel";
             this.titleLabel.SizeF = new System.Drawing.SizeF(638F, 24.19433F);
             this.titleLabel.StyleName = "Title";
+            this.titleLabel.StylePriority.UseTextAlignment = false;
             this.titleLabel.Text = "Report Hoạt động nhân viên từ ... đến ... theo từng tháng";
+            this.titleLabel.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;
             // 
             // Detail
             // 
@@ -731,11 +733,11 @@
             // 
             // label3
             // 
-            this.label3.LocationFloat = new DevExpress.Utils.PointFloat(531.175F, 3.4F);
+            this.label3.LocationFloat = new DevExpress.Utils.PointFloat(502.8416F, 3.400014F);
             this.label3.Name = "label3";
-            this.label3.SizeF = new System.Drawing.SizeF(33.46234F, 14.88444F);
+            this.label3.SizeF = new System.Drawing.SizeF(61.79568F, 14.88444F);
             this.label3.StyleName = "TotalCaption2";
-            this.label3.Text = "SUM";
+            this.label3.Text = "Tỏng";
             // 
             // label4
             // 
@@ -781,11 +783,11 @@
             // 
             // label6
             // 
-            this.label6.LocationFloat = new DevExpress.Utils.PointFloat(531.175F, 11.5F);
+            this.label6.LocationFloat = new DevExpress.Utils.PointFloat(502.8416F, 11.49999F);
             this.label6.Name = "label6";
-            this.label6.SizeF = new System.Drawing.SizeF(33.46234F, 14.88444F);
+            this.label6.SizeF = new System.Drawing.SizeF(61.79568F, 14.88444F);
             this.label6.StyleName = "GrandTotalCaption2";
-            this.label6.Text = "SUM";
+            this.label6.Text = "Tổng";
             // 
             // label7
             // 

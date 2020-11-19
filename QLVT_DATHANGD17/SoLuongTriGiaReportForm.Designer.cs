@@ -37,20 +37,20 @@
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
-            this.showPreviewBtn = new System.Windows.Forms.Button();
-            this.comboBoxBranch = new System.Windows.Forms.ComboBox();
-            this.fromDE = new DevExpress.XtraEditors.DateEdit();
-            this.toDE = new DevExpress.XtraEditors.DateEdit();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.LoaiCB = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.toDE = new DevExpress.XtraEditors.DateEdit();
+            this.fromDE = new DevExpress.XtraEditors.DateEdit();
+            this.comboBoxBranch = new System.Windows.Forms.ComboBox();
+            this.showPreviewBtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.fromDE.Properties.CalendarTimeProperties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.fromDE.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.toDE.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.toDE.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.fromDE.Properties.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.fromDE.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // barManager1
@@ -94,15 +94,17 @@
             this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
             this.barDockControlTop.Manager = this.barManager1;
-            this.barDockControlTop.Size = new System.Drawing.Size(910, 21);
+            this.barDockControlTop.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.barDockControlTop.Size = new System.Drawing.Size(1062, 21);
             // 
             // barDockControlBottom
             // 
             this.barDockControlBottom.CausesValidation = false;
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControlBottom.Location = new System.Drawing.Point(0, 462);
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 573);
             this.barDockControlBottom.Manager = this.barManager1;
-            this.barDockControlBottom.Size = new System.Drawing.Size(910, 19);
+            this.barDockControlBottom.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.barDockControlBottom.Size = new System.Drawing.Size(1062, 19);
             // 
             // barDockControlLeft
             // 
@@ -110,15 +112,17 @@
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
             this.barDockControlLeft.Location = new System.Drawing.Point(0, 21);
             this.barDockControlLeft.Manager = this.barManager1;
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 441);
+            this.barDockControlLeft.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 552);
             // 
             // barDockControlRight
             // 
             this.barDockControlRight.CausesValidation = false;
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(910, 21);
+            this.barDockControlRight.Location = new System.Drawing.Point(1062, 21);
             this.barDockControlRight.Manager = this.barManager1;
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 441);
+            this.barDockControlRight.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 552);
             // 
             // panelControl1
             // 
@@ -131,72 +135,10 @@
             this.panelControl1.Controls.Add(this.showPreviewBtn);
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelControl1.Location = new System.Drawing.Point(0, 21);
+            this.panelControl1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(910, 441);
+            this.panelControl1.Size = new System.Drawing.Size(1062, 552);
             this.panelControl1.TabIndex = 4;
-            // 
-            // showPreviewBtn
-            // 
-            this.showPreviewBtn.Location = new System.Drawing.Point(357, 294);
-            this.showPreviewBtn.Name = "showPreviewBtn";
-            this.showPreviewBtn.Size = new System.Drawing.Size(107, 24);
-            this.showPreviewBtn.TabIndex = 0;
-            this.showPreviewBtn.Text = "show Preview";
-            this.showPreviewBtn.UseVisualStyleBackColor = true;
-            this.showPreviewBtn.Click += new System.EventHandler(this.showPreviewBtn_Click);
-            // 
-            // comboBoxBranch
-            // 
-            this.comboBoxBranch.FormattingEnabled = true;
-            this.comboBoxBranch.Location = new System.Drawing.Point(343, 120);
-            this.comboBoxBranch.Name = "comboBoxBranch";
-            this.comboBoxBranch.Size = new System.Drawing.Size(121, 21);
-            this.comboBoxBranch.TabIndex = 1;
-            this.comboBoxBranch.SelectedIndexChanged += new System.EventHandler(this.comboBoxBranch_SelectedIndexChanged);
-            // 
-            // fromDE
-            // 
-            this.fromDE.EditValue = null;
-            this.fromDE.Location = new System.Drawing.Point(229, 180);
-            this.fromDE.MenuManager = this.barManager1;
-            this.fromDE.Name = "fromDE";
-            this.fromDE.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.fromDE.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.fromDE.Size = new System.Drawing.Size(100, 20);
-            this.fromDE.TabIndex = 2;
-            // 
-            // toDE
-            // 
-            this.toDE.EditValue = null;
-            this.toDE.Location = new System.Drawing.Point(229, 229);
-            this.toDE.MenuManager = this.barManager1;
-            this.toDE.Name = "toDE";
-            this.toDE.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.toDE.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.toDE.Size = new System.Drawing.Size(100, 20);
-            this.toDE.TabIndex = 3;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(142, 183);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(31, 13);
-            this.label1.TabIndex = 4;
-            this.label1.Text = "From";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(154, 232);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(19, 13);
-            this.label2.TabIndex = 5;
-            this.label2.Text = "To";
             // 
             // LoaiCB
             // 
@@ -204,21 +146,91 @@
             this.LoaiCB.Items.AddRange(new object[] {
             "Xuất",
             "Nhập"});
-            this.LoaiCB.Location = new System.Drawing.Point(463, 183);
+            this.LoaiCB.Location = new System.Drawing.Point(540, 225);
+            this.LoaiCB.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.LoaiCB.Name = "LoaiCB";
-            this.LoaiCB.Size = new System.Drawing.Size(121, 21);
+            this.LoaiCB.Size = new System.Drawing.Size(140, 24);
             this.LoaiCB.TabIndex = 6;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(180, 286);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(24, 17);
+            this.label2.TabIndex = 5;
+            this.label2.Text = "To";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(166, 225);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(40, 17);
+            this.label1.TabIndex = 4;
+            this.label1.Text = "From";
+            // 
+            // toDE
+            // 
+            this.toDE.EditValue = null;
+            this.toDE.Location = new System.Drawing.Point(267, 282);
+            this.toDE.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.toDE.MenuManager = this.barManager1;
+            this.toDE.Name = "toDE";
+            this.toDE.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.toDE.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.toDE.Size = new System.Drawing.Size(117, 22);
+            this.toDE.TabIndex = 3;
+            // 
+            // fromDE
+            // 
+            this.fromDE.EditValue = null;
+            this.fromDE.Location = new System.Drawing.Point(267, 222);
+            this.fromDE.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.fromDE.MenuManager = this.barManager1;
+            this.fromDE.Name = "fromDE";
+            this.fromDE.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.fromDE.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.fromDE.Size = new System.Drawing.Size(117, 22);
+            this.fromDE.TabIndex = 2;
+            // 
+            // comboBoxBranch
+            // 
+            this.comboBoxBranch.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxBranch.FormattingEnabled = true;
+            this.comboBoxBranch.Location = new System.Drawing.Point(400, 148);
+            this.comboBoxBranch.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.comboBoxBranch.Name = "comboBoxBranch";
+            this.comboBoxBranch.Size = new System.Drawing.Size(140, 24);
+            this.comboBoxBranch.TabIndex = 1;
+            this.comboBoxBranch.SelectedIndexChanged += new System.EventHandler(this.comboBoxBranch_SelectedIndexChanged);
+            // 
+            // showPreviewBtn
+            // 
+            this.showPreviewBtn.Location = new System.Drawing.Point(416, 362);
+            this.showPreviewBtn.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.showPreviewBtn.Name = "showPreviewBtn";
+            this.showPreviewBtn.Size = new System.Drawing.Size(125, 30);
+            this.showPreviewBtn.TabIndex = 0;
+            this.showPreviewBtn.Text = "show Preview";
+            this.showPreviewBtn.UseVisualStyleBackColor = true;
+            this.showPreviewBtn.Click += new System.EventHandler(this.showPreviewBtn_Click);
             // 
             // SoLuongTriGiaReportForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(910, 481);
+            this.ClientSize = new System.Drawing.Size(1062, 592);
             this.Controls.Add(this.panelControl1);
             this.Controls.Add(this.barDockControlLeft);
             this.Controls.Add(this.barDockControlRight);
             this.Controls.Add(this.barDockControlBottom);
             this.Controls.Add(this.barDockControlTop);
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "SoLuongTriGiaReportForm";
             this.Text = "SoLuongTriGiaReportForm";
             this.Load += new System.EventHandler(this.SoLuongTriGiaReportForm_Load);
@@ -226,10 +238,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
             this.panelControl1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.fromDE.Properties.CalendarTimeProperties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.fromDE.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.toDE.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.toDE.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.fromDE.Properties.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.fromDE.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

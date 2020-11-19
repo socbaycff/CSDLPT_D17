@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HoatDongNVReportForm));
             this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
             this.bar2 = new DevExpress.XtraBars.Bar();
             this.bar3 = new DevExpress.XtraBars.Bar();
@@ -38,39 +37,24 @@
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
+            this.nhanVienComboBox = new System.Windows.Forms.ComboBox();
+            this.nhanVienBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.qLVT_DATHANGDataSet = new QLVT_DATHANGD17.QLVT_DATHANGDataSet();
             this.comboBoxBranch = new System.Windows.Forms.ComboBox();
             this.showPreviewBtn = new System.Windows.Forms.Button();
             this.toDE = new DevExpress.XtraEditors.DateEdit();
             this.fromDE = new DevExpress.XtraEditors.DateEdit();
-            this.qLVT_DATHANGDataSet = new QLVT_DATHANGD17.QLVT_DATHANGDataSet();
-            this.nhanVienBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.nhanVienTableAdapter = new QLVT_DATHANGD17.QLVT_DATHANGDataSetTableAdapters.NhanVienTableAdapter();
             this.tableAdapterManager = new QLVT_DATHANGD17.QLVT_DATHANGDataSetTableAdapters.TableAdapterManager();
-            this.nhanVienBindingNavigator = new System.Windows.Forms.BindingNavigator(this.components);
-            this.bindingNavigatorMoveFirstItem = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorMovePreviousItem = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorSeparator = new System.Windows.Forms.ToolStripSeparator();
-            this.bindingNavigatorPositionItem = new System.Windows.Forms.ToolStripTextBox();
-            this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
-            this.bindingNavigatorSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.bindingNavigatorMoveNextItem = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.bindingNavigatorAddNewItem = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorDeleteItem = new System.Windows.Forms.ToolStripButton();
-            this.nhanVienBindingNavigatorSaveItem = new System.Windows.Forms.ToolStripButton();
-            this.nhanVienComboBox = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nhanVienBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.qLVT_DATHANGDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.toDE.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.toDE.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fromDE.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fromDE.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.qLVT_DATHANGDataSet)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nhanVienBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nhanVienBindingNavigator)).BeginInit();
-            this.nhanVienBindingNavigator.SuspendLayout();
             this.SuspendLayout();
             // 
             // barManager1
@@ -114,15 +98,17 @@
             this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
             this.barDockControlTop.Manager = this.barManager1;
-            this.barDockControlTop.Size = new System.Drawing.Size(958, 21);
+            this.barDockControlTop.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.barDockControlTop.Size = new System.Drawing.Size(1118, 21);
             // 
             // barDockControlBottom
             // 
             this.barDockControlBottom.CausesValidation = false;
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControlBottom.Location = new System.Drawing.Point(0, 471);
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 584);
             this.barDockControlBottom.Manager = this.barManager1;
-            this.barDockControlBottom.Size = new System.Drawing.Size(958, 19);
+            this.barDockControlBottom.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.barDockControlBottom.Size = new System.Drawing.Size(1118, 19);
             // 
             // barDockControlLeft
             // 
@@ -130,15 +116,17 @@
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
             this.barDockControlLeft.Location = new System.Drawing.Point(0, 21);
             this.barDockControlLeft.Manager = this.barManager1;
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 450);
+            this.barDockControlLeft.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 563);
             // 
             // barDockControlRight
             // 
             this.barDockControlRight.CausesValidation = false;
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(958, 21);
+            this.barDockControlRight.Location = new System.Drawing.Point(1118, 21);
             this.barDockControlRight.Manager = this.barManager1;
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 450);
+            this.barDockControlRight.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 563);
             // 
             // panelControl1
             // 
@@ -149,27 +137,53 @@
             this.panelControl1.Controls.Add(this.fromDE);
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelControl1.Location = new System.Drawing.Point(0, 21);
+            this.panelControl1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(958, 450);
+            this.panelControl1.Size = new System.Drawing.Size(1118, 563);
             this.panelControl1.TabIndex = 4;
+            // 
+            // nhanVienComboBox
+            // 
+            this.nhanVienComboBox.DataSource = this.nhanVienBindingSource;
+            this.nhanVienComboBox.DisplayMember = "MANV";
+            this.nhanVienComboBox.FormattingEnabled = true;
+            this.nhanVienComboBox.Location = new System.Drawing.Point(684, 212);
+            this.nhanVienComboBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.nhanVienComboBox.Name = "nhanVienComboBox";
+            this.nhanVienComboBox.Size = new System.Drawing.Size(208, 24);
+            this.nhanVienComboBox.TabIndex = 4;
+            this.nhanVienComboBox.ValueMember = "MANV";
+            // 
+            // nhanVienBindingSource
+            // 
+            this.nhanVienBindingSource.DataMember = "NhanVien";
+            this.nhanVienBindingSource.DataSource = this.qLVT_DATHANGDataSet;
+            // 
+            // qLVT_DATHANGDataSet
+            // 
+            this.qLVT_DATHANGDataSet.DataSetName = "QLVT_DATHANGDataSet";
+            this.qLVT_DATHANGDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // comboBoxBranch
             // 
+            this.comboBoxBranch.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxBranch.FormattingEnabled = true;
             this.comboBoxBranch.Items.AddRange(new object[] {
             "1",
             "3"});
-            this.comboBoxBranch.Location = new System.Drawing.Point(377, 76);
+            this.comboBoxBranch.Location = new System.Drawing.Point(440, 94);
+            this.comboBoxBranch.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.comboBoxBranch.Name = "comboBoxBranch";
-            this.comboBoxBranch.Size = new System.Drawing.Size(121, 21);
+            this.comboBoxBranch.Size = new System.Drawing.Size(140, 24);
             this.comboBoxBranch.TabIndex = 3;
             this.comboBoxBranch.SelectedIndexChanged += new System.EventHandler(this.comboBoxBranch_SelectedIndexChanged);
             // 
             // showPreviewBtn
             // 
-            this.showPreviewBtn.Location = new System.Drawing.Point(365, 279);
+            this.showPreviewBtn.Location = new System.Drawing.Point(426, 343);
+            this.showPreviewBtn.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.showPreviewBtn.Name = "showPreviewBtn";
-            this.showPreviewBtn.Size = new System.Drawing.Size(143, 23);
+            this.showPreviewBtn.Size = new System.Drawing.Size(167, 28);
             this.showPreviewBtn.TabIndex = 2;
             this.showPreviewBtn.Text = "Show Preview";
             this.showPreviewBtn.UseVisualStyleBackColor = true;
@@ -178,38 +192,30 @@
             // toDE
             // 
             this.toDE.EditValue = null;
-            this.toDE.Location = new System.Drawing.Point(181, 201);
+            this.toDE.Location = new System.Drawing.Point(211, 247);
+            this.toDE.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.toDE.MenuManager = this.barManager1;
             this.toDE.Name = "toDE";
             this.toDE.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.toDE.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.toDE.Size = new System.Drawing.Size(100, 20);
+            this.toDE.Size = new System.Drawing.Size(117, 22);
             this.toDE.TabIndex = 1;
             // 
             // fromDE
             // 
             this.fromDE.EditValue = null;
-            this.fromDE.Location = new System.Drawing.Point(181, 148);
+            this.fromDE.Location = new System.Drawing.Point(211, 182);
+            this.fromDE.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.fromDE.MenuManager = this.barManager1;
             this.fromDE.Name = "fromDE";
             this.fromDE.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.fromDE.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.fromDE.Size = new System.Drawing.Size(100, 20);
+            this.fromDE.Size = new System.Drawing.Size(117, 22);
             this.fromDE.TabIndex = 0;
-            // 
-            // qLVT_DATHANGDataSet
-            // 
-            this.qLVT_DATHANGDataSet.DataSetName = "QLVT_DATHANGDataSet";
-            this.qLVT_DATHANGDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // nhanVienBindingSource
-            // 
-            this.nhanVienBindingSource.DataMember = "NhanVien";
-            this.nhanVienBindingSource.DataSource = this.qLVT_DATHANGDataSet;
             // 
             // nhanVienTableAdapter
             // 
@@ -230,167 +236,29 @@
             this.tableAdapterManager.UpdateOrder = QLVT_DATHANGD17.QLVT_DATHANGDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
             this.tableAdapterManager.VattuTableAdapter = null;
             // 
-            // nhanVienBindingNavigator
-            // 
-            this.nhanVienBindingNavigator.AddNewItem = this.bindingNavigatorAddNewItem;
-            this.nhanVienBindingNavigator.BindingSource = this.nhanVienBindingSource;
-            this.nhanVienBindingNavigator.CountItem = this.bindingNavigatorCountItem;
-            this.nhanVienBindingNavigator.DeleteItem = this.bindingNavigatorDeleteItem;
-            this.nhanVienBindingNavigator.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.bindingNavigatorMoveFirstItem,
-            this.bindingNavigatorMovePreviousItem,
-            this.bindingNavigatorSeparator,
-            this.bindingNavigatorPositionItem,
-            this.bindingNavigatorCountItem,
-            this.bindingNavigatorSeparator1,
-            this.bindingNavigatorMoveNextItem,
-            this.bindingNavigatorMoveLastItem,
-            this.bindingNavigatorSeparator2,
-            this.bindingNavigatorAddNewItem,
-            this.bindingNavigatorDeleteItem,
-            this.nhanVienBindingNavigatorSaveItem});
-            this.nhanVienBindingNavigator.Location = new System.Drawing.Point(0, 21);
-            this.nhanVienBindingNavigator.MoveFirstItem = this.bindingNavigatorMoveFirstItem;
-            this.nhanVienBindingNavigator.MoveLastItem = this.bindingNavigatorMoveLastItem;
-            this.nhanVienBindingNavigator.MoveNextItem = this.bindingNavigatorMoveNextItem;
-            this.nhanVienBindingNavigator.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
-            this.nhanVienBindingNavigator.Name = "nhanVienBindingNavigator";
-            this.nhanVienBindingNavigator.PositionItem = this.bindingNavigatorPositionItem;
-            this.nhanVienBindingNavigator.Size = new System.Drawing.Size(958, 25);
-            this.nhanVienBindingNavigator.TabIndex = 14;
-            this.nhanVienBindingNavigator.Text = "bindingNavigator1";
-            // 
-            // bindingNavigatorMoveFirstItem
-            // 
-            this.bindingNavigatorMoveFirstItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorMoveFirstItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveFirstItem.Image")));
-            this.bindingNavigatorMoveFirstItem.Name = "bindingNavigatorMoveFirstItem";
-            this.bindingNavigatorMoveFirstItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveFirstItem.Size = new System.Drawing.Size(23, 22);
-            this.bindingNavigatorMoveFirstItem.Text = "Move first";
-            // 
-            // bindingNavigatorMovePreviousItem
-            // 
-            this.bindingNavigatorMovePreviousItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorMovePreviousItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMovePreviousItem.Image")));
-            this.bindingNavigatorMovePreviousItem.Name = "bindingNavigatorMovePreviousItem";
-            this.bindingNavigatorMovePreviousItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMovePreviousItem.Size = new System.Drawing.Size(23, 22);
-            this.bindingNavigatorMovePreviousItem.Text = "Move previous";
-            // 
-            // bindingNavigatorSeparator
-            // 
-            this.bindingNavigatorSeparator.Name = "bindingNavigatorSeparator";
-            this.bindingNavigatorSeparator.Size = new System.Drawing.Size(6, 25);
-            // 
-            // bindingNavigatorPositionItem
-            // 
-            this.bindingNavigatorPositionItem.AccessibleName = "Position";
-            this.bindingNavigatorPositionItem.AutoSize = false;
-            this.bindingNavigatorPositionItem.Name = "bindingNavigatorPositionItem";
-            this.bindingNavigatorPositionItem.Size = new System.Drawing.Size(50, 23);
-            this.bindingNavigatorPositionItem.Text = "0";
-            this.bindingNavigatorPositionItem.ToolTipText = "Current position";
-            // 
-            // bindingNavigatorCountItem
-            // 
-            this.bindingNavigatorCountItem.Name = "bindingNavigatorCountItem";
-            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(35, 15);
-            this.bindingNavigatorCountItem.Text = "of {0}";
-            this.bindingNavigatorCountItem.ToolTipText = "Total number of items";
-            // 
-            // bindingNavigatorSeparator1
-            // 
-            this.bindingNavigatorSeparator1.Name = "bindingNavigatorSeparator";
-            this.bindingNavigatorSeparator1.Size = new System.Drawing.Size(6, 6);
-            // 
-            // bindingNavigatorMoveNextItem
-            // 
-            this.bindingNavigatorMoveNextItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorMoveNextItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveNextItem.Image")));
-            this.bindingNavigatorMoveNextItem.Name = "bindingNavigatorMoveNextItem";
-            this.bindingNavigatorMoveNextItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveNextItem.Size = new System.Drawing.Size(23, 20);
-            this.bindingNavigatorMoveNextItem.Text = "Move next";
-            // 
-            // bindingNavigatorMoveLastItem
-            // 
-            this.bindingNavigatorMoveLastItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorMoveLastItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveLastItem.Image")));
-            this.bindingNavigatorMoveLastItem.Name = "bindingNavigatorMoveLastItem";
-            this.bindingNavigatorMoveLastItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveLastItem.Size = new System.Drawing.Size(23, 20);
-            this.bindingNavigatorMoveLastItem.Text = "Move last";
-            // 
-            // bindingNavigatorSeparator2
-            // 
-            this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator";
-            this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 6);
-            // 
-            // bindingNavigatorAddNewItem
-            // 
-            this.bindingNavigatorAddNewItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorAddNewItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorAddNewItem.Image")));
-            this.bindingNavigatorAddNewItem.Name = "bindingNavigatorAddNewItem";
-            this.bindingNavigatorAddNewItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(23, 22);
-            this.bindingNavigatorAddNewItem.Text = "Add new";
-            // 
-            // bindingNavigatorDeleteItem
-            // 
-            this.bindingNavigatorDeleteItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorDeleteItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorDeleteItem.Image")));
-            this.bindingNavigatorDeleteItem.Name = "bindingNavigatorDeleteItem";
-            this.bindingNavigatorDeleteItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorDeleteItem.Size = new System.Drawing.Size(23, 20);
-            this.bindingNavigatorDeleteItem.Text = "Delete";
-            // 
-            // nhanVienBindingNavigatorSaveItem
-            // 
-            this.nhanVienBindingNavigatorSaveItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.nhanVienBindingNavigatorSaveItem.Image = ((System.Drawing.Image)(resources.GetObject("nhanVienBindingNavigatorSaveItem.Image")));
-            this.nhanVienBindingNavigatorSaveItem.Name = "nhanVienBindingNavigatorSaveItem";
-            this.nhanVienBindingNavigatorSaveItem.Size = new System.Drawing.Size(23, 23);
-            this.nhanVienBindingNavigatorSaveItem.Text = "Save Data";
-            this.nhanVienBindingNavigatorSaveItem.Click += new System.EventHandler(this.nhanVienBindingNavigatorSaveItem_Click_1);
-            // 
-            // nhanVienComboBox
-            // 
-            this.nhanVienComboBox.DataSource = this.nhanVienBindingSource;
-            this.nhanVienComboBox.DisplayMember = "MANV";
-            this.nhanVienComboBox.FormattingEnabled = true;
-            this.nhanVienComboBox.Location = new System.Drawing.Point(586, 172);
-            this.nhanVienComboBox.Name = "nhanVienComboBox";
-            this.nhanVienComboBox.Size = new System.Drawing.Size(179, 21);
-            this.nhanVienComboBox.TabIndex = 4;
-            this.nhanVienComboBox.ValueMember = "MANV";
-            // 
             // HoatDongNVReportForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(958, 490);
-            this.Controls.Add(this.nhanVienBindingNavigator);
+            this.ClientSize = new System.Drawing.Size(1118, 603);
             this.Controls.Add(this.panelControl1);
             this.Controls.Add(this.barDockControlLeft);
             this.Controls.Add(this.barDockControlRight);
             this.Controls.Add(this.barDockControlBottom);
             this.Controls.Add(this.barDockControlTop);
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "HoatDongNVReportForm";
             this.Text = "HoatDongNVReportForm";
             this.Load += new System.EventHandler(this.HoatDongNVReportForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.nhanVienBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.qLVT_DATHANGDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.toDE.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.toDE.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.fromDE.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.fromDE.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.qLVT_DATHANGDataSet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nhanVienBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nhanVienBindingNavigator)).EndInit();
-            this.nhanVienBindingNavigator.ResumeLayout(false);
-            this.nhanVienBindingNavigator.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -410,21 +278,8 @@
         private System.Windows.Forms.Button showPreviewBtn;
         private DevExpress.XtraEditors.DateEdit toDE;
         private DevExpress.XtraEditors.DateEdit fromDE;
-        private System.Windows.Forms.BindingNavigator nhanVienBindingNavigator;
-        private System.Windows.Forms.ToolStripButton bindingNavigatorAddNewItem;
         private System.Windows.Forms.BindingSource nhanVienBindingSource;
         private QLVT_DATHANGDataSet qLVT_DATHANGDataSet;
-        private System.Windows.Forms.ToolStripLabel bindingNavigatorCountItem;
-        private System.Windows.Forms.ToolStripButton bindingNavigatorDeleteItem;
-        private System.Windows.Forms.ToolStripButton bindingNavigatorMoveFirstItem;
-        private System.Windows.Forms.ToolStripButton bindingNavigatorMovePreviousItem;
-        private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator;
-        private System.Windows.Forms.ToolStripTextBox bindingNavigatorPositionItem;
-        private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator1;
-        private System.Windows.Forms.ToolStripButton bindingNavigatorMoveNextItem;
-        private System.Windows.Forms.ToolStripButton bindingNavigatorMoveLastItem;
-        private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator2;
-        private System.Windows.Forms.ToolStripButton nhanVienBindingNavigatorSaveItem;
         private QLVT_DATHANGDataSetTableAdapters.NhanVienTableAdapter nhanVienTableAdapter;
         private QLVT_DATHANGDataSetTableAdapters.TableAdapterManager tableAdapterManager;
         private System.Windows.Forms.ComboBox nhanVienComboBox;

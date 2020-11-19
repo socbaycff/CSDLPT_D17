@@ -23,7 +23,7 @@ namespace QLVT_DATHANGD17
         {
             XtraReport_HoatDongNV rpt = new XtraReport_HoatDongNV(Int32.Parse(nhanVienComboBox.Text), fromDE.Text, toDE.Text);
 
-            rpt.titleLabel.Text = "Report Hoạt động nhân viên từ " + fromDE.Text + " đến " + toDE.Text + " theo từng tháng";
+            rpt.titleLabel.Text = "Báo cáo Hoạt động nhân viên từ " + fromDE.Text + " đến " + toDE.Text + " theo từng tháng";
             ReportPrintTool print = new ReportPrintTool(rpt);
             print.ShowPreviewDialog();
         }

@@ -37,8 +37,8 @@
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
-            this.showPreviewBtn = new System.Windows.Forms.Button();
             this.comboBoxBranch = new System.Windows.Forms.ComboBox();
+            this.showPreviewBtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
@@ -125,6 +125,16 @@
             this.panelControl1.Size = new System.Drawing.Size(1173, 615);
             this.panelControl1.TabIndex = 4;
             // 
+            // comboBoxBranch
+            // 
+            this.comboBoxBranch.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxBranch.FormattingEnabled = true;
+            this.comboBoxBranch.Location = new System.Drawing.Point(439, 183);
+            this.comboBoxBranch.Name = "comboBoxBranch";
+            this.comboBoxBranch.Size = new System.Drawing.Size(302, 24);
+            this.comboBoxBranch.TabIndex = 1;
+            this.comboBoxBranch.SelectedIndexChanged += new System.EventHandler(this.comboBoxBranch_SelectedIndexChanged);
+            // 
             // showPreviewBtn
             // 
             this.showPreviewBtn.Location = new System.Drawing.Point(491, 307);
@@ -134,15 +144,6 @@
             this.showPreviewBtn.Text = "showPreview";
             this.showPreviewBtn.UseVisualStyleBackColor = true;
             this.showPreviewBtn.Click += new System.EventHandler(this.showPreviewBtn_Click);
-            // 
-            // comboBoxBranch
-            // 
-            this.comboBoxBranch.FormattingEnabled = true;
-            this.comboBoxBranch.Location = new System.Drawing.Point(439, 183);
-            this.comboBoxBranch.Name = "comboBoxBranch";
-            this.comboBoxBranch.Size = new System.Drawing.Size(302, 24);
-            this.comboBoxBranch.TabIndex = 1;
-            this.comboBoxBranch.SelectedIndexChanged += new System.EventHandler(this.comboBoxBranch_SelectedIndexChanged);
             // 
             // DSNVReportForm
             // 

@@ -177,5 +177,17 @@ namespace QLVT_DATHANGD17
                 newForm.Show();
             }
         }
+
+        private void rpt_tonghop_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            Form form = this.CheckExists(typeof(TongHopNhapXuatReportForm));
+            if (form != null) form.Focus();
+            else
+            {
+                TongHopNhapXuatReportForm newForm = new TongHopNhapXuatReportForm();
+                newForm.MdiParent = this;
+                newForm.Show();
+            }
+        }
     }
 }

@@ -162,6 +162,12 @@
     <Compile Include="SoLuongTriGiaReportForm.Designer.cs">
       <DependentUpon>SoLuongTriGiaReportForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="TongHopNhapXuatReportForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TongHopNhapXuatReportForm.Designer.cs">
+      <DependentUpon>TongHopNhapXuatReportForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="VatTuForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -197,6 +203,12 @@
     </Compile>
     <Compile Include="XtraReport_SoLuongTriGia.Designer.cs">
       <DependentUpon>XtraReport_SoLuongTriGia.cs</DependentUpon>
+    </Compile>
+    <Compile Include="XtraReport_TongHopNX.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="XtraReport_TongHopNX.Designer.cs">
+      <DependentUpon>XtraReport_TongHopNX.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="DDHChuaNhapReportForm.resx">
       <DependentUpon>DDHChuaNhapReportForm.cs</DependentUpon>
@@ -245,6 +257,9 @@
     <EmbeddedResource Include="SoLuongTriGiaReportForm.resx">
       <DependentUpon>SoLuongTriGiaReportForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="TongHopNhapXuatReportForm.resx">
+      <DependentUpon>TongHopNhapXuatReportForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="VatTuForm.resx">
       <DependentUpon>VatTuForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -262,6 +277,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="XtraReport_SoLuongTriGia.resx">
       <DependentUpon>XtraReport_SoLuongTriGia.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="XtraReport_TongHopNX.resx">
+      <DependentUpon>XtraReport_TongHopNX.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="App.config">
       <SubType>Designer</SubType>
