@@ -74,6 +74,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AccountForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AccountForm.Designer.cs">
+      <DependentUpon>AccountForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Action.cs" />
     <Compile Include="DDHChuaNhapReportForm.cs">
       <SubType>Form</SubType>
@@ -210,6 +216,9 @@
     <Compile Include="XtraReport_TongHopNX.Designer.cs">
       <DependentUpon>XtraReport_TongHopNX.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="AccountForm.resx">
+      <DependentUpon>AccountForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DDHChuaNhapReportForm.resx">
       <DependentUpon>DDHChuaNhapReportForm.cs</DependentUpon>
     </EmbeddedResource>

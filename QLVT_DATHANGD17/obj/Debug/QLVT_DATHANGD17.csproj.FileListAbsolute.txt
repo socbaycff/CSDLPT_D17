@@ -210,3 +210,4 @@ C:\Users\Khang\documents\visual studio 2015\Projects\QLVT_DATHANGD17\QLVT_DATHAN
 C:\Users\Khang\documents\visual studio 2015\Projects\QLVT_DATHANGD17\QLVT_DATHANGD17\obj\Debug\QLVT_DATHANGD17.XtraReport_DDHChuaNhap.resources
 C:\Users\Khang\documents\visual studio 2015\Projects\QLVT_DATHANGD17\QLVT_DATHANGD17\obj\Debug\QLVT_DATHANGD17.TongHopNhapXuatReportForm.resources
 C:\Users\Khang\documents\visual studio 2015\Projects\QLVT_DATHANGD17\QLVT_DATHANGD17\obj\Debug\QLVT_DATHANGD17.XtraReport_TongHopNX.resources
+C:\Users\Khang\documents\visual studio 2015\Projects\QLVT_DATHANGD17\QLVT_DATHANGD17\obj\Debug\QLVT_DATHANGD17.AccountForm.resources

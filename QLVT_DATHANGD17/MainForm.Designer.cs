@@ -46,17 +46,19 @@
             this.MaNVText = new DevExpress.XtraBars.BarButtonItem();
             this.rpt_hoatdongNV = new DevExpress.XtraBars.BarButtonItem();
             this.rpt_ddhChuanhap = new DevExpress.XtraBars.BarButtonItem();
+            this.rpt_tonghop = new DevExpress.XtraBars.BarButtonItem();
+            this.showAccFormBtn = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup3 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup4 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup6 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.ribbonPageGroup7 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPage2 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup5 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonStatusBar = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
             this.xtraTabbedMdiManager1 = new DevExpress.XtraTabbedMdi.XtraTabbedMdiManager(this.components);
-            this.rpt_tonghop = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabbedMdiManager1)).BeginInit();
             this.SuspendLayout();
@@ -83,10 +85,11 @@
             this.MaNVText,
             this.rpt_hoatdongNV,
             this.rpt_ddhChuanhap,
-            this.rpt_tonghop});
+            this.rpt_tonghop,
+            this.showAccFormBtn});
             this.ribbon.Location = new System.Drawing.Point(0, 0);
             this.ribbon.Margin = new System.Windows.Forms.Padding(2);
-            this.ribbon.MaxItemId = 21;
+            this.ribbon.MaxItemId = 22;
             this.ribbon.Name = "ribbon";
             this.ribbon.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPage1,
@@ -218,6 +221,20 @@
             this.rpt_ddhChuanhap.Name = "rpt_ddhChuanhap";
             this.rpt_ddhChuanhap.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.rpt_ddhChuanhap_ItemClick);
             // 
+            // rpt_tonghop
+            // 
+            this.rpt_tonghop.Caption = "Tổng hợp nhập xuất";
+            this.rpt_tonghop.Id = 20;
+            this.rpt_tonghop.Name = "rpt_tonghop";
+            this.rpt_tonghop.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.rpt_tonghop_ItemClick);
+            // 
+            // showAccFormBtn
+            // 
+            this.showAccFormBtn.Caption = "Quản trị tài khoản";
+            this.showAccFormBtn.Id = 21;
+            this.showAccFormBtn.Name = "showAccFormBtn";
+            this.showAccFormBtn.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.showAccFormBtn_ItemClick);
+            // 
             // ribbonPage1
             // 
             this.ribbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
@@ -225,7 +242,8 @@
             this.ribbonPageGroup2,
             this.ribbonPageGroup3,
             this.ribbonPageGroup4,
-            this.ribbonPageGroup6});
+            this.ribbonPageGroup6,
+            this.ribbonPageGroup7});
             this.ribbonPage1.Name = "ribbonPage1";
             this.ribbonPage1.Text = "Thao tác";
             // 
@@ -256,6 +274,11 @@
             this.ribbonPageGroup6.ItemLinks.Add(this.showPNBtn);
             this.ribbonPageGroup6.ItemLinks.Add(this.showPXBtn);
             this.ribbonPageGroup6.Name = "ribbonPageGroup6";
+            // 
+            // ribbonPageGroup7
+            // 
+            this.ribbonPageGroup7.ItemLinks.Add(this.showAccFormBtn);
+            this.ribbonPageGroup7.Name = "ribbonPageGroup7";
             // 
             // ribbonPage2
             // 
@@ -288,13 +311,6 @@
             // xtraTabbedMdiManager1
             // 
             this.xtraTabbedMdiManager1.MdiParent = this;
-            // 
-            // rpt_tonghop
-            // 
-            this.rpt_tonghop.Caption = "Tổng hợp nhập xuất";
-            this.rpt_tonghop.Id = 20;
-            this.rpt_tonghop.Name = "rpt_tonghop";
-            this.rpt_tonghop.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.rpt_tonghop_ItemClick);
             // 
             // MainForm
             // 
@@ -347,5 +363,7 @@
         private DevExpress.XtraBars.BarButtonItem rpt_hoatdongNV;
         private DevExpress.XtraBars.BarButtonItem rpt_ddhChuanhap;
         private DevExpress.XtraBars.BarButtonItem rpt_tonghop;
+        private DevExpress.XtraBars.BarButtonItem showAccFormBtn;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup7;
     }
 }

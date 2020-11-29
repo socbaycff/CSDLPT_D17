@@ -189,5 +189,17 @@ namespace QLVT_DATHANGD17
                 newForm.Show();
             }
         }
+
+        private void showAccFormBtn_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            Form form = this.CheckExists(typeof(AccountForm));
+            if (form != null) form.Focus();
+            else
+            {
+                AccountForm newForm = new AccountForm();
+                newForm.MdiParent = this;
+                newForm.Show();
+            }
+        }
     }
 }
