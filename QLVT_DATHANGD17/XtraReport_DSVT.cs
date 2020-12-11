@@ -11,7 +11,9 @@ namespace QLVT_DATHANGD17
         public XtraReport_DSVT()
         {
             InitializeComponent();
+            this.sqlDataSource1.Connection.ConnectionString = Program.connstr;
+            this.sqlDataSource1.Fill();
         }
-
+        
     }
 }

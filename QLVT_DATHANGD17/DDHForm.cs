@@ -92,8 +92,8 @@ namespace QLVT_DATHANGD17
             vitri2 = ctddhBDS.Position;
            
             // Vô hiẹu hóa phần /Grid Control của đơn đặt hàng
-            cTDDHDataGridView.Enabled = false;
-            datHangDataGridView.Enabled = false;
+            cTDDHGridControl.Enabled = false;
+            datHangGridControl.Enabled = false;
             // Gọi tập lệnh của Binding Source;
             cmdManager.execute(new InsertAction(ctddhBDS));
             saveVTBtn.Enabled = cancelBtn.Enabled = true;
@@ -230,8 +230,8 @@ namespace QLVT_DATHANGD17
                 updateCTDDHTableAdapter();
                 undoBtn.Enabled = true;
                 // Tùy chỉnh lại trạng thái các button sau khi hoàn tất
-                datHangDataGridView.Enabled = true;
-                cTDDHDataGridView.Enabled = true;
+                datHangGridControl.Enabled = true;
+                cTDDHGridControl.Enabled = true;
 
                 addBtn.Enabled = updateBtn.Enabled = deleteBtn.Enabled = refreshBtn.Enabled = true;
                 addVTBtn.Enabled = deleteVTBtn.Enabled = true;
@@ -256,8 +256,8 @@ namespace QLVT_DATHANGD17
                 insertSession = false;
             }
      
-            datHangDataGridView.Enabled = true;
-            cTDDHDataGridView.Enabled = true;
+            datHangGridControl.Enabled = true;
+            cTDDHGridControl.Enabled = true;
             thongTinGroup.Enabled = false;
             chiTietGroup.Enabled = false;
 
@@ -304,7 +304,7 @@ namespace QLVT_DATHANGD17
         {
             vitri1 = datHangBDS.Position;
             // Vô hiẹu hóa phần /Grid Control của đơn đặt hàng
-            datHangDataGridView.Enabled = false;
+            datHangGridControl.Enabled = false;
             // Gọi tập lệnh của Binding Source;
             cmdManager.execute(new InsertAction(datHangBDS));
             saveBtn.Enabled = cancelBtn.Enabled = true;
@@ -393,8 +393,8 @@ namespace QLVT_DATHANGD17
                 }
                 
                 // Tùy chỉnh lại trạng thái các button sau khi hoàn tất
-                datHangDataGridView.Enabled = true;
-                cTDDHDataGridView.Enabled = true;
+                datHangGridControl.Enabled = true;
+                cTDDHGridControl.Enabled = true;
 
                 addBtn.Enabled = updateBtn.Enabled = deleteBtn.Enabled = refreshBtn.Enabled = true;
                 addVTBtn.Enabled = deleteVTBtn.Enabled = true;
@@ -447,7 +447,7 @@ namespace QLVT_DATHANGD17
             addBtn.Enabled = updateBtn.Enabled = deleteBtn.Enabled = refreshBtn.Enabled = false;
             addVTBtn.Enabled = deleteVTBtn.Enabled = cancelBtn.Enabled = saveVTBtn.Enabled = false;
             saveBtn.Enabled = cancelBtn.Enabled = true;
-            datHangDataGridView.Enabled = false;
+            datHangGridControl.Enabled = false;
             masoDDHTE.ReadOnly = true;
             mANVSpinEdit.ReadOnly = false;
             mAKHOTextEdit.ReadOnly = false;

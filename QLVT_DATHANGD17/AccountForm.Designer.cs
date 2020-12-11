@@ -55,15 +55,13 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
-            this.sP_DANH_SACH_ACCDataGridView = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.sP_DANH_SACH_ACCBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.sP_DANH_SACH_ACCTableAdapter = new QLVT_DATHANGD17.QLVT_DATHANGDataSetTableAdapters.SP_DANH_SACH_ACCTableAdapter();
             this.tableAdapterManager = new QLVT_DATHANGD17.QLVT_DATHANGDataSetTableAdapters.TableAdapterManager();
             this.sP_NV_CHUA_TAO_ACCTableAdapter = new QLVT_DATHANGD17.QLVT_DATHANGDataSetTableAdapters.SP_NV_CHUA_TAO_ACCTableAdapter();
             this.comboBoxBranch = new System.Windows.Forms.ComboBox();
+            this.sP_DANH_SACH_ACCGridControl = new DevExpress.XtraGrid.GridControl();
+            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
@@ -74,8 +72,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.passwordTE.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
             this.panelControl2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.sP_DANH_SACH_ACCDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sP_DANH_SACH_ACCBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sP_DANH_SACH_ACCGridControl)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // barManager1
@@ -149,43 +148,44 @@
             this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
             this.barDockControlTop.Manager = this.barManager1;
-            this.barDockControlTop.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.barDockControlTop.Size = new System.Drawing.Size(997, 28);
+            this.barDockControlTop.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.barDockControlTop.Size = new System.Drawing.Size(1282, 33);
             // 
             // barDockControlBottom
             // 
             this.barDockControlBottom.CausesValidation = false;
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControlBottom.Location = new System.Drawing.Point(0, 671);
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 800);
             this.barDockControlBottom.Manager = this.barManager1;
-            this.barDockControlBottom.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.barDockControlBottom.Size = new System.Drawing.Size(997, 19);
+            this.barDockControlBottom.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.barDockControlBottom.Size = new System.Drawing.Size(1282, 19);
             // 
             // barDockControlLeft
             // 
             this.barDockControlLeft.CausesValidation = false;
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
-            this.barDockControlLeft.Location = new System.Drawing.Point(0, 28);
+            this.barDockControlLeft.Location = new System.Drawing.Point(0, 33);
             this.barDockControlLeft.Manager = this.barManager1;
-            this.barDockControlLeft.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 643);
+            this.barDockControlLeft.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 767);
             // 
             // barDockControlRight
             // 
             this.barDockControlRight.CausesValidation = false;
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(997, 28);
+            this.barDockControlRight.Location = new System.Drawing.Point(1282, 33);
             this.barDockControlRight.Manager = this.barManager1;
-            this.barDockControlRight.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 643);
+            this.barDockControlRight.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 767);
             // 
             // panelControl1
             // 
             this.panelControl1.Controls.Add(this.groupBox1);
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panelControl1.Location = new System.Drawing.Point(0, 306);
+            this.panelControl1.Location = new System.Drawing.Point(0, 367);
+            this.panelControl1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(997, 365);
+            this.panelControl1.Size = new System.Drawing.Size(1282, 433);
             this.panelControl1.TabIndex = 4;
             // 
             // groupBox1
@@ -202,18 +202,21 @@
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Enabled = false;
-            this.groupBox1.Location = new System.Drawing.Point(77, 15);
+            this.groupBox1.Location = new System.Drawing.Point(99, 18);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(596, 245);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Size = new System.Drawing.Size(766, 291);
             this.groupBox1.TabIndex = 10;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Add login Form";
             // 
             // cancelBtn
             // 
-            this.cancelBtn.Location = new System.Drawing.Point(353, 165);
+            this.cancelBtn.Location = new System.Drawing.Point(454, 196);
+            this.cancelBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cancelBtn.Name = "cancelBtn";
-            this.cancelBtn.Size = new System.Drawing.Size(83, 36);
+            this.cancelBtn.Size = new System.Drawing.Size(107, 43);
             this.cancelBtn.TabIndex = 11;
             this.cancelBtn.Text = "Cancel";
             this.cancelBtn.UseVisualStyleBackColor = true;
@@ -221,9 +224,10 @@
             // 
             // addNewAccountBtn
             // 
-            this.addNewAccountBtn.Location = new System.Drawing.Point(484, 165);
+            this.addNewAccountBtn.Location = new System.Drawing.Point(622, 196);
+            this.addNewAccountBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.addNewAccountBtn.Name = "addNewAccountBtn";
-            this.addNewAccountBtn.Size = new System.Drawing.Size(89, 36);
+            this.addNewAccountBtn.Size = new System.Drawing.Size(114, 43);
             this.addNewAccountBtn.TabIndex = 1;
             this.addNewAccountBtn.Text = "Add login";
             this.addNewAccountBtn.UseVisualStyleBackColor = true;
@@ -232,18 +236,20 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(145, 39);
+            this.label1.Location = new System.Drawing.Point(186, 46);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(46, 17);
+            this.label1.Size = new System.Drawing.Size(55, 19);
             this.label1.TabIndex = 2;
             this.label1.Text = "Mã NV";
             // 
             // userRadio
             // 
             this.userRadio.AutoSize = true;
-            this.userRadio.Location = new System.Drawing.Point(402, 85);
+            this.userRadio.Location = new System.Drawing.Point(517, 101);
+            this.userRadio.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.userRadio.Name = "userRadio";
-            this.userRadio.Size = new System.Drawing.Size(56, 21);
+            this.userRadio.Size = new System.Drawing.Size(66, 23);
             this.userRadio.TabIndex = 9;
             this.userRadio.TabStop = true;
             this.userRadio.Text = "User";
@@ -255,9 +261,10 @@
             this.maNVCB.DisplayMember = "MANV";
             this.maNVCB.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.maNVCB.FormattingEnabled = true;
-            this.maNVCB.Location = new System.Drawing.Point(232, 36);
+            this.maNVCB.Location = new System.Drawing.Point(298, 43);
+            this.maNVCB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.maNVCB.Name = "maNVCB";
-            this.maNVCB.Size = new System.Drawing.Size(173, 24);
+            this.maNVCB.Size = new System.Drawing.Size(221, 27);
             this.maNVCB.TabIndex = 0;
             this.maNVCB.ValueMember = "MANV";
             // 
@@ -273,18 +280,20 @@
             // 
             // loginNameTE
             // 
-            this.loginNameTE.Location = new System.Drawing.Point(145, 127);
+            this.loginNameTE.Location = new System.Drawing.Point(186, 151);
+            this.loginNameTE.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.loginNameTE.MenuManager = this.barManager1;
             this.loginNameTE.Name = "loginNameTE";
-            this.loginNameTE.Size = new System.Drawing.Size(125, 22);
+            this.loginNameTE.Size = new System.Drawing.Size(161, 28);
             this.loginNameTE.TabIndex = 3;
             // 
             // chiNhanhRadio
             // 
             this.chiNhanhRadio.AutoSize = true;
-            this.chiNhanhRadio.Location = new System.Drawing.Point(256, 85);
+            this.chiNhanhRadio.Location = new System.Drawing.Point(329, 101);
+            this.chiNhanhRadio.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.chiNhanhRadio.Name = "chiNhanhRadio";
-            this.chiNhanhRadio.Size = new System.Drawing.Size(91, 21);
+            this.chiNhanhRadio.Size = new System.Drawing.Size(106, 23);
             this.chiNhanhRadio.TabIndex = 8;
             this.chiNhanhRadio.TabStop = true;
             this.chiNhanhRadio.Text = "Chi nhánh";
@@ -292,18 +301,20 @@
             // 
             // passwordTE
             // 
-            this.passwordTE.Location = new System.Drawing.Point(145, 181);
+            this.passwordTE.Location = new System.Drawing.Point(186, 215);
+            this.passwordTE.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.passwordTE.MenuManager = this.barManager1;
             this.passwordTE.Name = "passwordTE";
-            this.passwordTE.Size = new System.Drawing.Size(125, 22);
+            this.passwordTE.Size = new System.Drawing.Size(161, 28);
             this.passwordTE.TabIndex = 4;
             // 
             // congTyRadio
             // 
             this.congTyRadio.AutoSize = true;
-            this.congTyRadio.Location = new System.Drawing.Point(130, 85);
+            this.congTyRadio.Location = new System.Drawing.Point(167, 101);
+            this.congTyRadio.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.congTyRadio.Name = "congTyRadio";
-            this.congTyRadio.Size = new System.Drawing.Size(82, 21);
+            this.congTyRadio.Size = new System.Drawing.Size(94, 23);
             this.congTyRadio.TabIndex = 7;
             this.congTyRadio.TabStop = true;
             this.congTyRadio.Text = "Công Ty";
@@ -312,70 +323,32 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(52, 130);
+            this.label2.Location = new System.Drawing.Point(67, 154);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(80, 17);
+            this.label2.Size = new System.Drawing.Size(94, 19);
             this.label2.TabIndex = 5;
             this.label2.Text = "Login Name";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(52, 184);
+            this.label3.Location = new System.Drawing.Point(67, 218);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(66, 17);
+            this.label3.Size = new System.Drawing.Size(76, 19);
             this.label3.TabIndex = 6;
             this.label3.Text = "Password";
             // 
             // panelControl2
             // 
-            this.panelControl2.Controls.Add(this.sP_DANH_SACH_ACCDataGridView);
+            this.panelControl2.Controls.Add(this.sP_DANH_SACH_ACCGridControl);
             this.panelControl2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelControl2.Location = new System.Drawing.Point(0, 28);
+            this.panelControl2.Location = new System.Drawing.Point(0, 33);
+            this.panelControl2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panelControl2.Name = "panelControl2";
-            this.panelControl2.Size = new System.Drawing.Size(997, 278);
+            this.panelControl2.Size = new System.Drawing.Size(1282, 334);
             this.panelControl2.TabIndex = 5;
-            // 
-            // sP_DANH_SACH_ACCDataGridView
-            // 
-            this.sP_DANH_SACH_ACCDataGridView.AllowUserToAddRows = false;
-            this.sP_DANH_SACH_ACCDataGridView.AllowUserToDeleteRows = false;
-            this.sP_DANH_SACH_ACCDataGridView.AutoGenerateColumns = false;
-            this.sP_DANH_SACH_ACCDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.sP_DANH_SACH_ACCDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.sP_DANH_SACH_ACCDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn1,
-            this.dataGridViewTextBoxColumn2,
-            this.dataGridViewTextBoxColumn3});
-            this.sP_DANH_SACH_ACCDataGridView.DataSource = this.sP_DANH_SACH_ACCBindingSource;
-            this.sP_DANH_SACH_ACCDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.sP_DANH_SACH_ACCDataGridView.Location = new System.Drawing.Point(2, 2);
-            this.sP_DANH_SACH_ACCDataGridView.Name = "sP_DANH_SACH_ACCDataGridView";
-            this.sP_DANH_SACH_ACCDataGridView.ReadOnly = true;
-            this.sP_DANH_SACH_ACCDataGridView.RowTemplate.Height = 24;
-            this.sP_DANH_SACH_ACCDataGridView.Size = new System.Drawing.Size(993, 274);
-            this.sP_DANH_SACH_ACCDataGridView.TabIndex = 0;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.DataPropertyName = "MANV";
-            this.dataGridViewTextBoxColumn1.HeaderText = "Mã NV";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.DataPropertyName = "LOGINNAME";
-            this.dataGridViewTextBoxColumn2.HeaderText = "LOGIN NAME";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.DataPropertyName = "HOTEN";
-            this.dataGridViewTextBoxColumn3.HeaderText = "Họ Tên";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            this.dataGridViewTextBoxColumn3.ReadOnly = true;
             // 
             // sP_DANH_SACH_ACCBindingSource
             // 
@@ -410,17 +383,37 @@
             // 
             this.comboBoxBranch.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxBranch.FormattingEnabled = true;
-            this.comboBoxBranch.Location = new System.Drawing.Point(498, 0);
+            this.comboBoxBranch.Location = new System.Drawing.Point(640, 0);
+            this.comboBoxBranch.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.comboBoxBranch.Name = "comboBoxBranch";
-            this.comboBoxBranch.Size = new System.Drawing.Size(232, 24);
+            this.comboBoxBranch.Size = new System.Drawing.Size(297, 27);
             this.comboBoxBranch.TabIndex = 10;
             this.comboBoxBranch.SelectedIndexChanged += new System.EventHandler(this.comboBoxBranch_SelectedIndexChanged);
             // 
+            // sP_DANH_SACH_ACCGridControl
+            // 
+            this.sP_DANH_SACH_ACCGridControl.DataSource = this.sP_DANH_SACH_ACCBindingSource;
+            this.sP_DANH_SACH_ACCGridControl.Location = new System.Drawing.Point(5, 8);
+            this.sP_DANH_SACH_ACCGridControl.MainView = this.gridView1;
+            this.sP_DANH_SACH_ACCGridControl.MenuManager = this.barManager1;
+            this.sP_DANH_SACH_ACCGridControl.Name = "sP_DANH_SACH_ACCGridControl";
+            this.sP_DANH_SACH_ACCGridControl.Size = new System.Drawing.Size(1265, 319);
+            this.sP_DANH_SACH_ACCGridControl.TabIndex = 0;
+            this.sP_DANH_SACH_ACCGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gridView1});
+            // 
+            // gridView1
+            // 
+            this.gridView1.GridControl = this.sP_DANH_SACH_ACCGridControl;
+            this.gridView1.Name = "gridView1";
+            this.gridView1.OptionsBehavior.Editable = false;
+            this.gridView1.OptionsBehavior.ReadOnly = true;
+            // 
             // AccountForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(997, 690);
+            this.ClientSize = new System.Drawing.Size(1282, 819);
             this.Controls.Add(this.comboBoxBranch);
             this.Controls.Add(this.panelControl2);
             this.Controls.Add(this.panelControl1);
@@ -428,7 +421,7 @@
             this.Controls.Add(this.barDockControlRight);
             this.Controls.Add(this.barDockControlBottom);
             this.Controls.Add(this.barDockControlTop);
-            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "AccountForm";
             this.Text = "AccountForm";
             this.Load += new System.EventHandler(this.AccountForm_Load);
@@ -443,8 +436,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.passwordTE.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
             this.panelControl2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.sP_DANH_SACH_ACCDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.sP_DANH_SACH_ACCBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sP_DANH_SACH_ACCGridControl)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -468,10 +462,6 @@
         private QLVT_DATHANGDataSet qLVT_DATHANGDataSet;
         private QLVT_DATHANGDataSetTableAdapters.SP_DANH_SACH_ACCTableAdapter sP_DANH_SACH_ACCTableAdapter;
         private QLVT_DATHANGDataSetTableAdapters.TableAdapterManager tableAdapterManager;
-        private System.Windows.Forms.DataGridView sP_DANH_SACH_ACCDataGridView;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
         private System.Windows.Forms.BindingSource sP_NV_CHUA_TAO_ACCBindingSource;
         private QLVT_DATHANGDataSetTableAdapters.SP_NV_CHUA_TAO_ACCTableAdapter sP_NV_CHUA_TAO_ACCTableAdapter;
         private System.Windows.Forms.Button addNewAccountBtn;
@@ -487,5 +477,7 @@
         private System.Windows.Forms.ComboBox comboBoxBranch;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button cancelBtn;
+        private DevExpress.XtraGrid.GridControl sP_DANH_SACH_ACCGridControl;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
     }
 }

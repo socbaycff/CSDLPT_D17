@@ -28,6 +28,8 @@ namespace QLVT_DATHANGD17
 
             XtraReport_DSNV rpt = new XtraReport_DSNV();
             ReportPrintTool print = new ReportPrintTool(rpt);
+            print.PreviewForm.SaveState = false;
+            print.PreviewForm.StartPosition = FormStartPosition.CenterScreen;
             print.ShowPreviewDialog();
 
         }

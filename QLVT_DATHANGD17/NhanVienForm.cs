@@ -40,10 +40,13 @@ namespace QLVT_DATHANGD17
             comboBoxBranch.ValueMember = "TENSERVER";
             comboBoxBranch.SelectedIndex = Program.mChinhanh;
 
+            String chinhanh = Program.mChinhanh == 0 ? "Chi nhánh 2" : "Chi nhánh 1";
+            chiNhanhChuyenCb.Items.Add(chinhanh);
+
             if (Program.userRole == "CongTy")
             {
                 comboBoxBranch.Enabled = true;
-                addBtn.Enabled = deleteBtn.Enabled = cancelBtn.Enabled = detailGroup.Enabled = false; updateBtn.Enabled = saveBtn.Enabled = exchangeBtn.Enabled = false;
+                addBtn.Enabled = deleteBtn.Enabled = cancelBtn.Enabled = detailGroup.Enabled = false; updateBtn.Enabled = saveBtn.Enabled  = false;
             }
             else // Các phân quyền khác như CHINHANH, USER thì không thể lựa chọn chi nhánh khác
             {
@@ -62,6 +65,8 @@ namespace QLVT_DATHANGD17
             hoTE.Properties.MaxLength = 40;
             tenTE.Properties.MaxLength = 10;
             diaChiTE.Properties.MaxLength = 100;
+
+            
         }
 
         // fill lai data tu db
@@ -80,6 +85,8 @@ namespace QLVT_DATHANGD17
             this.datHangTableAdapter.Connection.ConnectionString = Program.connstr;
             this.datHangTableAdapter.Fill(this.qLVT_DATHANGDataSet.DatHang);
 
+            this.sP_CHECKTRUNGNVTableAdapter.Connection.ConnectionString = Program.connstr;
+            //this.sP_CHECKTRUNGNVTableAdapter.Fill(this.qLVT_DATHANGDataSet.SP_CHECKTRUNGNV);
             // load danh sach phan manh
             //    this.v_DS_PHANMANHTableAdapter.Fill(this.qLVT_DATHANG_DSPM.V_DS_PHANMANH);
 
@@ -330,41 +337,102 @@ namespace QLVT_DATHANGD17
 
         private void exchangeBtn_ItemClick(object sender, ItemClickEventArgs e)
         {
+            // kiem tra nhan vien dc chon da la trang thai xoa chua
+            if (((DataRowView)nhanVienBDS.Current)["TrangThaiXoa"].ToString() == "1")
+            {
+                //show message da dc xoa
+                MessageBox.Show($"Nhân viên này đã được xóa", "Chuyển nhân viên thất bại", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
-            //// kiem tra co lien ket phieu chua
-            //if (datHangBDS.Count > 0 || phieuNhapBDS.Count > 0 || phieuXuatBDS.Count > 0)
-            //{
-            //    // show messsage ton tai phieu
-            //    return;
-            //}
-
-            //// kiem tra nhan vien dc chon da la trang thai xoa chua
-            //if (((DataRowView)nhanVienBDS.Current)["TrangThaiXoa"].ToString() == "1")
-            //{
-            //    //show message da dc xoa
-            //    return;
-            //}
-
-            //// kiem tra co lien ket tai khoan dang nhap khong
-            //// su dung sp tim login tu user (maNV)
+            // kiem tra co lien ket tai khoan dang nhap khong
+            string command = $"exec SP_TimLogin '{maNVSpin.Text}'";
+            Program.myReader = Program.ExecSqlDataReader(command);
+            if (Program.myReader != null)
+            {
+                if (Program.myReader.Read()) // Đã tồn tại
+                {
+                    MessageBox.Show($"Nhân viên này đã có tài khoản đăng nhập là {Program.myReader.GetString(0)} \nKhông được chuyển nhân viên", "Chuyển nhân viên thất bại", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    Program.myReader.Close();
+                    return;
+                }
+                Program.myReader.Close();
+            }
 
 
-            //// mo mode chuyen chi nhanh cho user chon chi nhanh dich
+            // mo mode chuyen chi nhanh cho user chon chi nhanh dich
+            startChangingBranchModeUIButtonState();
+            // load check trung table
+            String ho = ((DataRowView)nhanVienBDS.Current)["HO"].ToString();
+            String ten = ((DataRowView)nhanVienBDS.Current)["TEN"].ToString();
+            
+            String ngaysinhstr = ((DataRowView)nhanVienBDS.Current)["NGAYSINH"].ToString();
+            DateTime ngaysinh = DateTime.Parse(ngaysinhstr);
 
-            //exchangeGroup.Enabled = true;
-            //detailGroup.Enabled = false;
-            //startChangingBranchMode();
+            this.sP_CHECKTRUNGNVTableAdapter.Fill(this.qLVT_DATHANGDataSet.SP_CHECKTRUNGNV,ho, ten,ngaysinh);
+            chiNhanhChuyenCb.SelectedIndex = 0;
+
+            // disable btn chuyen trung neu khong co record trung
+
+            if (checkTrungBDS.Count == 0)
+            {
+                replaceExBtn.Enabled = false;
+            }
+            else {
+                replaceExBtn.Enabled = true;
+            }
         }
 
         private void chuyenBtn_Click(object sender, EventArgs e)
         {
+            // kiem tra co chon k
+            if (sP_CHECKTRUNGNVDataGridView.SelectedCells.Count == 0) {
+                MessageBox.Show($"Chuyển nhân viên thành công", $"Chưa chọn nhân viên đè lên", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            //
+            String manvdes = ((DataRowView)checkTrungBDS.Current)["MANV"].ToString();
+            String manvsrc = ((DataRowView)nhanVienBDS.Current)["MANV"].ToString();
+            String macn = Program.mChinhanh == 0 ? "CN2" : "CN1";
             // goi sp chuyen chi nhanh
+            string command = $"exec CHUYENCN 1, {manvsrc}, {manvdes}, '{macn}'";
+            Program.myReader = Program.ExecSqlDataReader(command);
+            if (Program.myReader != null)
+            {
+                MessageBox.Show($"Chuyển nhân viên thành công", $"Chuyển nhân viên thành công sang {macn}", MessageBoxButtons.OK, MessageBoxIcon.None);
+                Program.myReader.Close();
+
+                // thuc thi don dep giao dien
+                viewUIButtonState();
+
+
+            }
+            refreshBtn.PerformClick();
+        }
+
+        private void newExBtn_Click(object sender, EventArgs e)
+        {
+            String manvsrc = ((DataRowView)nhanVienBDS.Current)["MANV"].ToString();
+            String macn = Program.mChinhanh == 0 ? "CN2" : "CN1";
+            // goi sp chuyen chi nhanh
+            string command = $"exec CHUYENCN 2, {manvsrc}, 0, '{macn}'";
+            Program.myReader = Program.ExecSqlDataReader(command);
+            if (Program.myReader != null)
+            {
+                MessageBox.Show($"Chuyển nhân viên thành công", $"Chuyển nhân viên thành công sang {macn}", MessageBoxButtons.OK, MessageBoxIcon.None);
+                Program.myReader.Close();
+
+                // thuc thi don dep giao dien
+                viewUIButtonState();
+
+            }
+            refreshBtn.PerformClick();
         }
 
         private void huyChuyenBtn_Click(object sender, EventArgs e)
         {
-            //ViewUIState();
-            //exchangeGroup.Enabled = false;
+            viewUIButtonState();
+           
         }
 
         private void modifyUIButtonState()
@@ -372,7 +440,7 @@ namespace QLVT_DATHANGD17
             vitri = nhanVienBDS.Position; // luu vi tri truoc khi update/ins
             exchangeGroup.Enabled = false;
             detailGroup.Enabled = true;
-            nhanVienDataGridView.Enabled = false;
+            nhanVienGridControl.Enabled = false;
             saveBtn.Enabled = true;
             addBtn.Enabled = deleteBtn.Enabled = updateBtn.Enabled = refreshBtn.Enabled = exchangeBtn.Enabled = false;
         }
@@ -381,7 +449,7 @@ namespace QLVT_DATHANGD17
         {
             exchangeGroup.Enabled = false;
             detailGroup.Enabled = false;
-            nhanVienDataGridView.Enabled = true;
+            nhanVienGridControl.Enabled = true;
             saveBtn.Enabled = false;
             addBtn.Enabled = deleteBtn.Enabled = updateBtn.Enabled = refreshBtn.Enabled = exchangeBtn.Enabled = true;
         }
@@ -390,6 +458,9 @@ namespace QLVT_DATHANGD17
         {
             saveBtn.Enabled = exchangeBtn.Enabled = false;
             addBtn.Enabled = deleteBtn.Enabled = updateBtn.Enabled = refreshBtn.Enabled = false;
+            exchangeGroup.Enabled = true;
+            detailGroup.Enabled = false;
+            nhanVienGridControl.Enabled = false;
         }
 
 
@@ -415,5 +486,20 @@ namespace QLVT_DATHANGD17
             }
             undoBtn.Enabled = true;
         }
+
+        private void fillToolStripButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+               // this.sP_CHECKTRUNGNVTableAdapter.Fill(this.qLVT_DATHANGDataSet.SP_CHECKTRUNGNV,"", "", new System.Nullable<System.DateTime>(((System.DateTime)(System.Convert.ChangeType("", typeof(System.DateTime))))));
+            }
+            catch (System.Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show(ex.Message);
+            }
+
+        }
+
+       
     }
 }

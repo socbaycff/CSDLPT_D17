@@ -57,11 +57,6 @@
             this.cTDDHTableAdapter = new QLVT_DATHANGD17.QLVT_DATHANGDataSetTableAdapters.CTDDHTableAdapter();
             this.cTPNTableAdapter = new QLVT_DATHANGD17.QLVT_DATHANGDataSetTableAdapters.CTPNTableAdapter();
             this.cTPXTableAdapter = new QLVT_DATHANGD17.QLVT_DATHANGDataSetTableAdapters.CTPXTableAdapter();
-            this.vattuDataGridView = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.SLTTE = new DevExpress.XtraEditors.SpinEdit();
             this.DVTTE = new DevExpress.XtraEditors.TextEdit();
@@ -70,6 +65,8 @@
             this.cTDDHBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.cTPNBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.cTPXBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.vattuGridControl = new DevExpress.XtraGrid.GridControl();
+            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             mAVTLabel = new System.Windows.Forms.Label();
             tENVTLabel = new System.Windows.Forms.Label();
             dVTLabel = new System.Windows.Forms.Label();
@@ -77,7 +74,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.qLVT_DATHANGDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.vatTuBDS)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.vattuDataGridView)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SLTTE.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DVTTE.Properties)).BeginInit();
@@ -86,6 +82,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.cTDDHBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cTPNBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cTPXBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.vattuGridControl)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // mAVTLabel
@@ -350,55 +348,6 @@
             // 
             this.cTPXTableAdapter.ClearBeforeFill = true;
             // 
-            // vattuDataGridView
-            // 
-            this.vattuDataGridView.AllowUserToAddRows = false;
-            this.vattuDataGridView.AllowUserToDeleteRows = false;
-            this.vattuDataGridView.AutoGenerateColumns = false;
-            this.vattuDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.vattuDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.vattuDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn1,
-            this.dataGridViewTextBoxColumn2,
-            this.dataGridViewTextBoxColumn3,
-            this.dataGridViewTextBoxColumn4});
-            this.vattuDataGridView.DataSource = this.vatTuBDS;
-            this.vattuDataGridView.Dock = System.Windows.Forms.DockStyle.Top;
-            this.vattuDataGridView.Location = new System.Drawing.Point(0, 63);
-            this.vattuDataGridView.Name = "vattuDataGridView";
-            this.vattuDataGridView.ReadOnly = true;
-            this.vattuDataGridView.RowTemplate.Height = 28;
-            this.vattuDataGridView.Size = new System.Drawing.Size(1572, 479);
-            this.vattuDataGridView.TabIndex = 6;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.DataPropertyName = "MAVT";
-            this.dataGridViewTextBoxColumn1.HeaderText = "MAVT";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.DataPropertyName = "TENVT";
-            this.dataGridViewTextBoxColumn2.HeaderText = "TENVT";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.DataPropertyName = "DVT";
-            this.dataGridViewTextBoxColumn3.HeaderText = "DVT";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            this.dataGridViewTextBoxColumn3.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn4
-            // 
-            this.dataGridViewTextBoxColumn4.DataPropertyName = "SOLUONGTON";
-            this.dataGridViewTextBoxColumn4.HeaderText = "SOLUONGTON";
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            this.dataGridViewTextBoxColumn4.ReadOnly = true;
-            // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(sOLUONGTONLabel);
@@ -409,7 +358,7 @@
             this.groupBox1.Controls.Add(this.tenVTTE);
             this.groupBox1.Controls.Add(mAVTLabel);
             this.groupBox1.Controls.Add(this.maVTTE);
-            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.groupBox1.Location = new System.Drawing.Point(0, 542);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(1572, 345);
@@ -476,13 +425,32 @@
             this.cTPXBindingSource.DataMember = "FK_CTPX_VatTu";
             this.cTPXBindingSource.DataSource = this.vatTuBDS;
             // 
+            // vattuGridControl
+            // 
+            this.vattuGridControl.DataSource = this.vatTuBDS;
+            this.vattuGridControl.Location = new System.Drawing.Point(0, 61);
+            this.vattuGridControl.MainView = this.gridView1;
+            this.vattuGridControl.MenuManager = this.barManager1;
+            this.vattuGridControl.Name = "vattuGridControl";
+            this.vattuGridControl.Size = new System.Drawing.Size(1566, 485);
+            this.vattuGridControl.TabIndex = 11;
+            this.vattuGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gridView1});
+            // 
+            // gridView1
+            // 
+            this.gridView1.GridControl = this.vattuGridControl;
+            this.gridView1.Name = "gridView1";
+            this.gridView1.OptionsBehavior.Editable = false;
+            this.gridView1.OptionsBehavior.ReadOnly = true;
+            // 
             // VatTuForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1572, 906);
+            this.Controls.Add(this.vattuGridControl);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.vattuDataGridView);
             this.Controls.Add(this.comboBoxBranch);
             this.Controls.Add(this.barDockControlLeft);
             this.Controls.Add(this.barDockControlRight);
@@ -495,7 +463,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.qLVT_DATHANGDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.vatTuBDS)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.vattuDataGridView)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SLTTE.Properties)).EndInit();
@@ -505,6 +472,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.cTDDHBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cTPNBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cTPXBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.vattuGridControl)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -533,11 +502,6 @@
         private QLVT_DATHANGDataSet qLVT_DATHANGDataSet;
         private QLVT_DATHANGDataSetTableAdapters.VattuTableAdapter vattuTableAdapter;
         private QLVT_DATHANGDataSetTableAdapters.TableAdapterManager tableAdapterManager;
-        private System.Windows.Forms.DataGridView vattuDataGridView;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
         private System.Windows.Forms.GroupBox groupBox1;
         private DevExpress.XtraEditors.SpinEdit SLTTE;
         private DevExpress.XtraEditors.TextEdit DVTTE;
@@ -549,5 +513,7 @@
         private System.Windows.Forms.BindingSource cTPNBindingSource;
         private QLVT_DATHANGDataSetTableAdapters.CTPXTableAdapter cTPXTableAdapter;
         private System.Windows.Forms.BindingSource cTPXBindingSource;
+        private DevExpress.XtraGrid.GridControl vattuGridControl;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
     }
 }

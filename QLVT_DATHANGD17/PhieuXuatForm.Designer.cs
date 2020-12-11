@@ -71,17 +71,6 @@
             this.hOTENKHTextEdit = new DevExpress.XtraEditors.TextEdit();
             this.nGAYDateEdit = new DevExpress.XtraEditors.DateEdit();
             this.mAPXTextEdit = new DevExpress.XtraEditors.TextEdit();
-            this.cTPXDataGridView = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.phieuXuatDataGridView = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.comboBoxBranch = new System.Windows.Forms.ComboBox();
             this.phieuXuatTableAdapter = new QLVT_DATHANGD17.QLVT_DATHANGDataSetTableAdapters.PhieuXuatTableAdapter();
             this.tableAdapterManager = new QLVT_DATHANGD17.QLVT_DATHANGDataSetTableAdapters.TableAdapterManager();
@@ -92,6 +81,10 @@
             this.nhanVienTableAdapter = new QLVT_DATHANGD17.QLVT_DATHANGDataSetTableAdapters.NhanVienTableAdapter();
             this.vattuBDS = new System.Windows.Forms.BindingSource(this.components);
             this.vattuTableAdapter = new QLVT_DATHANGD17.QLVT_DATHANGDataSetTableAdapters.VattuTableAdapter();
+            this.phieuXuatGridControl = new DevExpress.XtraGrid.GridControl();
+            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.cTPXGridControl = new DevExpress.XtraGrid.GridControl();
+            this.gridView2 = new DevExpress.XtraGrid.Views.Grid.GridView();
             mAPXLabel = new System.Windows.Forms.Label();
             nGAYLabel = new System.Windows.Forms.Label();
             hOTENKHLabel = new System.Windows.Forms.Label();
@@ -119,11 +112,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.nGAYDateEdit.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nGAYDateEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mAPXTextEdit.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cTPXDataGridView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.phieuXuatDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.khoBDS)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nhanVienBDS)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.vattuBDS)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.phieuXuatGridControl)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cTPXGridControl)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView2)).BeginInit();
             this.SuspendLayout();
             // 
             // mAPXLabel
@@ -406,10 +401,10 @@
             // 
             // panelControl3
             // 
+            this.panelControl3.Controls.Add(this.cTPXGridControl);
+            this.panelControl3.Controls.Add(this.phieuXuatGridControl);
             this.panelControl3.Controls.Add(this.chiTietGroupBox);
             this.panelControl3.Controls.Add(this.thongTinGroupBox);
-            this.panelControl3.Controls.Add(this.cTPXDataGridView);
-            this.panelControl3.Controls.Add(this.phieuXuatDataGridView);
             this.panelControl3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelControl3.Location = new System.Drawing.Point(0, 63);
             this.panelControl3.Name = "panelControl3";
@@ -577,110 +572,6 @@
             this.mAPXTextEdit.Size = new System.Drawing.Size(150, 28);
             this.mAPXTextEdit.TabIndex = 1;
             // 
-            // cTPXDataGridView
-            // 
-            this.cTPXDataGridView.AllowUserToAddRows = false;
-            this.cTPXDataGridView.AllowUserToDeleteRows = false;
-            this.cTPXDataGridView.AutoGenerateColumns = false;
-            this.cTPXDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.cTPXDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.cTPXDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn6,
-            this.dataGridViewTextBoxColumn7,
-            this.dataGridViewTextBoxColumn8,
-            this.dataGridViewTextBoxColumn9});
-            this.cTPXDataGridView.DataSource = this.cTPXBDS;
-            this.cTPXDataGridView.Location = new System.Drawing.Point(1124, 0);
-            this.cTPXDataGridView.Name = "cTPXDataGridView";
-            this.cTPXDataGridView.ReadOnly = true;
-            this.cTPXDataGridView.RowTemplate.Height = 28;
-            this.cTPXDataGridView.Size = new System.Drawing.Size(894, 558);
-            this.cTPXDataGridView.TabIndex = 0;
-            // 
-            // dataGridViewTextBoxColumn6
-            // 
-            this.dataGridViewTextBoxColumn6.DataPropertyName = "MAPX";
-            this.dataGridViewTextBoxColumn6.HeaderText = "MAPX";
-            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
-            this.dataGridViewTextBoxColumn6.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn7
-            // 
-            this.dataGridViewTextBoxColumn7.DataPropertyName = "MAVT";
-            this.dataGridViewTextBoxColumn7.HeaderText = "MAVT";
-            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
-            this.dataGridViewTextBoxColumn7.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn8
-            // 
-            this.dataGridViewTextBoxColumn8.DataPropertyName = "SOLUONG";
-            this.dataGridViewTextBoxColumn8.HeaderText = "SOLUONG";
-            this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
-            this.dataGridViewTextBoxColumn8.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn9
-            // 
-            this.dataGridViewTextBoxColumn9.DataPropertyName = "DONGIA";
-            this.dataGridViewTextBoxColumn9.HeaderText = "DONGIA";
-            this.dataGridViewTextBoxColumn9.Name = "dataGridViewTextBoxColumn9";
-            this.dataGridViewTextBoxColumn9.ReadOnly = true;
-            // 
-            // phieuXuatDataGridView
-            // 
-            this.phieuXuatDataGridView.AllowUserToAddRows = false;
-            this.phieuXuatDataGridView.AllowUserToDeleteRows = false;
-            this.phieuXuatDataGridView.AutoGenerateColumns = false;
-            this.phieuXuatDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.phieuXuatDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.phieuXuatDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn1,
-            this.dataGridViewTextBoxColumn2,
-            this.dataGridViewTextBoxColumn3,
-            this.dataGridViewTextBoxColumn4,
-            this.dataGridViewTextBoxColumn5});
-            this.phieuXuatDataGridView.DataSource = this.phieuXuatBDS;
-            this.phieuXuatDataGridView.Location = new System.Drawing.Point(0, 0);
-            this.phieuXuatDataGridView.Name = "phieuXuatDataGridView";
-            this.phieuXuatDataGridView.ReadOnly = true;
-            this.phieuXuatDataGridView.RowTemplate.Height = 28;
-            this.phieuXuatDataGridView.Size = new System.Drawing.Size(1118, 552);
-            this.phieuXuatDataGridView.TabIndex = 0;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.DataPropertyName = "MAPX";
-            this.dataGridViewTextBoxColumn1.HeaderText = "MAPX";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.DataPropertyName = "NGAY";
-            this.dataGridViewTextBoxColumn2.HeaderText = "NGAY";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.DataPropertyName = "HOTENKH";
-            this.dataGridViewTextBoxColumn3.HeaderText = "HOTENKH";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            this.dataGridViewTextBoxColumn3.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn4
-            // 
-            this.dataGridViewTextBoxColumn4.DataPropertyName = "MANV";
-            this.dataGridViewTextBoxColumn4.HeaderText = "MANV";
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            this.dataGridViewTextBoxColumn4.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn5
-            // 
-            this.dataGridViewTextBoxColumn5.DataPropertyName = "MAKHO";
-            this.dataGridViewTextBoxColumn5.HeaderText = "MAKHO";
-            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
-            this.dataGridViewTextBoxColumn5.ReadOnly = true;
-            // 
             // comboBoxBranch
             // 
             this.comboBoxBranch.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -741,6 +632,44 @@
             // 
             this.vattuTableAdapter.ClearBeforeFill = true;
             // 
+            // phieuXuatGridControl
+            // 
+            this.phieuXuatGridControl.DataSource = this.phieuXuatBDS;
+            this.phieuXuatGridControl.Location = new System.Drawing.Point(44, 18);
+            this.phieuXuatGridControl.MainView = this.gridView1;
+            this.phieuXuatGridControl.MenuManager = this.barManager1;
+            this.phieuXuatGridControl.Name = "phieuXuatGridControl";
+            this.phieuXuatGridControl.Size = new System.Drawing.Size(1088, 569);
+            this.phieuXuatGridControl.TabIndex = 3;
+            this.phieuXuatGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gridView1});
+            // 
+            // gridView1
+            // 
+            this.gridView1.GridControl = this.phieuXuatGridControl;
+            this.gridView1.Name = "gridView1";
+            this.gridView1.OptionsBehavior.Editable = false;
+            this.gridView1.OptionsBehavior.ReadOnly = true;
+            // 
+            // cTPXGridControl
+            // 
+            this.cTPXGridControl.DataSource = this.cTPXBDS;
+            this.cTPXGridControl.Location = new System.Drawing.Point(1144, 18);
+            this.cTPXGridControl.MainView = this.gridView2;
+            this.cTPXGridControl.MenuManager = this.barManager1;
+            this.cTPXGridControl.Name = "cTPXGridControl";
+            this.cTPXGridControl.Size = new System.Drawing.Size(846, 579);
+            this.cTPXGridControl.TabIndex = 3;
+            this.cTPXGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gridView2});
+            // 
+            // gridView2
+            // 
+            this.gridView2.GridControl = this.cTPXGridControl;
+            this.gridView2.Name = "gridView2";
+            this.gridView2.OptionsBehavior.Editable = false;
+            this.gridView2.OptionsBehavior.ReadOnly = true;
+            // 
             // PhieuXuatForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
@@ -777,11 +706,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.nGAYDateEdit.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nGAYDateEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.mAPXTextEdit.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cTPXDataGridView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.phieuXuatDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.khoBDS)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nhanVienBDS)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.vattuBDS)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.phieuXuatGridControl)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cTPXGridControl)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -813,19 +744,8 @@
         private QLVT_DATHANGDataSet qLVT_DATHANGDataSet;
         private QLVT_DATHANGDataSetTableAdapters.PhieuXuatTableAdapter phieuXuatTableAdapter;
         private QLVT_DATHANGDataSetTableAdapters.TableAdapterManager tableAdapterManager;
-        private System.Windows.Forms.DataGridView phieuXuatDataGridView;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
         private QLVT_DATHANGDataSetTableAdapters.CTPXTableAdapter cTPXTableAdapter;
         private System.Windows.Forms.BindingSource cTPXBDS;
-        private System.Windows.Forms.DataGridView cTPXDataGridView;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn9;
         private System.Windows.Forms.GroupBox thongTinGroupBox;
         private DevExpress.XtraEditors.TextEdit mAPXTextEdit;
         private System.Windows.Forms.GroupBox chiTietGroupBox;
@@ -843,5 +763,9 @@
         private QLVT_DATHANGDataSetTableAdapters.NhanVienTableAdapter nhanVienTableAdapter;
         private System.Windows.Forms.BindingSource vattuBDS;
         private QLVT_DATHANGDataSetTableAdapters.VattuTableAdapter vattuTableAdapter;
+        private DevExpress.XtraGrid.GridControl phieuXuatGridControl;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
+        private DevExpress.XtraGrid.GridControl cTPXGridControl;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView2;
     }
 }

@@ -27,6 +27,8 @@ namespace QLVT_DATHANGD17
           
             rpt.titleLB.Text = "Bảng kê chi tiết Số lượng - trị giá từ phiếu "+ LoaiCB.Text + " " + fromDE.Text + " đến " + toDE.Text + " theo từng tháng";
             ReportPrintTool print = new ReportPrintTool(rpt);
+            print.PreviewForm.SaveState = false;
+            print.PreviewForm.StartPosition = FormStartPosition.CenterScreen;
             print.ShowPreviewDialog();
 
         }

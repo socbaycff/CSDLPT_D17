@@ -72,18 +72,7 @@
             this.mANVSpinEdit = new DevExpress.XtraEditors.SpinEdit();
             this.mAKHOTextEdit = new DevExpress.XtraEditors.TextEdit();
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
-            this.cTDDHDataGridView = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panelControl3 = new DevExpress.XtraEditors.PanelControl();
-            this.datHangDataGridView = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.datHangTableAdapter = new QLVT_DATHANGD17.QLVT_DATHANGDataSetTableAdapters.DatHangTableAdapter();
             this.tableAdapterManager = new QLVT_DATHANGD17.QLVT_DATHANGDataSetTableAdapters.TableAdapterManager();
             this.cTDDHTableAdapter = new QLVT_DATHANGD17.QLVT_DATHANGDataSetTableAdapters.CTDDHTableAdapter();
@@ -96,6 +85,10 @@
             this.khoTableAdapter = new QLVT_DATHANGD17.QLVT_DATHANGDataSetTableAdapters.KhoTableAdapter();
             this.nhanVienBDS = new System.Windows.Forms.BindingSource(this.components);
             this.nhanVienTableAdapter = new QLVT_DATHANGD17.QLVT_DATHANGDataSetTableAdapters.NhanVienTableAdapter();
+            this.datHangGridControl = new DevExpress.XtraGrid.GridControl();
+            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.cTDDHGridControl = new DevExpress.XtraGrid.GridControl();
+            this.gridView2 = new DevExpress.XtraGrid.Views.Grid.GridView();
             masoDDHLabel = new System.Windows.Forms.Label();
             nGAYLabel = new System.Windows.Forms.Label();
             nhaCCLabel = new System.Windows.Forms.Label();
@@ -125,14 +118,16 @@
             ((System.ComponentModel.ISupportInitialize)(this.mAKHOTextEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
             this.panelControl2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.cTDDHDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).BeginInit();
             this.panelControl3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.datHangDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.vatTuBDS)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.phieuNhapBDS)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.khoBDS)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nhanVienBDS)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.datHangGridControl)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cTDDHGridControl)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView2)).BeginInit();
             this.SuspendLayout();
             // 
             // masoDDHLabel
@@ -156,7 +151,7 @@
             // nhaCCLabel
             // 
             nhaCCLabel.AutoSize = true;
-            nhaCCLabel.Location = new System.Drawing.Point(80, 275);
+            nhaCCLabel.Location = new System.Drawing.Point(80, 183);
             nhaCCLabel.Name = "nhaCCLabel";
             nhaCCLabel.Size = new System.Drawing.Size(62, 19);
             nhaCCLabel.TabIndex = 4;
@@ -165,7 +160,7 @@
             // mANVLabel
             // 
             mANVLabel.AutoSize = true;
-            mANVLabel.Location = new System.Drawing.Point(89, 148);
+            mANVLabel.Location = new System.Drawing.Point(89, 111);
             mANVLabel.Name = "mANVLabel";
             mANVLabel.Size = new System.Drawing.Size(55, 19);
             mANVLabel.TabIndex = 6;
@@ -174,7 +169,7 @@
             // mAKHOLabel
             // 
             mAKHOLabel.AutoSize = true;
-            mAKHOLabel.Location = new System.Drawing.Point(385, 144);
+            mAKHOLabel.Location = new System.Drawing.Point(385, 107);
             mAKHOLabel.Name = "mAKHOLabel";
             mAKHOLabel.Size = new System.Drawing.Size(61, 19);
             mAKHOLabel.TabIndex = 8;
@@ -384,16 +379,16 @@
             this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
             this.barDockControlTop.Manager = this.barManager1;
             this.barDockControlTop.Margin = new System.Windows.Forms.Padding(4);
-            this.barDockControlTop.Size = new System.Drawing.Size(2904, 63);
+            this.barDockControlTop.Size = new System.Drawing.Size(1917, 63);
             // 
             // barDockControlBottom
             // 
             this.barDockControlBottom.CausesValidation = false;
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControlBottom.Location = new System.Drawing.Point(0, 1580);
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 1494);
             this.barDockControlBottom.Manager = this.barManager1;
             this.barDockControlBottom.Margin = new System.Windows.Forms.Padding(4);
-            this.barDockControlBottom.Size = new System.Drawing.Size(2904, 19);
+            this.barDockControlBottom.Size = new System.Drawing.Size(1917, 19);
             // 
             // barDockControlLeft
             // 
@@ -402,25 +397,24 @@
             this.barDockControlLeft.Location = new System.Drawing.Point(0, 63);
             this.barDockControlLeft.Manager = this.barManager1;
             this.barDockControlLeft.Margin = new System.Windows.Forms.Padding(4);
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 1517);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 1431);
             // 
             // barDockControlRight
             // 
             this.barDockControlRight.CausesValidation = false;
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(2904, 63);
+            this.barDockControlRight.Location = new System.Drawing.Point(1917, 63);
             this.barDockControlRight.Manager = this.barManager1;
             this.barDockControlRight.Margin = new System.Windows.Forms.Padding(4);
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 1517);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 1431);
             // 
             // panelControl1
             // 
             this.panelControl1.Controls.Add(this.chiTietGroup);
             this.panelControl1.Controls.Add(this.thongTinGroup);
-            this.panelControl1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panelControl1.Location = new System.Drawing.Point(0, 1142);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(2904, 438);
+            this.panelControl1.Size = new System.Drawing.Size(1904, 333);
             this.panelControl1.TabIndex = 11;
             // 
             // chiTietGroup
@@ -521,7 +515,7 @@
             this.thongTinGroup.Controls.Add(mAKHOLabel);
             this.thongTinGroup.Location = new System.Drawing.Point(12, 30);
             this.thongTinGroup.Name = "thongTinGroup";
-            this.thongTinGroup.Size = new System.Drawing.Size(1108, 369);
+            this.thongTinGroup.Size = new System.Drawing.Size(1103, 262);
             this.thongTinGroup.TabIndex = 18;
             this.thongTinGroup.TabStop = false;
             this.thongTinGroup.Text = "Thông tin Đơn đặt hàng";
@@ -552,7 +546,7 @@
             // nhaCCTextEdit
             // 
             this.nhaCCTextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.datHangBDS, "NhaCC", true));
-            this.nhaCCTextEdit.Location = new System.Drawing.Point(154, 272);
+            this.nhaCCTextEdit.Location = new System.Drawing.Point(154, 180);
             this.nhaCCTextEdit.MenuManager = this.barManager1;
             this.nhaCCTextEdit.Name = "nhaCCTextEdit";
             this.nhaCCTextEdit.Size = new System.Drawing.Size(150, 28);
@@ -566,7 +560,7 @@
             0,
             0,
             0});
-            this.mANVSpinEdit.Location = new System.Drawing.Point(154, 145);
+            this.mANVSpinEdit.Location = new System.Drawing.Point(154, 108);
             this.mANVSpinEdit.MenuManager = this.barManager1;
             this.mANVSpinEdit.Name = "mANVSpinEdit";
             this.mANVSpinEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -578,7 +572,7 @@
             // mAKHOTextEdit
             // 
             this.mAKHOTextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.datHangBDS, "MAKHO", true));
-            this.mAKHOTextEdit.Location = new System.Drawing.Point(461, 141);
+            this.mAKHOTextEdit.Location = new System.Drawing.Point(461, 104);
             this.mAKHOTextEdit.MenuManager = this.barManager1;
             this.mAKHOTextEdit.Name = "mAKHOTextEdit";
             this.mAKHOTextEdit.Size = new System.Drawing.Size(150, 28);
@@ -586,128 +580,19 @@
             // 
             // panelControl2
             // 
-            this.panelControl2.Controls.Add(this.cTDDHDataGridView);
-            this.panelControl2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panelControl2.Location = new System.Drawing.Point(1915, 63);
+            this.panelControl2.Controls.Add(this.cTDDHGridControl);
+            this.panelControl2.Location = new System.Drawing.Point(1012, 63);
             this.panelControl2.Name = "panelControl2";
-            this.panelControl2.Size = new System.Drawing.Size(989, 1079);
+            this.panelControl2.Size = new System.Drawing.Size(892, 1079);
             this.panelControl2.TabIndex = 12;
-            // 
-            // cTDDHDataGridView
-            // 
-            this.cTDDHDataGridView.AllowUserToAddRows = false;
-            this.cTDDHDataGridView.AllowUserToDeleteRows = false;
-            this.cTDDHDataGridView.AutoGenerateColumns = false;
-            this.cTDDHDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.cTDDHDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.cTDDHDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn6,
-            this.dataGridViewTextBoxColumn7,
-            this.dataGridViewTextBoxColumn8,
-            this.dataGridViewTextBoxColumn9});
-            this.cTDDHDataGridView.DataSource = this.ctddhBDS;
-            this.cTDDHDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cTDDHDataGridView.Location = new System.Drawing.Point(2, 2);
-            this.cTDDHDataGridView.Name = "cTDDHDataGridView";
-            this.cTDDHDataGridView.ReadOnly = true;
-            this.cTDDHDataGridView.RowTemplate.Height = 28;
-            this.cTDDHDataGridView.Size = new System.Drawing.Size(985, 1075);
-            this.cTDDHDataGridView.TabIndex = 0;
-            // 
-            // dataGridViewTextBoxColumn6
-            // 
-            this.dataGridViewTextBoxColumn6.DataPropertyName = "MasoDDH";
-            this.dataGridViewTextBoxColumn6.HeaderText = "MasoDDH";
-            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
-            this.dataGridViewTextBoxColumn6.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn7
-            // 
-            this.dataGridViewTextBoxColumn7.DataPropertyName = "MAVT";
-            this.dataGridViewTextBoxColumn7.HeaderText = "MAVT";
-            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
-            this.dataGridViewTextBoxColumn7.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn8
-            // 
-            this.dataGridViewTextBoxColumn8.DataPropertyName = "SOLUONG";
-            this.dataGridViewTextBoxColumn8.HeaderText = "SOLUONG";
-            this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
-            this.dataGridViewTextBoxColumn8.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn9
-            // 
-            this.dataGridViewTextBoxColumn9.DataPropertyName = "DONGIA";
-            this.dataGridViewTextBoxColumn9.HeaderText = "DONGIA";
-            this.dataGridViewTextBoxColumn9.Name = "dataGridViewTextBoxColumn9";
-            this.dataGridViewTextBoxColumn9.ReadOnly = true;
             // 
             // panelControl3
             // 
-            this.panelControl3.Controls.Add(this.datHangDataGridView);
-            this.panelControl3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelControl3.Controls.Add(this.datHangGridControl);
             this.panelControl3.Location = new System.Drawing.Point(0, 63);
             this.panelControl3.Name = "panelControl3";
-            this.panelControl3.Size = new System.Drawing.Size(1915, 1079);
+            this.panelControl3.Size = new System.Drawing.Size(1006, 1079);
             this.panelControl3.TabIndex = 13;
-            // 
-            // datHangDataGridView
-            // 
-            this.datHangDataGridView.AllowUserToAddRows = false;
-            this.datHangDataGridView.AllowUserToDeleteRows = false;
-            this.datHangDataGridView.AutoGenerateColumns = false;
-            this.datHangDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.datHangDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.datHangDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn1,
-            this.dataGridViewTextBoxColumn2,
-            this.dataGridViewTextBoxColumn3,
-            this.dataGridViewTextBoxColumn4,
-            this.dataGridViewTextBoxColumn5});
-            this.datHangDataGridView.DataSource = this.datHangBDS;
-            this.datHangDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.datHangDataGridView.Location = new System.Drawing.Point(2, 2);
-            this.datHangDataGridView.Name = "datHangDataGridView";
-            this.datHangDataGridView.ReadOnly = true;
-            this.datHangDataGridView.RowTemplate.Height = 28;
-            this.datHangDataGridView.Size = new System.Drawing.Size(1911, 1075);
-            this.datHangDataGridView.TabIndex = 0;
-            this.datHangDataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.cellClick);
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.DataPropertyName = "MasoDDH";
-            this.dataGridViewTextBoxColumn1.HeaderText = "MasoDDH";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.DataPropertyName = "NGAY";
-            this.dataGridViewTextBoxColumn2.HeaderText = "NGAY";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.DataPropertyName = "NhaCC";
-            this.dataGridViewTextBoxColumn3.HeaderText = "NhaCC";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            this.dataGridViewTextBoxColumn3.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn4
-            // 
-            this.dataGridViewTextBoxColumn4.DataPropertyName = "MANV";
-            this.dataGridViewTextBoxColumn4.HeaderText = "MANV";
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            this.dataGridViewTextBoxColumn4.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn5
-            // 
-            this.dataGridViewTextBoxColumn5.DataPropertyName = "MAKHO";
-            this.dataGridViewTextBoxColumn5.HeaderText = "MAKHO";
-            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
-            this.dataGridViewTextBoxColumn5.ReadOnly = true;
             // 
             // datHangTableAdapter
             // 
@@ -778,12 +663,50 @@
             // 
             this.nhanVienTableAdapter.ClearBeforeFill = true;
             // 
+            // datHangGridControl
+            // 
+            this.datHangGridControl.DataSource = this.datHangBDS;
+            this.datHangGridControl.Location = new System.Drawing.Point(5, 5);
+            this.datHangGridControl.MainView = this.gridView1;
+            this.datHangGridControl.MenuManager = this.barManager1;
+            this.datHangGridControl.Name = "datHangGridControl";
+            this.datHangGridControl.Size = new System.Drawing.Size(996, 1068);
+            this.datHangGridControl.TabIndex = 0;
+            this.datHangGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gridView1});
+            // 
+            // gridView1
+            // 
+            this.gridView1.GridControl = this.datHangGridControl;
+            this.gridView1.Name = "gridView1";
+            this.gridView1.OptionsBehavior.Editable = false;
+            this.gridView1.OptionsBehavior.ReadOnly = true;
+            // 
+            // cTDDHGridControl
+            // 
+            this.cTDDHGridControl.DataSource = this.ctddhBDS;
+            this.cTDDHGridControl.Location = new System.Drawing.Point(5, 7);
+            this.cTDDHGridControl.MainView = this.gridView2;
+            this.cTDDHGridControl.MenuManager = this.barManager1;
+            this.cTDDHGridControl.Name = "cTDDHGridControl";
+            this.cTDDHGridControl.Size = new System.Drawing.Size(882, 1066);
+            this.cTDDHGridControl.TabIndex = 0;
+            this.cTDDHGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gridView2});
+            // 
+            // gridView2
+            // 
+            this.gridView2.GridControl = this.cTDDHGridControl;
+            this.gridView2.Name = "gridView2";
+            this.gridView2.OptionsBehavior.Editable = false;
+            this.gridView2.OptionsBehavior.ReadOnly = true;
+            // 
             // DDHForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(2904, 1599);
+            this.ClientSize = new System.Drawing.Size(1917, 1513);
             this.Controls.Add(this.comboBoxBranch);
             this.Controls.Add(this.panelControl3);
             this.Controls.Add(this.panelControl2);
@@ -818,14 +741,16 @@
             ((System.ComponentModel.ISupportInitialize)(this.mAKHOTextEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
             this.panelControl2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.cTDDHDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).EndInit();
             this.panelControl3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.datHangDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.vatTuBDS)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.phieuNhapBDS)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.khoBDS)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nhanVienBDS)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.datHangGridControl)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cTDDHGridControl)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -858,19 +783,8 @@
         private QLVT_DATHANGDataSet qLVT_DATHANGDataSet;
         private QLVT_DATHANGDataSetTableAdapters.DatHangTableAdapter datHangTableAdapter;
         private QLVT_DATHANGDataSetTableAdapters.TableAdapterManager tableAdapterManager;
-        private System.Windows.Forms.DataGridView datHangDataGridView;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
         private QLVT_DATHANGDataSetTableAdapters.CTDDHTableAdapter cTDDHTableAdapter;
         private System.Windows.Forms.BindingSource ctddhBDS;
-        private System.Windows.Forms.DataGridView cTDDHDataGridView;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn9;
         private DevExpress.XtraEditors.TextEdit mAKHOTextEdit;
         private DevExpress.XtraEditors.SpinEdit mANVSpinEdit;
         private DevExpress.XtraEditors.TextEdit nhaCCTextEdit;
@@ -891,5 +805,9 @@
         private QLVT_DATHANGDataSetTableAdapters.KhoTableAdapter khoTableAdapter;
         private System.Windows.Forms.BindingSource nhanVienBDS;
         private QLVT_DATHANGDataSetTableAdapters.NhanVienTableAdapter nhanVienTableAdapter;
+        private DevExpress.XtraGrid.GridControl datHangGridControl;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
+        private DevExpress.XtraGrid.GridControl cTDDHGridControl;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView2;
     }
 }

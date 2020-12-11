@@ -153,7 +153,7 @@ namespace QLVT_DATHANGD17
             groupControl1.Enabled = true;
             addBtn.Enabled = deleteBtn.Enabled = updateBtn.Enabled = refreshBtn.Enabled = false;
             saveBtn.Enabled = cancelBtn.Enabled = true;
-            khoDataGridView.Enabled = false;
+            khoGridControl.Enabled = false;
         }
 
       
@@ -251,7 +251,7 @@ namespace QLVT_DATHANGD17
 
         private void viewUIButtonState()
         {
-            khoDataGridView.Enabled = true;
+            khoGridControl.Enabled = true;
             addBtn.Enabled = updateBtn.Enabled = deleteBtn.Enabled = refreshBtn.Enabled = true;
             saveBtn.Enabled = cancelBtn.Enabled = false;
             groupControl1.Enabled = false;

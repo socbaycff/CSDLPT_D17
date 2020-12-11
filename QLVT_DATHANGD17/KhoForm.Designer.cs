@@ -56,11 +56,8 @@
             this.tenKhoTE = new DevExpress.XtraEditors.TextEdit();
             this.maKhoTE = new DevExpress.XtraEditors.TextEdit();
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
-            this.khoDataGridView = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.khoGridControl = new DevExpress.XtraGrid.GridControl();
+            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.khoTableAdapter = new QLVT_DATHANGD17.QLVT_DATHANGDataSetTableAdapters.KhoTableAdapter();
             this.tableAdapterManager = new QLVT_DATHANGD17.QLVT_DATHANGDataSetTableAdapters.TableAdapterManager();
             this.datHangTableAdapter = new QLVT_DATHANGD17.QLVT_DATHANGDataSetTableAdapters.DatHangTableAdapter();
@@ -86,7 +83,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.maKhoTE.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
             this.panelControl2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.khoDataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.khoGridControl)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.datHangBDS)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.phieuNhapBDS)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.phieuXuatBDS)).BeginInit();
@@ -357,61 +355,31 @@
             // 
             // panelControl2
             // 
-            this.panelControl2.Controls.Add(this.khoDataGridView);
+            this.panelControl2.Controls.Add(this.khoGridControl);
             this.panelControl2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelControl2.Location = new System.Drawing.Point(0, 63);
             this.panelControl2.Name = "panelControl2";
             this.panelControl2.Size = new System.Drawing.Size(1472, 528);
             this.panelControl2.TabIndex = 6;
             // 
-            // khoDataGridView
+            // khoGridControl
             // 
-            this.khoDataGridView.AllowUserToAddRows = false;
-            this.khoDataGridView.AllowUserToDeleteRows = false;
-            this.khoDataGridView.AutoGenerateColumns = false;
-            this.khoDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.khoDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.khoDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn1,
-            this.dataGridViewTextBoxColumn2,
-            this.dataGridViewTextBoxColumn3,
-            this.dataGridViewTextBoxColumn4});
-            this.khoDataGridView.DataSource = this.khoBDS;
-            this.khoDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.khoDataGridView.Location = new System.Drawing.Point(2, 2);
-            this.khoDataGridView.Name = "khoDataGridView";
-            this.khoDataGridView.ReadOnly = true;
-            this.khoDataGridView.RowTemplate.Height = 28;
-            this.khoDataGridView.Size = new System.Drawing.Size(1468, 524);
-            this.khoDataGridView.TabIndex = 0;
+            this.khoGridControl.DataSource = this.khoBDS;
+            this.khoGridControl.Location = new System.Drawing.Point(0, 7);
+            this.khoGridControl.MainView = this.gridView1;
+            this.khoGridControl.MenuManager = this.barManager1;
+            this.khoGridControl.Name = "khoGridControl";
+            this.khoGridControl.Size = new System.Drawing.Size(1467, 515);
+            this.khoGridControl.TabIndex = 0;
+            this.khoGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gridView1});
             // 
-            // dataGridViewTextBoxColumn1
+            // gridView1
             // 
-            this.dataGridViewTextBoxColumn1.DataPropertyName = "MAKHO";
-            this.dataGridViewTextBoxColumn1.HeaderText = "MAKHO";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.DataPropertyName = "TENKHO";
-            this.dataGridViewTextBoxColumn2.HeaderText = "TENKHO";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.DataPropertyName = "DIACHI";
-            this.dataGridViewTextBoxColumn3.HeaderText = "DIACHI";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            this.dataGridViewTextBoxColumn3.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn4
-            // 
-            this.dataGridViewTextBoxColumn4.DataPropertyName = "MACN";
-            this.dataGridViewTextBoxColumn4.HeaderText = "MACN";
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            this.dataGridViewTextBoxColumn4.ReadOnly = true;
+            this.gridView1.GridControl = this.khoGridControl;
+            this.gridView1.Name = "gridView1";
+            this.gridView1.OptionsBehavior.Editable = false;
+            this.gridView1.OptionsBehavior.ReadOnly = true;
             // 
             // khoTableAdapter
             // 
@@ -498,7 +466,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.maKhoTE.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
             this.panelControl2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.khoDataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.khoGridControl)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.datHangBDS)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.phieuNhapBDS)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.phieuXuatBDS)).EndInit();
@@ -532,11 +501,6 @@
         private QLVT_DATHANGDataSet qLVT_DATHANGDataSet;
         private QLVT_DATHANGDataSetTableAdapters.KhoTableAdapter khoTableAdapter;
         private QLVT_DATHANGDataSetTableAdapters.TableAdapterManager tableAdapterManager;
-        private System.Windows.Forms.DataGridView khoDataGridView;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
         private QLVT_DATHANGDataSetTableAdapters.DatHangTableAdapter datHangTableAdapter;
         private System.Windows.Forms.BindingSource datHangBDS;
         private QLVT_DATHANGDataSetTableAdapters.PhieuNhapTableAdapter phieuNhapTableAdapter;
@@ -549,5 +513,7 @@
         private DevExpress.XtraEditors.TextEdit maKhoTE;
         private System.Windows.Forms.BindingSource chiNhanhBDS;
         private QLVT_DATHANGDataSetTableAdapters.ChiNhanhTableAdapter chiNhanhTableAdapter;
+        private DevExpress.XtraGrid.GridControl khoGridControl;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
     }
 }

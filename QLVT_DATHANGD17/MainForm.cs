@@ -201,5 +201,43 @@ namespace QLVT_DATHANGD17
                 newForm.Show();
             }
         }
+
+        private void logOutBtn_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            foreach (Form frm in this.MdiChildren)
+            {
+                if (!frm.Focused)
+                {
+                    frm.Visible = false;
+                    frm.Dispose();
+                }
+            }
+            Program.mainForm.roleText.Caption = "Role";
+            Program.mainForm.hotenText.Caption = "Username";
+            Program.mainForm.MaNVText.Caption = "MANV";
+            Form form = this.CheckExists(typeof(LoginForm));
+            if (form != null) form.Focus();
+            else
+            {
+                LoginForm newForm = new LoginForm();
+                newForm.MdiParent = this;
+                newForm.Show();
+            }
+            Program.mainForm.SignedOutState();
+        }
+
+
+        public void SignedInState() {
+            showNVFormBtn.Enabled = showVTFormBtn.Enabled = phieuRibbon.Enabled = showKhoFormBtn.Enabled  = showAccFormBtn.Enabled = true;
+            baocaoribbon.Enabled = true;
+        }
+
+        public void SignedOutState()
+        {
+            showNVFormBtn.Enabled = showVTFormBtn.Enabled = phieuRibbon.Enabled = showKhoFormBtn.Enabled = showAccFormBtn.Enabled = false;
+            baocaoribbon.Enabled = false;
+
+
+        }
     }
 }

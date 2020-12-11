@@ -23,7 +23,9 @@ namespace QLVT_DATHANGD17
         private void showPreviewBtn_Click(object sender, EventArgs e)
         {
             ReportPrintTool print = new ReportPrintTool(rpt);
-            print.ShowPreviewDialog();
+            print.PreviewForm.SaveState = false;
+            print.PreviewForm.StartPosition = FormStartPosition.CenterScreen;
+            print.ShowPreview();
         }
     }
 }

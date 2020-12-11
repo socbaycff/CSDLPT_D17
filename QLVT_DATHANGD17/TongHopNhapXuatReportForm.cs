@@ -16,6 +16,8 @@ namespace QLVT_DATHANGD17
             XtraReport_TongHopNX rpt = new XtraReport_TongHopNX(fromDE.Text, toDE.Text);
             rpt.dateTitle.Text = "TỪ "+ fromDE.Text + " ĐẾN " + toDE.Text;
             ReportPrintTool print = new ReportPrintTool(rpt);
+            print.PreviewForm.SaveState = false;
+            print.PreviewForm.StartPosition = FormStartPosition.CenterScreen;
             print.ShowPreviewDialog();
         }
 

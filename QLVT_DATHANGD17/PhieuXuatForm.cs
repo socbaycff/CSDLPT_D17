@@ -168,7 +168,7 @@ namespace QLVT_DATHANGD17
         {
             vitri1 = phieuXuatBDS.Position;
             // Vô hiẹu hóa phần /Grid Control của đơn đặt hàng
-            phieuXuatDataGridView.Enabled = false;
+            phieuXuatGridControl.Enabled = false;
             // Gọi tập lệnh của Binding Source;
             cmdManager.execute(new InsertAction(phieuXuatBDS));
             saveBtn.Enabled = cancelBtn.Enabled = true;
@@ -259,8 +259,8 @@ namespace QLVT_DATHANGD17
                 }
 
                 // Tùy chỉnh lại trạng thái các button sau khi hoàn tất
-                phieuXuatDataGridView.Enabled = true;
-                cTPXDataGridView.Enabled = true;
+                phieuXuatGridControl.Enabled = true;
+                cTPXGridControl.Enabled = true;
 
                 addBtn.Enabled = updateBtn.Enabled = deleteBtn.Enabled = refreshBtn.Enabled = true;
                 addVTBtn.Enabled = deleteVTBtn.Enabled = true;
@@ -285,7 +285,7 @@ namespace QLVT_DATHANGD17
             addBtn.Enabled = updateBtn.Enabled = deleteBtn.Enabled = refreshBtn.Enabled = false;
             addVTBtn.Enabled = deleteVTBtn.Enabled = cancelBtn.Enabled = saveVTBtn.Enabled = false;
             saveBtn.Enabled = cancelBtn.Enabled = true;
-            phieuXuatDataGridView.Enabled = false;
+            phieuXuatGridControl.Enabled = false;
             mAPXTextEdit.ReadOnly = true;
             mANVSpinEdit.ReadOnly = false;
             mAKHOTextEdit.ReadOnly = false;
@@ -369,8 +369,8 @@ namespace QLVT_DATHANGD17
             vitri2 = cTPXBDS.Position;
 
             // Vô hiẹu hóa phần /Grid Control của đơn đặt hàng
-            cTPXDataGridView.Enabled = false;
-            phieuXuatDataGridView.Enabled = false;
+            cTPXGridControl.Enabled = false;
+            phieuXuatGridControl.Enabled = false;
             // Gọi tập lệnh của Binding Source;
             cmdManager.execute(new InsertAction(cTPXBDS));
             saveVTBtn.Enabled = cancelBtn.Enabled = true;
@@ -432,8 +432,8 @@ namespace QLVT_DATHANGD17
                 updateCTPXTableAdapter();
                 undoBtn.Enabled = true;
                 // Tùy chỉnh lại trạng thái các button sau khi hoàn tất
-                phieuXuatDataGridView.Enabled = true;
-                cTPXDataGridView.Enabled = true;
+                phieuXuatGridControl.Enabled = true;
+                cTPXGridControl.Enabled = true;
 
                 addBtn.Enabled = updateBtn.Enabled = deleteBtn.Enabled = refreshBtn.Enabled = true;
                 addVTBtn.Enabled = deleteVTBtn.Enabled = true;
@@ -458,8 +458,8 @@ namespace QLVT_DATHANGD17
                 insertSession = false;
             }
 
-            phieuXuatDataGridView.Enabled = true;
-            cTPXDataGridView.Enabled = true;
+            phieuXuatGridControl.Enabled = true;
+            cTPXGridControl.Enabled = true;
             thongTinGroupBox.Enabled = false;
             chiTietGroupBox.Enabled = false;
 

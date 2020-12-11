@@ -46,7 +46,7 @@ namespace QLVT_DATHANGD17
                     MessageBox.Show($"Xóa tài khoản thành công", "Xóa thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     // tat box grid insert
                     groupBox1.Enabled = false;
-                    sP_DANH_SACH_ACCDataGridView.Enabled = true;
+                    sP_DANH_SACH_ACCGridControl.Enabled = true;
                    
                 }
                 else
@@ -67,7 +67,7 @@ namespace QLVT_DATHANGD17
         {
             // bat box cho insert
             groupBox1.Enabled = true;
-            sP_DANH_SACH_ACCDataGridView.Enabled = false;
+            sP_DANH_SACH_ACCGridControl.Enabled = false;
         }
 
         private void AccountForm_Load(object sender, EventArgs e)
@@ -186,7 +186,7 @@ namespace QLVT_DATHANGD17
                     MessageBox.Show($"Tạo tài khoản thành công với tên đăng nhập là {loginNameTE.Text.Trim()}", "Đăng ký thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     // tat box grid insert
                     groupBox1.Enabled = false;
-                    sP_DANH_SACH_ACCDataGridView.Enabled = true;
+                    sP_DANH_SACH_ACCGridControl.Enabled = true;
                     return;
                 }
                 else
@@ -203,7 +203,7 @@ namespace QLVT_DATHANGD17
         private void cancelBtn_Click(object sender, EventArgs e)
         {
             groupBox1.Enabled = false;
-            sP_DANH_SACH_ACCDataGridView.Enabled = true;
+            sP_DANH_SACH_ACCGridControl.Enabled = true;
         }
     }
 }

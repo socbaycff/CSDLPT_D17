@@ -25,6 +25,8 @@ namespace QLVT_DATHANGD17
 
             rpt.titleLabel.Text = "Báo cáo Hoạt động nhân viên từ " + fromDE.Text + " đến " + toDE.Text + " theo từng tháng";
             ReportPrintTool print = new ReportPrintTool(rpt);
+            print.PreviewForm.SaveState = false;
+            print.PreviewForm.StartPosition = FormStartPosition.CenterScreen;
             print.ShowPreviewDialog();
         }
 

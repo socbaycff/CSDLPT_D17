@@ -301,14 +301,14 @@ namespace QLVT_DATHANGD17
         {
             vitri = vatTuBDS.Position;
             groupBox1.Enabled = true;
-            vattuDataGridView.Enabled = false;
+            vattuGridControl.Enabled = false;
             saveBtn.Enabled = cancelBtn.Enabled = true;
             addBtn.Enabled = deleteBtn.Enabled = updateBtn.Enabled = refreshBtn.Enabled = false;
         }
 
         private void viewUIButtonState()
         {
-            vattuDataGridView.Enabled = true;
+            vattuGridControl.Enabled = true;
             groupBox1.Enabled = false;
             addBtn.Enabled = updateBtn.Enabled = deleteBtn.Enabled = refreshBtn.Enabled = true;
             saveBtn.Enabled = cancelBtn.Enabled = false;

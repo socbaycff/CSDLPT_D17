@@ -28,6 +28,7 @@ namespace QLVT_DATHANGD17
 
         private void loginBtn_Click(object sender, EventArgs e)
         {
+
             if (loginNameTB.Text == "" || passwordTB.Text.Trim() == "")
             {
                 MessageBox.Show("Vui lòng nhập đầy đủ thông tin để đăng nhập", "LỖI ĐĂNG NHẬP", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
@@ -67,7 +68,7 @@ namespace QLVT_DATHANGD17
                         Program.conn.Close();
                     }
 
-
+                    Program.mainForm.SignedInState();
 
                     //// Hiện thông tin người làm việc hiện tại trên thanh status bar của Main Form
                     Program.mainForm.roleText.Caption = Program.userRole;
@@ -104,7 +105,9 @@ namespace QLVT_DATHANGD17
 
         private void exitBtn_Click(object sender, EventArgs e)
         {
+
             Close();
+            Application.Exit();
         }
     }
 }

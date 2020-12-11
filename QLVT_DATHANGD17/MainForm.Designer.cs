@@ -53,10 +53,10 @@
             this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup3 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup4 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.ribbonPageGroup6 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.phieuRibbon = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup7 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPage2 = new DevExpress.XtraBars.Ribbon.RibbonPage();
-            this.ribbonPageGroup5 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.baocaoribbon = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonStatusBar = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
             this.xtraTabbedMdiManager1 = new DevExpress.XtraTabbedMdi.XtraTabbedMdiManager(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.ribbon)).BeginInit();
@@ -88,23 +88,23 @@
             this.rpt_tonghop,
             this.showAccFormBtn});
             this.ribbon.Location = new System.Drawing.Point(0, 0);
-            this.ribbon.Margin = new System.Windows.Forms.Padding(2);
+            this.ribbon.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ribbon.MaxItemId = 22;
             this.ribbon.Name = "ribbon";
             this.ribbon.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPage1,
             this.ribbonPage2});
-            this.ribbon.Size = new System.Drawing.Size(1266, 192);
+            this.ribbon.Size = new System.Drawing.Size(1628, 229);
             this.ribbon.StatusBar = this.ribbonStatusBar;
             // 
             // loginBtn
             // 
             this.loginBtn.Caption = "Login";
+            this.loginBtn.Enabled = false;
             this.loginBtn.Id = 2;
             this.loginBtn.ImageOptions.Image = global::QLVT_DATHANGD17.Properties.Resources.signin;
             this.loginBtn.Name = "loginBtn";
             this.loginBtn.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
-            this.loginBtn.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.loginBtn_ItemClick);
             // 
             // logOutBtn
             // 
@@ -113,10 +113,12 @@
             this.logOutBtn.ImageOptions.Image = global::QLVT_DATHANGD17.Properties.Resources.signout;
             this.logOutBtn.Name = "logOutBtn";
             this.logOutBtn.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
+            this.logOutBtn.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.logOutBtn_ItemClick);
             // 
             // showNVFormBtn
             // 
             this.showNVFormBtn.Caption = "Nhân Viên";
+            this.showNVFormBtn.Enabled = false;
             this.showNVFormBtn.Id = 4;
             this.showNVFormBtn.ImageOptions.Image = global::QLVT_DATHANGD17.Properties.Resources.worker;
             this.showNVFormBtn.Name = "showNVFormBtn";
@@ -126,6 +128,7 @@
             // showVTFormBtn
             // 
             this.showVTFormBtn.Caption = "Vật Tư";
+            this.showVTFormBtn.Enabled = false;
             this.showVTFormBtn.Id = 5;
             this.showVTFormBtn.ImageOptions.Image = global::QLVT_DATHANGD17.Properties.Resources.trolley;
             this.showVTFormBtn.Name = "showVTFormBtn";
@@ -135,6 +138,7 @@
             // showKhoFormBtn
             // 
             this.showKhoFormBtn.Caption = "Kho";
+            this.showKhoFormBtn.Enabled = false;
             this.showKhoFormBtn.Id = 6;
             this.showKhoFormBtn.ImageOptions.Image = global::QLVT_DATHANGD17.Properties.Resources.warehouse;
             this.showKhoFormBtn.Name = "showKhoFormBtn";
@@ -231,6 +235,7 @@
             // showAccFormBtn
             // 
             this.showAccFormBtn.Caption = "Quản trị tài khoản";
+            this.showAccFormBtn.Enabled = false;
             this.showAccFormBtn.Id = 21;
             this.showAccFormBtn.Name = "showAccFormBtn";
             this.showAccFormBtn.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.showAccFormBtn_ItemClick);
@@ -242,7 +247,7 @@
             this.ribbonPageGroup2,
             this.ribbonPageGroup3,
             this.ribbonPageGroup4,
-            this.ribbonPageGroup6,
+            this.phieuRibbon,
             this.ribbonPageGroup7});
             this.ribbonPage1.Name = "ribbonPage1";
             this.ribbonPage1.Text = "Thao tác";
@@ -250,7 +255,6 @@
             // ribbonPageGroup1
             // 
             this.ribbonPageGroup1.ItemLinks.Add(this.logOutBtn);
-            this.ribbonPageGroup1.ItemLinks.Add(this.loginBtn);
             this.ribbonPageGroup1.Name = "ribbonPageGroup1";
             // 
             // ribbonPageGroup2
@@ -268,12 +272,13 @@
             this.ribbonPageGroup4.ItemLinks.Add(this.showKhoFormBtn);
             this.ribbonPageGroup4.Name = "ribbonPageGroup4";
             // 
-            // ribbonPageGroup6
+            // phieuRibbon
             // 
-            this.ribbonPageGroup6.ItemLinks.Add(this.showDDHFromBtn);
-            this.ribbonPageGroup6.ItemLinks.Add(this.showPNBtn);
-            this.ribbonPageGroup6.ItemLinks.Add(this.showPXBtn);
-            this.ribbonPageGroup6.Name = "ribbonPageGroup6";
+            this.phieuRibbon.Enabled = false;
+            this.phieuRibbon.ItemLinks.Add(this.showDDHFromBtn);
+            this.phieuRibbon.ItemLinks.Add(this.showPNBtn);
+            this.phieuRibbon.ItemLinks.Add(this.showPXBtn);
+            this.phieuRibbon.Name = "phieuRibbon";
             // 
             // ribbonPageGroup7
             // 
@@ -283,30 +288,31 @@
             // ribbonPage2
             // 
             this.ribbonPage2.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
-            this.ribbonPageGroup5});
+            this.baocaoribbon});
             this.ribbonPage2.Name = "ribbonPage2";
             this.ribbonPage2.Text = "Báo Cáo";
             // 
-            // ribbonPageGroup5
+            // baocaoribbon
             // 
-            this.ribbonPageGroup5.ItemLinks.Add(this.rpt_dsnv);
-            this.ribbonPageGroup5.ItemLinks.Add(this.rpt_dsvt);
-            this.ribbonPageGroup5.ItemLinks.Add(this.rpt_soLuongTriGia);
-            this.ribbonPageGroup5.ItemLinks.Add(this.rpt_hoatdongNV);
-            this.ribbonPageGroup5.ItemLinks.Add(this.rpt_ddhChuanhap);
-            this.ribbonPageGroup5.ItemLinks.Add(this.rpt_tonghop);
-            this.ribbonPageGroup5.Name = "ribbonPageGroup5";
+            this.baocaoribbon.Enabled = false;
+            this.baocaoribbon.ItemLinks.Add(this.rpt_dsnv);
+            this.baocaoribbon.ItemLinks.Add(this.rpt_dsvt);
+            this.baocaoribbon.ItemLinks.Add(this.rpt_soLuongTriGia);
+            this.baocaoribbon.ItemLinks.Add(this.rpt_hoatdongNV);
+            this.baocaoribbon.ItemLinks.Add(this.rpt_ddhChuanhap);
+            this.baocaoribbon.ItemLinks.Add(this.rpt_tonghop);
+            this.baocaoribbon.Name = "baocaoribbon";
             // 
             // ribbonStatusBar
             // 
             this.ribbonStatusBar.ItemLinks.Add(this.MaNVText);
             this.ribbonStatusBar.ItemLinks.Add(this.hotenText);
             this.ribbonStatusBar.ItemLinks.Add(this.roleText);
-            this.ribbonStatusBar.Location = new System.Drawing.Point(0, 616);
-            this.ribbonStatusBar.Margin = new System.Windows.Forms.Padding(2);
+            this.ribbonStatusBar.Location = new System.Drawing.Point(0, 733);
+            this.ribbonStatusBar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ribbonStatusBar.Name = "ribbonStatusBar";
             this.ribbonStatusBar.Ribbon = this.ribbon;
-            this.ribbonStatusBar.Size = new System.Drawing.Size(1266, 28);
+            this.ribbonStatusBar.Size = new System.Drawing.Size(1628, 32);
             // 
             // xtraTabbedMdiManager1
             // 
@@ -314,14 +320,14 @@
             // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1266, 644);
+            this.ClientSize = new System.Drawing.Size(1628, 765);
             this.Controls.Add(this.ribbonStatusBar);
             this.Controls.Add(this.ribbon);
             this.IconOptions.Image = global::QLVT_DATHANGD17.Properties.Resources.icons8_warehouse_32;
             this.IsMdiContainer = true;
-            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "MainForm";
             this.Ribbon = this.ribbon;
             this.StatusBar = this.ribbonStatusBar;
@@ -349,9 +355,9 @@
         private DevExpress.XtraBars.BarButtonItem showKhoFormBtn;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup4;
         private DevExpress.XtraBars.Ribbon.RibbonPage ribbonPage2;
-        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup5;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup baocaoribbon;
         private DevExpress.XtraBars.BarButtonItem showDDHFromBtn;
-        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup6;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup phieuRibbon;
         private DevExpress.XtraBars.BarButtonItem showPNBtn;
         private DevExpress.XtraBars.BarButtonItem showPXBtn;
         private DevExpress.XtraBars.BarButtonItem rpt_dsnv;

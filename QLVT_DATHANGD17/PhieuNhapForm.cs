@@ -160,7 +160,7 @@ namespace QLVT_DATHANGD17
         {
             vitri1 = phieuNhapBDS.Position;
             // Vô hiẹu hóa phần /Grid Control của đơn đặt hàng
-            phieuNhapDataGridView.Enabled = false;
+            phieuNhapGridControl.Enabled = false;
             thongTinGroupBox.Enabled = true;
             // Gọi tập lệnh của Binding Source;
             cmdManager.execute(new InsertAction(phieuNhapBDS));
@@ -257,7 +257,7 @@ namespace QLVT_DATHANGD17
                 }
   
                 // Tùy chỉnh lại trạng thái các button sau khi hoàn tất
-                phieuNhapDataGridView.Enabled = true;
+                phieuNhapGridControl.Enabled = true;
                 //PurchaseDetailsGridControl.Enabled = true;
 
                 addBtn.Enabled = updateBtn.Enabled = deleteBtn.Enabled = refreshBtn.Enabled = true;
@@ -330,7 +330,7 @@ namespace QLVT_DATHANGD17
             thongTinGroupBox.Enabled = true;
             addBtn.Enabled = updateBtn.Enabled = deleteBtn.Enabled = refreshBtn.Enabled = false;
             saveBtn.Enabled = cancelBtn.Enabled = true;
-            phieuNhapDataGridView.Enabled = false;
+            phieuNhapGridControl.Enabled = false;
             mAPNTextEdit.ReadOnly = true;
             masoDDHTextEdit.Enabled = true;
             mANVSpinEdit.Enabled = true;
@@ -347,8 +347,8 @@ namespace QLVT_DATHANGD17
             }
 
 
-            phieuNhapDataGridView.Enabled = true;
-            cTPNDataGridView.Enabled = true;
+            phieuNhapGridControl.Enabled = true;
+            cTPNGridControl.Enabled = true;
             thongTinGroupBox.Enabled = false;
             chiTietGroupBox.Enabled = false;
 
@@ -404,14 +404,14 @@ namespace QLVT_DATHANGD17
             vitri2 = cTPNBDS.Position;
 
             // Vô hiẹu hóa phần /Grid Control của đơn đặt hàng
-            cTPNDataGridView.Enabled = false;
+            cTPNGridControl.Enabled = false;
             chiTietGroupBox.Enabled = cancelBtn.Enabled = true;
             saveBtn.Enabled  = addBtn.Enabled = deleteBtn.Enabled = updateBtn.Enabled = refreshBtn.Enabled = false;
             addVTBtn.Enabled = false;
             saveVTBtn.Enabled  = true;
 
             // Mở phần chỉnh sửa
-            phieuNhapDataGridView.Enabled = false;
+            phieuNhapGridControl.Enabled = false;
             thongTinGroupBox.Enabled = false;
 
             enableGroupControl2Input(true);
@@ -513,8 +513,8 @@ namespace QLVT_DATHANGD17
             //if (Program.myReader != null)
             //    Program.myReader.Close();
 
-            phieuNhapDataGridView.Enabled = true;
-            cTPNDataGridView.Enabled = true;
+            phieuNhapGridControl.Enabled = true;
+            cTPNGridControl.Enabled = true;
 
             thongTinGroupBox.Enabled = false;
             chiTietGroupBox.Enabled = false;
