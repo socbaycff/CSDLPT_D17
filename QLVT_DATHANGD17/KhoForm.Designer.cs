@@ -42,20 +42,17 @@
             this.undoBtn = new DevExpress.XtraBars.BarButtonItem();
             this.redoBtn = new DevExpress.XtraBars.BarButtonItem();
             this.refreshBtn = new DevExpress.XtraBars.BarButtonItem();
-            this.bar3 = new DevExpress.XtraBars.Bar();
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             this.comboBoxBranch = new System.Windows.Forms.ComboBox();
-            this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
             this.diaChiTE = new DevExpress.XtraEditors.TextEdit();
             this.khoBDS = new System.Windows.Forms.BindingSource(this.components);
             this.qLVT_DATHANGDataSet = new QLVT_DATHANGD17.QLVT_DATHANGDataSet();
             this.tenKhoTE = new DevExpress.XtraEditors.TextEdit();
             this.maKhoTE = new DevExpress.XtraEditors.TextEdit();
-            this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
             this.khoGridControl = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.khoTableAdapter = new QLVT_DATHANGD17.QLVT_DATHANGDataSetTableAdapters.KhoTableAdapter();
@@ -72,8 +69,6 @@
             tENKHOLabel = new System.Windows.Forms.Label();
             dIACHILabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
-            this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.diaChiTE.Properties)).BeginInit();
@@ -81,8 +76,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.qLVT_DATHANGDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tenKhoTE.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.maKhoTE.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
-            this.panelControl2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.khoGridControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.datHangBDS)).BeginInit();
@@ -103,7 +96,7 @@
             // tENKHOLabel
             // 
             tENKHOLabel.AutoSize = true;
-            tENKHOLabel.Location = new System.Drawing.Point(124, 112);
+            tENKHOLabel.Location = new System.Drawing.Point(1076, 55);
             tENKHOLabel.Name = "tENKHOLabel";
             tENKHOLabel.Size = new System.Drawing.Size(68, 19);
             tENKHOLabel.TabIndex = 2;
@@ -121,8 +114,7 @@
             // barManager1
             // 
             this.barManager1.Bars.AddRange(new DevExpress.XtraBars.Bar[] {
-            this.bar2,
-            this.bar3});
+            this.bar2});
             this.barManager1.DockControls.Add(this.barDockControlTop);
             this.barManager1.DockControls.Add(this.barDockControlBottom);
             this.barManager1.DockControls.Add(this.barDockControlLeft);
@@ -139,7 +131,6 @@
             this.refreshBtn});
             this.barManager1.MainMenu = this.bar2;
             this.barManager1.MaxItemId = 8;
-            this.barManager1.StatusBar = this.bar3;
             // 
             // bar2
             // 
@@ -234,18 +225,6 @@
             this.refreshBtn.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             this.refreshBtn.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.refreshBtn_ItemClick);
             // 
-            // bar3
-            // 
-            this.bar3.BarName = "Status bar";
-            this.bar3.CanDockStyle = DevExpress.XtraBars.BarCanDockStyle.Bottom;
-            this.bar3.DockCol = 0;
-            this.bar3.DockRow = 0;
-            this.bar3.DockStyle = DevExpress.XtraBars.BarDockStyle.Bottom;
-            this.bar3.OptionsBar.AllowQuickCustomization = false;
-            this.bar3.OptionsBar.DrawDragBorder = false;
-            this.bar3.OptionsBar.UseWholeRow = true;
-            this.bar3.Text = "Status bar";
-            // 
             // barDockControlTop
             // 
             this.barDockControlTop.CausesValidation = false;
@@ -253,16 +232,16 @@
             this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
             this.barDockControlTop.Manager = this.barManager1;
             this.barDockControlTop.Margin = new System.Windows.Forms.Padding(4);
-            this.barDockControlTop.Size = new System.Drawing.Size(1472, 63);
+            this.barDockControlTop.Size = new System.Drawing.Size(1914, 63);
             // 
             // barDockControlBottom
             // 
             this.barDockControlBottom.CausesValidation = false;
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControlBottom.Location = new System.Drawing.Point(0, 792);
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 676);
             this.barDockControlBottom.Manager = this.barManager1;
             this.barDockControlBottom.Margin = new System.Windows.Forms.Padding(4);
-            this.barDockControlBottom.Size = new System.Drawing.Size(1472, 19);
+            this.barDockControlBottom.Size = new System.Drawing.Size(1914, 0);
             // 
             // barDockControlLeft
             // 
@@ -271,16 +250,16 @@
             this.barDockControlLeft.Location = new System.Drawing.Point(0, 63);
             this.barDockControlLeft.Manager = this.barManager1;
             this.barDockControlLeft.Margin = new System.Windows.Forms.Padding(4);
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 729);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 613);
             // 
             // barDockControlRight
             // 
             this.barDockControlRight.CausesValidation = false;
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(1472, 63);
+            this.barDockControlRight.Location = new System.Drawing.Point(1914, 63);
             this.barDockControlRight.Manager = this.barManager1;
             this.barDockControlRight.Margin = new System.Windows.Forms.Padding(4);
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 729);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 613);
             // 
             // comboBoxBranch
             // 
@@ -292,15 +271,6 @@
             this.comboBoxBranch.TabIndex = 0;
             this.comboBoxBranch.SelectedIndexChanged += new System.EventHandler(this.comboBoxBranch_SelectedIndexChanged);
             // 
-            // panelControl1
-            // 
-            this.panelControl1.Controls.Add(this.groupControl1);
-            this.panelControl1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panelControl1.Location = new System.Drawing.Point(0, 591);
-            this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(1472, 201);
-            this.panelControl1.TabIndex = 5;
-            // 
             // groupControl1
             // 
             this.groupControl1.Controls.Add(dIACHILabel);
@@ -309,10 +279,9 @@
             this.groupControl1.Controls.Add(this.tenKhoTE);
             this.groupControl1.Controls.Add(mAKHOLabel);
             this.groupControl1.Controls.Add(this.maKhoTE);
-            this.groupControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupControl1.Location = new System.Drawing.Point(2, 2);
+            this.groupControl1.Location = new System.Drawing.Point(12, 533);
             this.groupControl1.Name = "groupControl1";
-            this.groupControl1.Size = new System.Drawing.Size(1468, 197);
+            this.groupControl1.Size = new System.Drawing.Size(1877, 122);
             this.groupControl1.TabIndex = 0;
             this.groupControl1.Text = "Thông tin chi tiết";
             // 
@@ -338,7 +307,7 @@
             // tenKhoTE
             // 
             this.tenKhoTE.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.khoBDS, "TENKHO", true));
-            this.tenKhoTE.Location = new System.Drawing.Point(207, 109);
+            this.tenKhoTE.Location = new System.Drawing.Point(1159, 52);
             this.tenKhoTE.MenuManager = this.barManager1;
             this.tenKhoTE.Name = "tenKhoTE";
             this.tenKhoTE.Size = new System.Drawing.Size(229, 28);
@@ -353,23 +322,14 @@
             this.maKhoTE.Size = new System.Drawing.Size(229, 28);
             this.maKhoTE.TabIndex = 1;
             // 
-            // panelControl2
-            // 
-            this.panelControl2.Controls.Add(this.khoGridControl);
-            this.panelControl2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelControl2.Location = new System.Drawing.Point(0, 63);
-            this.panelControl2.Name = "panelControl2";
-            this.panelControl2.Size = new System.Drawing.Size(1472, 528);
-            this.panelControl2.TabIndex = 6;
-            // 
             // khoGridControl
             // 
             this.khoGridControl.DataSource = this.khoBDS;
-            this.khoGridControl.Location = new System.Drawing.Point(0, 7);
+            this.khoGridControl.Location = new System.Drawing.Point(12, 79);
             this.khoGridControl.MainView = this.gridView1;
             this.khoGridControl.MenuManager = this.barManager1;
             this.khoGridControl.Name = "khoGridControl";
-            this.khoGridControl.Size = new System.Drawing.Size(1467, 515);
+            this.khoGridControl.Size = new System.Drawing.Size(1877, 448);
             this.khoGridControl.TabIndex = 0;
             this.khoGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -441,10 +401,10 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(1472, 811);
+            this.ClientSize = new System.Drawing.Size(1914, 676);
+            this.Controls.Add(this.groupControl1);
+            this.Controls.Add(this.khoGridControl);
             this.Controls.Add(this.comboBoxBranch);
-            this.Controls.Add(this.panelControl2);
-            this.Controls.Add(this.panelControl1);
             this.Controls.Add(this.barDockControlLeft);
             this.Controls.Add(this.barDockControlRight);
             this.Controls.Add(this.barDockControlBottom);
@@ -454,8 +414,6 @@
             this.Text = "Kho";
             this.Load += new System.EventHandler(this.KhoForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
-            this.panelControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
             this.groupControl1.ResumeLayout(false);
             this.groupControl1.PerformLayout();
@@ -464,8 +422,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.qLVT_DATHANGDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tenKhoTE.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.maKhoTE.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
-            this.panelControl2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.khoGridControl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.datHangBDS)).EndInit();
@@ -481,7 +437,6 @@
 
         private DevExpress.XtraBars.BarManager barManager1;
         private DevExpress.XtraBars.Bar bar2;
-        private DevExpress.XtraBars.Bar bar3;
         private DevExpress.XtraBars.BarDockControl barDockControlTop;
         private DevExpress.XtraBars.BarDockControl barDockControlBottom;
         private DevExpress.XtraBars.BarDockControl barDockControlLeft;
@@ -494,8 +449,6 @@
         private DevExpress.XtraBars.BarButtonItem undoBtn;
         private DevExpress.XtraBars.BarButtonItem redoBtn;
         private DevExpress.XtraBars.BarButtonItem refreshBtn;
-        private DevExpress.XtraEditors.PanelControl panelControl2;
-        private DevExpress.XtraEditors.PanelControl panelControl1;
         private System.Windows.Forms.ComboBox comboBoxBranch;
         private System.Windows.Forms.BindingSource khoBDS;
         private QLVT_DATHANGDataSet qLVT_DATHANGDataSet;

@@ -25,42 +25,49 @@ namespace QLVT_DATHANGD17
 
         private void deleteBtn_ItemClick(object sender, ItemClickEventArgs e)
         {
-            // lay login name/ username tu dong dc user chon
-            string loginName = ((DataRowView)sP_DANH_SACH_ACCBindingSource.Current)["LOGINNAME"].ToString();
-            string username = ((DataRowView)sP_DANH_SACH_ACCBindingSource.Current)["MANV"].ToString();
-            // goi sp delete
-            // Thực thi SP tạo login
+            if (MessageBox.Show("Bạn có thật sự muốn xóa tài khoản này ?? ", "Xác nhận", MessageBoxButtons.OKCancel) == DialogResult.OK) {
+                // lay login name/ username tu dong dc user chon
+                string loginName = ((DataRowView)sP_DANH_SACH_ACCBindingSource.Current)["LOGINNAME"].ToString();
+                string username = ((DataRowView)sP_DANH_SACH_ACCBindingSource.Current)["MANV"].ToString();
+                // goi sp delete
+                // Thực thi SP tạo login
 
-            //  cam xoa tai khoan dang login
-            if (loginName == Program.mloginDN) {
-                MessageBox.Show("Không thể xóa tài khoản đang đăng nhập", "Xóa thất bại", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-            try
-            {
-                string command = $"exec Xoa_Login '{loginName}', '{username}'";
-                MessageBox.Show(command);
-                Program.myReader = Program.ExecSqlDataReader(command);
+                //  cam xoa tai khoan dang login
+                if (loginName == Program.mloginDN) // k cho xoa nhung van cho hien de biet dc co tao acc
+                {
+                    MessageBox.Show("Không thể xóa tài khoản đang đăng nhập", "Xóa thất bại", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                try
+                {
+                    string command = $"exec Xoa_Login '{loginName}', '{username}'";
+                   // MessageBox.Show(command);
+                    Program.myReader = Program.ExecSqlDataReader(command);
+                    if (Program.myReader != null)
+                    {
+                        MessageBox.Show($"Xóa tài khoản thành công", "Xóa thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        // tat box grid insert
+                        groupBox1.Enabled = false;
+                        sP_DANH_SACH_ACCGridControl.Enabled = true;
+
+                    }
+                    else
+                    {
+                        MessageBox.Show("Xóa tài khoản đăng nhập thất bại", "Xóa thất bại", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    // refresh
+                    refreshTableAdapter();
+                }
+                catch (Exception exception)
+                {
+                    MessageBox.Show(exception.Message);
+                }
                 if (Program.myReader != null)
                 {
-                    MessageBox.Show($"Xóa tài khoản thành công", "Xóa thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    // tat box grid insert
-                    groupBox1.Enabled = false;
-                    sP_DANH_SACH_ACCGridControl.Enabled = true;
-                   
-                }
-                else
-                {
-                    MessageBox.Show("Xóa tài khoản đăng nhập thất bại", "Xóa thất bại", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    Program.myReader.Close();
                 }
             }
-            catch (Exception exception)
-            {
-                MessageBox.Show(exception.Message);
-            }
-
-            // refresh
-            refreshTableAdapter();
+            
         }
 
         private void insertBtn_ItemClick(object sender, ItemClickEventArgs e)
@@ -68,6 +75,24 @@ namespace QLVT_DATHANGD17
             // bat box cho insert
             groupBox1.Enabled = true;
             sP_DANH_SACH_ACCGridControl.Enabled = false;
+            // cho phep tao acc voi cac quyen nhat dinh
+            if (Program.userRole == "CongTy")
+            {
+                chiNhanhRadio.Enabled = false;
+                userRadio.Enabled = false;
+                congTyRadio.Checked = true;
+            }
+            else { // chi nhanh dc tao 2 loai acc
+                congTyRadio.Enabled = false;
+                userRadio.Checked = true;
+            }
+            
+        
+        }
+        private void enableAllRadio() {
+            chiNhanhRadio.Enabled = true;
+            userRadio.Enabled = true;
+            congTyRadio.Enabled = true;
         }
 
         private void AccountForm_Load(object sender, EventArgs e)
@@ -161,6 +186,8 @@ namespace QLVT_DATHANGD17
                 passwordTE.Focus();
                 return;
             }
+            // khong can check radio button vi da check default 
+
             // Thực thi SP tạo login
             try
             {
@@ -179,7 +206,7 @@ namespace QLVT_DATHANGD17
                     role = "User";
                 }
                 string command = $"exec SP_TAOLOGIN '{loginNameTE.Text.Trim()}', '{passwordTE.Text}', '{maNVCB.Text}', '{role}'";
-                MessageBox.Show(command);
+              //  MessageBox.Show(command);
                 Program.myReader = Program.ExecSqlDataReader(command);
                 if (Program.myReader != null)
                 {
@@ -193,17 +220,26 @@ namespace QLVT_DATHANGD17
                 {
                     MessageBox.Show("Tạo tài khoản đăng nhập thất bại, hãy kiểm tra lại tên đăng nhập và mã nhân viên", "Đăng ký thất bại", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+                
             }
             catch (Exception exception)
             {
                 MessageBox.Show(exception.Message);
+                
+
             }
+            if (Program.myReader != null) {
+                Program.myReader.Close();
+            }
+          
+            refreshTableAdapter();
         }
 
         private void cancelBtn_Click(object sender, EventArgs e)
         {
             groupBox1.Enabled = false;
             sP_DANH_SACH_ACCGridControl.Enabled = true;
+            enableAllRadio();
         }
     }
 }

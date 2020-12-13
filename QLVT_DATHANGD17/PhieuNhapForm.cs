@@ -95,6 +95,12 @@ namespace QLVT_DATHANGD17
             dONGIASpinEdit.Properties.MinValue = 1;
             dONGIASpinEdit.Properties.MaxValue = 1000000000;
             dONGIASpinEdit.ReadOnly = true;
+            mAPNTextEdit.Properties.MaxLength = 8;
+            mAPNTextEdit1.Properties.MaxLength = 8;
+            masoDDHTextEdit.Properties.MaxLength = 8;
+            mAKHOTextEdit.Properties.MaxLength = 4;
+            mAVTTextEdit.Properties.MaxLength = 4;
+            sOLUONGSpinEdit.Properties.MinValue = 1;
             qLVT_DATHANGDataSet.EnforceConstraints = false;
 
             refreshTableAdapter();
@@ -163,7 +169,7 @@ namespace QLVT_DATHANGD17
             phieuNhapGridControl.Enabled = false;
             thongTinGroupBox.Enabled = true;
             // Gọi tập lệnh của Binding Source;
-            cmdManager.execute(new InsertAction(phieuNhapBDS));
+            cmdManager.execute(new InsertAction(phieuNhapBDS,"MAPN"));
             saveBtn.Enabled = cancelBtn.Enabled = true;
             addBtn.Enabled = deleteBtn.Enabled = updateBtn.Enabled = refreshBtn.Enabled = false; //buttonAddDetails.Enabled = buttonDeleteDetails.Enabled = buttonSaveDetails.Enabled = buttonUndoDetails.Enabled = false;
             // Mở phần chỉnh sửa
@@ -265,6 +271,7 @@ namespace QLVT_DATHANGD17
                 saveBtn.Enabled = cancelBtn.Enabled = false;
                 thongTinGroupBox.Enabled = false;
                 undoBtn.Enabled = true;
+                redoBtn.Enabled = false;
             }
             catch (Exception exception)
             {
@@ -307,10 +314,11 @@ namespace QLVT_DATHANGD17
                     try
                     {
                         delMaPN = ((DataRowView)phieuNhapBDS[phieuNhapBDS.Position])["MAPN"].ToString();
-                        cmdManager.execute(new DeleteAction(phieuNhapBDS));
+                        cmdManager.execute(new DeleteAction(phieuNhapBDS, "MAPN"));
                         this.phieuNhapTableAdapter.Connection.ConnectionString = Program.connstr;
                         this.phieuNhapTableAdapter.Update(this.qLVT_DATHANGDataSet.PhieuNhap);
                         undoBtn.Enabled = true;
+                        redoBtn.Enabled = false;
                     }
                     catch (Exception exception)
                     {
@@ -326,7 +334,7 @@ namespace QLVT_DATHANGD17
         private void updateBtn_ItemClick(object sender, ItemClickEventArgs e)
         {
             vitri1 = phieuNhapBDS.Position;
-            cmdManager.execute(new UpdateAction(phieuNhapBDS));
+            cmdManager.execute(new UpdateAction(phieuNhapBDS, "MAPN"));
             thongTinGroupBox.Enabled = true;
             addBtn.Enabled = updateBtn.Enabled = deleteBtn.Enabled = refreshBtn.Enabled = false;
             saveBtn.Enabled = cancelBtn.Enabled = true;
@@ -395,7 +403,7 @@ namespace QLVT_DATHANGD17
                 return;
             }
             // Gọi tập lệnh của Binding Source;
-            cmdManager.execute(new InsertAction(cTPNBDS));
+            cmdManager.execute(new InsertAction(cTPNBDS,"MAVT"));
             // Khởi động lại các giá trị hiện tại từ phiếu nhập sang chi tiết phiếu nhập
 
 
@@ -477,6 +485,8 @@ namespace QLVT_DATHANGD17
             // Kiểm tra tính unique của MasoDDH
             //int checkIndex = BDSCTPN.Find("MAVT", textEditMaVT.Text.Trim());
 
+            // khong kiem tra mavt , do cho chon tu combobox
+
             int checkIndex = -1;
             for (int i = 0; i < cTPNBDS.Count; i++)
             {
@@ -499,6 +509,8 @@ namespace QLVT_DATHANGD17
                 ((InsertAction)cmdManager.getLastUndoNode()).getData(); // lay data cho redo
                 updateCTPNTableAdapter();
                 insertSession = false;
+                redoBtn.Enabled = false;
+                undoBtn.Enabled = true;
             }
             catch (Exception exception)
             {
@@ -507,11 +519,7 @@ namespace QLVT_DATHANGD17
             }
 
             // tam thoi chua cap nhat so luong trong kho
-            // Cập nhật số lượng vật tư
-            //string command = $"exec SP_CapNhapVatTuNhap '{mapn}', '{mavt}'";
-            //Program.myReader = Program.ExecSqlDataReader(command);
-            //if (Program.myReader != null)
-            //    Program.myReader.Close();
+            
 
             phieuNhapGridControl.Enabled = true;
             cTPNGridControl.Enabled = true;
@@ -532,9 +540,10 @@ namespace QLVT_DATHANGD17
                 try
                 {
 
-                    cmdManager.execute(new DeleteAction(cTPNBDS));
+                    cmdManager.execute(new DeleteAction(cTPNBDS, "MAVT"));
                     updateCTPNTableAdapter();
                     undoBtn.Enabled = true;
+                    redoBtn.Enabled = false;
                 }
                 catch (Exception exception)
                 {

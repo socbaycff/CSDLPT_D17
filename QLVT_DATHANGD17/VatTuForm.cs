@@ -55,7 +55,7 @@ namespace QLVT_DATHANGD17
             tenVTTE.Properties.MaxLength = 15;
             SLTTE.Properties.MinValue = 0;
             SLTTE.Properties.MaxValue = 1000000000;
-
+            DVTTE.Properties.MaxLength = 15;
 
 
         }
@@ -125,7 +125,7 @@ namespace QLVT_DATHANGD17
             modifyUIButtonState();
             
             // Gọi tập lệnh của Binding Source;
-            cmdManager.execute(new InsertAction(vatTuBDS));
+            cmdManager.execute(new InsertAction(vatTuBDS,"MAVT"));
 
             // Vô hiệu hóa phần xem grid
             maVTTE.Enabled = true;
@@ -135,7 +135,7 @@ namespace QLVT_DATHANGD17
 
         private void updateBtn_ItemClick(object sender, ItemClickEventArgs e)
         {
-            cmdManager.execute(new UpdateAction(vatTuBDS));
+            cmdManager.execute(new UpdateAction(vatTuBDS, "MAVT"));
           
             modifyUIButtonState();
             maVTTE.Enabled = false;
@@ -152,8 +152,9 @@ namespace QLVT_DATHANGD17
                     try
                     {
                         delMaNV = ((DataRowView)vatTuBDS[vatTuBDS.Position])["MAVT"].ToString();
-                        cmdManager.execute(new DeleteAction(vatTuBDS));
+                        cmdManager.execute(new DeleteAction(vatTuBDS, "MAVT"));
                         undoBtn.Enabled = true;
+                        redoBtn.Enabled = false;
                         this.vattuTableAdapter.Connection.ConnectionString = Program.connstr;
                         this.vattuTableAdapter.Update(this.qLVT_DATHANGDataSet.Vattu);
                     }
@@ -185,7 +186,7 @@ namespace QLVT_DATHANGD17
                 tenVTTE.Focus();
                 return;
             }
-            if (DVTTE.Text.Trim() != "Cái")
+            if (DVTTE.Text.Trim() != "Cái") // chua biet
             {
                 MessageBox.Show("Đơn vị tính không chính xác (đơn vị mặc định là Cái)", "Thiếu thông tin", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 DVTTE.Focus();
@@ -231,6 +232,7 @@ namespace QLVT_DATHANGD17
                     updateTableAdapter();
                 }
                 undoBtn.Enabled = true;
+                redoBtn.Enabled = false;
                 viewUIButtonState();
             }
             catch (Exception exception)
@@ -281,7 +283,7 @@ namespace QLVT_DATHANGD17
             if (cmdManager.undoStackSize() == 0) {
                 undoBtn.Enabled = false;
             }
-            redoBtn.Enabled = true;
+           
         }
 
         private void redoBtn_ItemClick(object sender, ItemClickEventArgs e)

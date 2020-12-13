@@ -17,6 +17,9 @@ namespace QLVT_DATHANGD17
         {
             InitializeComponent();
             showLoginForm();
+            this.WindowState = FormWindowState.Maximized;
+         //   this.MinimumSize = this.Size;
+          //  this.MaximumSize = this.Size;
         }
 
         private Form CheckExists(Type ftype)
@@ -228,8 +231,17 @@ namespace QLVT_DATHANGD17
 
 
         public void SignedInState() {
-            showNVFormBtn.Enabled = showVTFormBtn.Enabled = phieuRibbon.Enabled = showKhoFormBtn.Enabled  = showAccFormBtn.Enabled = true;
-            baocaoribbon.Enabled = true;
+            showNVFormBtn.Enabled = showVTFormBtn.Enabled = phieuRibbon.Enabled = showKhoFormBtn.Enabled = true;
+            if (Program.userRole == "CongTy") { // role cong ty moi xem dc bao cao
+                baocaoribbon.Enabled = true;
+            }
+            if (Program.userRole == "User")
+            {
+                showAccFormBtn.Enabled = false;
+            }
+            else {
+                showAccFormBtn.Enabled = true;
+            }
         }
 
         public void SignedOutState()
@@ -239,5 +251,7 @@ namespace QLVT_DATHANGD17
 
 
         }
+
+       
     }
 }

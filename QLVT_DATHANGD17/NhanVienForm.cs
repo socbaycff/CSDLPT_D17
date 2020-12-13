@@ -65,7 +65,8 @@ namespace QLVT_DATHANGD17
             hoTE.Properties.MaxLength = 40;
             tenTE.Properties.MaxLength = 10;
             diaChiTE.Properties.MaxLength = 100;
-
+           
+            // ma cn tu dong dc dien
             
         }
 
@@ -142,7 +143,7 @@ namespace QLVT_DATHANGD17
         private void addBtn_ItemClick(object sender, ItemClickEventArgs e)
         {
             // thuc thi insert  
-            cmdManager.execute(new InsertAction(nhanVienBDS));
+            cmdManager.execute(new InsertAction(nhanVienBDS,"MANV"));
             modifyUIButtonState();
             // Cho phép nhập mới mã nhân viên và mà chi nhánh
             maNVSpin.Enabled = true;
@@ -153,7 +154,7 @@ namespace QLVT_DATHANGD17
         private void updateBtn_ItemClick(object sender, ItemClickEventArgs e)
         {
             // save lai trang thai de undo
-            cmdManager.execute(new UpdateAction(nhanVienBDS));
+            cmdManager.execute(new UpdateAction(nhanVienBDS,"MANV"));
             modifyUIButtonState();
             maNVSpin.Enabled = false; // update k dc doi ma nv
         }
@@ -169,9 +170,9 @@ namespace QLVT_DATHANGD17
                 return;
             }
 
-            if ((int)maNVSpin.Value < 0)
+            if ((int)maNVSpin.Value < 0 || (int)maNVSpin.Value == 0)
             {
-                MessageBox.Show("Mã nhân viên âm chỉ đuọc phép sử dụng cho nhân viên đã chuyển chi nhánh, hãy chọn một mã khác", "Sai thông tin", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Mã nhân viên không phù hợp", "Sai thông tin", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 maNVSpin.Focus();
                 return;
             }
@@ -200,7 +201,7 @@ namespace QLVT_DATHANGD17
                 ngaySinhDE.Focus();
                 return;
             }
-            if (luongSpin.Text.Trim() == "" || luongSpin.Value < 4000000)
+            if (luongSpin.Text.Trim() == "")
             {
                 MessageBox.Show("Lương nhân viên không chính xác", "Sai thông tin", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 luongSpin.Focus();
@@ -239,6 +240,7 @@ namespace QLVT_DATHANGD17
                 // Cập nhật xuống database
                 
                 undoBtn.Enabled = true;
+                redoBtn.Enabled = false;
                 // Tùy chỉnh lại trạng thái các button sau khi hoàn tất
                 viewUIButtonState();
                
@@ -247,6 +249,7 @@ namespace QLVT_DATHANGD17
             {
                 MessageBox.Show(exception.Message);
             }
+            
         }
 
         private void cancelBtn_ItemClick(object sender, ItemClickEventArgs e)
@@ -316,10 +319,11 @@ namespace QLVT_DATHANGD17
                     {
                         delMaNV = int.Parse(((DataRowView)nhanVienBDS[nhanVienBDS.Position])["MANV"].ToString());
                        
-                        cmdManager.execute(new DeleteAction(nhanVienBDS));
+                        cmdManager.execute(new DeleteAction(nhanVienBDS, "MANV"));
                         this.nhanVienTableAdapter.Connection.ConnectionString = Program.connstr;
                         this.nhanVienTableAdapter.Update(this.qLVT_DATHANGDataSet.NhanVien);
                         undoBtn.Enabled = true;
+                        redoBtn.Enabled = false;
                     }
                     catch (Exception exception)
                     {
@@ -441,8 +445,10 @@ namespace QLVT_DATHANGD17
             exchangeGroup.Enabled = false;
             detailGroup.Enabled = true;
             nhanVienGridControl.Enabled = false;
-            saveBtn.Enabled = true;
-            addBtn.Enabled = deleteBtn.Enabled = updateBtn.Enabled = refreshBtn.Enabled = exchangeBtn.Enabled = false;
+            saveBtn.Enabled = cancelBtn.Enabled = true;
+            
+            addBtn.Enabled = deleteBtn.Enabled = updateBtn.Enabled = refreshBtn.Enabled = exchangeBtn.Enabled = undoBtn.Enabled  = redoBtn.Enabled =  false;
+           
         }
 
         private void viewUIButtonState()
@@ -450,8 +456,8 @@ namespace QLVT_DATHANGD17
             exchangeGroup.Enabled = false;
             detailGroup.Enabled = false;
             nhanVienGridControl.Enabled = true;
-            saveBtn.Enabled = false;
-            addBtn.Enabled = deleteBtn.Enabled = updateBtn.Enabled = refreshBtn.Enabled = exchangeBtn.Enabled = true;
+            saveBtn.Enabled = cancelBtn.Enabled = false;
+            addBtn.Enabled = deleteBtn.Enabled = updateBtn.Enabled = refreshBtn.Enabled = exchangeBtn.Enabled = undoBtn.Enabled = redoBtn.Enabled = true;
         }
 
         private void startChangingBranchModeUIButtonState()
@@ -469,22 +475,24 @@ namespace QLVT_DATHANGD17
         {
             cmdManager.undo();
             updateTableAdapter();
+            redoBtn.Enabled = true;
             if (cmdManager.undoStackSize() == 0)
             {
                 undoBtn.Enabled = false;
             }
-            redoBtn.Enabled = true;
+          
         }
 
         private void redoBtn_ItemClick(object sender, ItemClickEventArgs e)
         {
             cmdManager.redo();
             updateTableAdapter();
+            undoBtn.Enabled = true;
             if (cmdManager.redoStackSize() == 0)
             {
                 redoBtn.Enabled = false;
             }
-            undoBtn.Enabled = true;
+          
         }
 
         private void fillToolStripButton_Click(object sender, EventArgs e)

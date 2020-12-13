@@ -132,7 +132,7 @@ namespace QLVT_DATHANGD17
 
         private void addBtn_ItemClick(object sender, ItemClickEventArgs e)
         {          
-            cmdManager.execute(new InsertAction(khoBDS));
+            cmdManager.execute(new InsertAction(khoBDS,"MAKHO"));
             // Vô hiệu hóa phần xem grid
             modifyUIButtonState();
             maKhoTE.ReadOnly = false;
@@ -141,7 +141,7 @@ namespace QLVT_DATHANGD17
 
         private void updateBtn_ItemClick(object sender, ItemClickEventArgs e)
         {
-            cmdManager.execute(new UpdateAction(khoBDS));
+            cmdManager.execute(new UpdateAction(khoBDS, "MAKHO"));
             modifyUIButtonState();
             maKhoTE.ReadOnly = true;
         }
@@ -171,10 +171,11 @@ namespace QLVT_DATHANGD17
                     try
                     {
                         delMaKho = ((DataRowView)khoBDS[khoBDS.Position])["MAKHO"].ToString();
-                        cmdManager.execute(new DeleteAction(khoBDS));
+                        cmdManager.execute(new DeleteAction(khoBDS, "MAKHO"));
                         this.khoTableAdapter.Connection.ConnectionString = Program.connstr;
                         this.khoTableAdapter.Update(this.qLVT_DATHANGDataSet.Kho);
                         undoBtn.Enabled = true;
+                        redoBtn.Enabled = false;
                     }
                     catch (Exception exception)
                     {
@@ -241,6 +242,7 @@ namespace QLVT_DATHANGD17
                     updateTableAdapter();
                 }
                 undoBtn.Enabled = true;
+                redoBtn.Enabled = false;
                 viewUIButtonState();
             }
             catch (Exception exception)

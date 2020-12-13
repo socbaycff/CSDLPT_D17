@@ -21,8 +21,26 @@ namespace QLVT_DATHANGD17
 
         private void showPreviewBtn_Click(object sender, EventArgs e)
         {
-           
+            if (fromDE.Text.Trim() == "")
+            {
+                MessageBox.Show("Ngày không được để trống", "Thiếu thông tin", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                fromDE.Focus();
+                return;
+            }
 
+            if (toDE.Text.Trim() == "")
+            {
+                MessageBox.Show("Ngày không được để trống", "Thiếu thông tin", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                fromDE.Focus();
+                return;
+            }
+
+            if (LoaiCB.Text.Trim() == "")
+            {
+                MessageBox.Show("Loại không được để trống", "Thiếu thông tin", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                fromDE.Focus();
+                return;
+            }
             XtraReport_SoLuongTriGia rpt = new XtraReport_SoLuongTriGia(fromDE.Text, toDE.Text, LoaiCB.Text == "Nhập" ? "N" : "X");
           
             rpt.titleLB.Text = "Bảng kê chi tiết Số lượng - trị giá từ phiếu "+ LoaiCB.Text + " " + fromDE.Text + " đến " + toDE.Text + " theo từng tháng";

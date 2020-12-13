@@ -21,6 +21,26 @@ namespace QLVT_DATHANGD17
 
         private void showPreviewBtn_Click(object sender, EventArgs e)
         {
+            if (fromDE.Text.Trim() == "")
+            {
+                MessageBox.Show("Ngày không được để trống", "Thiếu thông tin", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                fromDE.Focus();
+                return;
+            }
+
+            if (toDE.Text.Trim() == "")
+            {
+                MessageBox.Show("Ngày không được để trống", "Thiếu thông tin", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                fromDE.Focus();
+                return;
+            }
+
+            if (nhanVienComboBox.Text.Trim() == "")
+            {
+                MessageBox.Show("Loại không được để trống", "Thiếu thông tin", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                fromDE.Focus();
+                return;
+            }
             XtraReport_HoatDongNV rpt = new XtraReport_HoatDongNV(Int32.Parse(nhanVienComboBox.Text), fromDE.Text, toDE.Text);
 
             rpt.titleLabel.Text = "Báo cáo Hoạt động nhân viên từ " + fromDE.Text + " đến " + toDE.Text + " theo từng tháng";

@@ -13,6 +13,21 @@ namespace QLVT_DATHANGD17
 
         private void showPreviewBtn_Click(object sender, EventArgs e)
         {
+            if (fromDE.Text.Trim() == "")
+            {
+                MessageBox.Show("Ngày không được để trống", "Thiếu thông tin", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                fromDE.Focus();
+                return;
+            }
+
+            if (toDE.Text.Trim() == "")
+            {
+                MessageBox.Show("Ngày không được để trống", "Thiếu thông tin", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                fromDE.Focus();
+                return;
+            }
+
+          
             XtraReport_TongHopNX rpt = new XtraReport_TongHopNX(fromDE.Text, toDE.Text);
             rpt.dateTitle.Text = "TỪ "+ fromDE.Text + " ĐẾN " + toDE.Text;
             ReportPrintTool print = new ReportPrintTool(rpt);

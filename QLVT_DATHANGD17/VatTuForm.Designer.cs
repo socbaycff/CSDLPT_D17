@@ -100,7 +100,7 @@
             // 
             tENVTLabel.AutoSize = true;
             tENVTLabel.Font = new System.Drawing.Font("Tahoma", 8F);
-            tENVTLabel.Location = new System.Drawing.Point(185, 127);
+            tENVTLabel.Location = new System.Drawing.Point(185, 89);
             tENVTLabel.Name = "tENVTLabel";
             tENVTLabel.Size = new System.Drawing.Size(61, 19);
             tENVTLabel.TabIndex = 2;
@@ -120,7 +120,7 @@
             // 
             sOLUONGTONLabel.AutoSize = true;
             sOLUONGTONLabel.Font = new System.Drawing.Font("Tahoma", 8F);
-            sOLUONGTONLabel.Location = new System.Drawing.Point(716, 132);
+            sOLUONGTONLabel.Location = new System.Drawing.Point(716, 94);
             sOLUONGTONLabel.Name = "sOLUONGTONLabel";
             sOLUONGTONLabel.Size = new System.Drawing.Size(101, 19);
             sOLUONGTONLabel.TabIndex = 6;
@@ -262,16 +262,16 @@
             this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
             this.barDockControlTop.Manager = this.barManager1;
             this.barDockControlTop.Margin = new System.Windows.Forms.Padding(4);
-            this.barDockControlTop.Size = new System.Drawing.Size(1572, 63);
+            this.barDockControlTop.Size = new System.Drawing.Size(1944, 63);
             // 
             // barDockControlBottom
             // 
             this.barDockControlBottom.CausesValidation = false;
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControlBottom.Location = new System.Drawing.Point(0, 887);
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 716);
             this.barDockControlBottom.Manager = this.barManager1;
             this.barDockControlBottom.Margin = new System.Windows.Forms.Padding(4);
-            this.barDockControlBottom.Size = new System.Drawing.Size(1572, 19);
+            this.barDockControlBottom.Size = new System.Drawing.Size(1944, 19);
             // 
             // barDockControlLeft
             // 
@@ -280,16 +280,16 @@
             this.barDockControlLeft.Location = new System.Drawing.Point(0, 63);
             this.barDockControlLeft.Manager = this.barManager1;
             this.barDockControlLeft.Margin = new System.Windows.Forms.Padding(4);
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 824);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 653);
             // 
             // barDockControlRight
             // 
             this.barDockControlRight.CausesValidation = false;
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(1572, 63);
+            this.barDockControlRight.Location = new System.Drawing.Point(1944, 63);
             this.barDockControlRight.Manager = this.barManager1;
             this.barDockControlRight.Margin = new System.Windows.Forms.Padding(4);
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 824);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 653);
             // 
             // barButtonItem1
             // 
@@ -358,10 +358,9 @@
             this.groupBox1.Controls.Add(this.tenVTTE);
             this.groupBox1.Controls.Add(mAVTLabel);
             this.groupBox1.Controls.Add(this.maVTTE);
-            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.groupBox1.Location = new System.Drawing.Point(0, 542);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1572, 345);
+            this.groupBox1.Size = new System.Drawing.Size(1907, 167);
             this.groupBox1.TabIndex = 7;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông tin chi tiết";
@@ -374,7 +373,7 @@
             0,
             0,
             0});
-            this.SLTTE.Location = new System.Drawing.Point(857, 128);
+            this.SLTTE.Location = new System.Drawing.Point(857, 90);
             this.SLTTE.MenuManager = this.barManager1;
             this.SLTTE.Name = "SLTTE";
             this.SLTTE.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -395,7 +394,7 @@
             // tenVTTE
             // 
             this.tenVTTE.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.vatTuBDS, "TENVT", true));
-            this.tenVTTE.Location = new System.Drawing.Point(285, 123);
+            this.tenVTTE.Location = new System.Drawing.Point(285, 85);
             this.tenVTTE.MenuManager = this.barManager1;
             this.tenVTTE.Name = "tenVTTE";
             this.tenVTTE.Size = new System.Drawing.Size(322, 28);
@@ -432,7 +431,7 @@
             this.vattuGridControl.MainView = this.gridView1;
             this.vattuGridControl.MenuManager = this.barManager1;
             this.vattuGridControl.Name = "vattuGridControl";
-            this.vattuGridControl.Size = new System.Drawing.Size(1566, 485);
+            this.vattuGridControl.Size = new System.Drawing.Size(1907, 460);
             this.vattuGridControl.TabIndex = 11;
             this.vattuGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -448,7 +447,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1572, 906);
+            this.ClientSize = new System.Drawing.Size(1944, 735);
             this.Controls.Add(this.vattuGridControl);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.comboBoxBranch);

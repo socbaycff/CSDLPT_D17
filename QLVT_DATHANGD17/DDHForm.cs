@@ -61,9 +61,16 @@ namespace QLVT_DATHANGD17
             }
             thongTinGroup.Enabled = chiTietGroup.Enabled = false;
             masoDDHTE1.ReadOnly = true;
+            masoDDHTE.Properties.MaxLength = 8;
+            nhaCCTextEdit.Properties.MaxLength = 100;
+            mAKHOTextEdit.Properties.MaxLength = 4;
             mAVTTextEdit.ReadOnly = true;
             mANVSpinEdit.ReadOnly = true;
             mAKHOTextEdit.ReadOnly = true;
+            masoDDHTE1.Properties.MaxLength = 8;
+            mAVTTextEdit.Properties.MaxLength = 4;
+            soLuongSE.Properties.MinValue = 1;
+            donGiaSE.Properties.MinValue = 1;
         }
 
         private void updateDHTableAdapter()
@@ -95,7 +102,7 @@ namespace QLVT_DATHANGD17
             cTDDHGridControl.Enabled = false;
             datHangGridControl.Enabled = false;
             // Gọi tập lệnh của Binding Source;
-            cmdManager.execute(new InsertAction(ctddhBDS));
+            cmdManager.execute(new InsertAction(ctddhBDS,"MAVT"));
             saveVTBtn.Enabled = cancelBtn.Enabled = true;
             addBtn.Enabled = deleteBtn.Enabled = updateBtn.Enabled = refreshBtn.Enabled = addVTBtn.Enabled = deleteVTBtn.Enabled = saveBtn.Enabled = undoBtn.Enabled = false;
             // Mở phần chỉnh sửa
@@ -170,9 +177,10 @@ namespace QLVT_DATHANGD17
                 try
                 {
 
-                    cmdManager.execute(new DeleteAction(ctddhBDS));
+                    cmdManager.execute(new DeleteAction(ctddhBDS, "MAVT"));
                     updateCTDDHTableAdapter();
                     undoBtn.Enabled = true;
+                    redoBtn.Enabled = false;
                 }
                 catch (Exception exception)
                 {
@@ -201,7 +209,7 @@ namespace QLVT_DATHANGD17
                 donGiaSE.Focus();
                 return;
             }
-            // check mavt 
+            // check mavt co ton tai 
             if (vatTuBDS.Find("MAVT", mAVTTextEdit.Text.Trim()) == -1) {
                 MessageBox.Show("Mã vật tư không tồn tại", "Sai thông tin", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 mAVTTextEdit.Focus();
@@ -209,7 +217,7 @@ namespace QLVT_DATHANGD17
             }
             try
             {
-                // check mavt co da co chua
+                // check mavt co da co trong don dat hang chua
                 int checkIndex = -1;
                 for (int i = 0; i < ctddhBDS.Count; i++)
                 {
@@ -229,6 +237,7 @@ namespace QLVT_DATHANGD17
                 ((InsertAction)cmdManager.getLastUndoNode()).getData(); // lay data cho redo
                 updateCTDDHTableAdapter();
                 undoBtn.Enabled = true;
+                redoBtn.Enabled = false;
                 // Tùy chỉnh lại trạng thái các button sau khi hoàn tất
                 datHangGridControl.Enabled = true;
                 cTDDHGridControl.Enabled = true;
@@ -306,7 +315,7 @@ namespace QLVT_DATHANGD17
             // Vô hiẹu hóa phần /Grid Control của đơn đặt hàng
             datHangGridControl.Enabled = false;
             // Gọi tập lệnh của Binding Source;
-            cmdManager.execute(new InsertAction(datHangBDS));
+            cmdManager.execute(new InsertAction(datHangBDS,"MasoDDH"));
             saveBtn.Enabled = cancelBtn.Enabled = true;
             addBtn.Enabled = deleteBtn.Enabled = updateBtn.Enabled = refreshBtn.Enabled = addVTBtn.Enabled = deleteVTBtn.Enabled = saveVTBtn.Enabled =  false;
             // Mở phần chỉnh sửa
@@ -352,7 +361,7 @@ namespace QLVT_DATHANGD17
                 mAKHOTextEdit.Focus();
                 return;
             }
-            if (khoBDS.Find("MAKHO", mAKHOTextEdit.Text.Trim()) == -1)
+            if (khoBDS.Find("MAKHO", mAKHOTextEdit.Text.Trim()) == -1) // find trong 1 sv dung cach nay (khac find nhan vien 2 sv)
             {
                 MessageBox.Show("Mã kho không tồn tại", "Sai thông tin", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 mAVTTextEdit.Focus();
@@ -404,6 +413,7 @@ namespace QLVT_DATHANGD17
                 mANVSpinEdit.ReadOnly = true;
                 mAKHOTextEdit.ReadOnly = true;
                 undoBtn.Enabled = true;
+                redoBtn.Enabled = false;
             }
             catch (Exception exception)
             {
@@ -422,10 +432,11 @@ namespace QLVT_DATHANGD17
                     try
                     {
                         delMaDDH = ((DataRowView)datHangBDS[datHangBDS.Position])["MasoDDH"].ToString();
-                        cmdManager.execute(new DeleteAction(datHangBDS));
+                        cmdManager.execute(new DeleteAction(datHangBDS, "MasoDDH"));
                         this.datHangTableAdapter.Connection.ConnectionString = Program.connstr;
                         this.datHangTableAdapter.Update(this.qLVT_DATHANGDataSet.DatHang);
                         undoBtn.Enabled = true;
+                        redoBtn.Enabled = false;
                     }
                     catch (Exception exception)
                     {
@@ -442,7 +453,7 @@ namespace QLVT_DATHANGD17
         {
            
             vitri1 = datHangBDS.Position;
-            cmdManager.execute(new UpdateAction(datHangBDS));
+            cmdManager.execute(new UpdateAction(datHangBDS, "MasoDDH"));
             thongTinGroup.Enabled = true;
             addBtn.Enabled = updateBtn.Enabled = deleteBtn.Enabled = refreshBtn.Enabled = false;
             addVTBtn.Enabled = deleteVTBtn.Enabled = cancelBtn.Enabled = saveVTBtn.Enabled = false;

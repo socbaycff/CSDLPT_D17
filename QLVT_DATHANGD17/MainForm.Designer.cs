@@ -237,7 +237,9 @@
             this.showAccFormBtn.Caption = "Quản trị tài khoản";
             this.showAccFormBtn.Enabled = false;
             this.showAccFormBtn.Id = 21;
+            this.showAccFormBtn.ImageOptions.Image = global::QLVT_DATHANGD17.Properties.Resources.admin;
             this.showAccFormBtn.Name = "showAccFormBtn";
+            this.showAccFormBtn.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large;
             this.showAccFormBtn.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.showAccFormBtn_ItemClick);
             // 
             // ribbonPage1

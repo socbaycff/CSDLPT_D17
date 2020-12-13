@@ -37,7 +37,7 @@ namespace QLVT_DATHANGD17
                     return;
                 // Gán chi nhánh mới
                 Program.servername = comboBoxBranch.SelectedValue.ToString();
-                // Dùng SUPPORT_CONNECT để kết nối tới server mới thay cho login cũ nếu như thay đổi chi nhánh mới trên comboBoxBranch
+                // Dùng HTKN để kết nối tới server mới thay cho login cũ nếu như thay đổi chi nhánh mới trên comboBoxBranch
                 if (Program.mChinhanh != comboBoxBranch.SelectedIndex)
                 {
                     Program.mlogin = Program.remotelogin;

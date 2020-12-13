@@ -85,6 +85,12 @@ namespace QLVT_DATHANGD17
             // Thiết lập một số thuộc tính mặc đinh cho các widget nhập dữ liệu theo ràng buộc của database
             dONGIASpinEdit.Properties.MinValue = 1;
             dONGIASpinEdit.Properties.MaxValue = 1000000000;
+            sOLUONGSpinEdit.Properties.MinValue = 1;
+            mAPXTextEdit.Properties.MaxLength = 8;
+            mAPXTextEdit1.Properties.MaxLength = 8;
+            hOTENKHTextEdit.Properties.MaxLength = 100;
+            mAVTTextEdit.Properties.MaxLength = 4;
+            mAKHOTextEdit.Properties.MaxLength = 4;
             dONGIASpinEdit.ReadOnly = true;
             qLVT_DATHANGDataSet.EnforceConstraints = false;
 
@@ -170,7 +176,7 @@ namespace QLVT_DATHANGD17
             // Vô hiẹu hóa phần /Grid Control của đơn đặt hàng
             phieuXuatGridControl.Enabled = false;
             // Gọi tập lệnh của Binding Source;
-            cmdManager.execute(new InsertAction(phieuXuatBDS));
+            cmdManager.execute(new InsertAction(phieuXuatBDS,"MAPX"));
             saveBtn.Enabled = cancelBtn.Enabled = true;
             addBtn.Enabled = deleteBtn.Enabled = updateBtn.Enabled = refreshBtn.Enabled = addVTBtn.Enabled = deleteVTBtn.Enabled = saveVTBtn.Enabled = false;
             // Mở phần chỉnh sửa
@@ -270,6 +276,7 @@ namespace QLVT_DATHANGD17
                 mANVSpinEdit.ReadOnly = true;
                 mAKHOTextEdit.ReadOnly = true;
                 undoBtn.Enabled = true;
+                redoBtn.Enabled = false;
             }
             catch (Exception exception)
             {
@@ -280,7 +287,7 @@ namespace QLVT_DATHANGD17
         private void updateBtn_ItemClick(object sender, ItemClickEventArgs e)
         {
             vitri1 = phieuXuatBDS.Position;
-            cmdManager.execute(new UpdateAction(phieuXuatBDS));
+            cmdManager.execute(new UpdateAction(phieuXuatBDS, "MAPX"));
             thongTinGroupBox.Enabled = true;
             addBtn.Enabled = updateBtn.Enabled = deleteBtn.Enabled = refreshBtn.Enabled = false;
             addVTBtn.Enabled = deleteVTBtn.Enabled = cancelBtn.Enabled = saveVTBtn.Enabled = false;
@@ -298,9 +305,12 @@ namespace QLVT_DATHANGD17
                 try
                 {
 
-                    cmdManager.execute(new DeleteAction(cTPXBDS));
+                    cmdManager.execute(new DeleteAction(cTPXBDS,"MAVT"));
                     updateCTPXTableAdapter();
                     undoBtn.Enabled = true;
+                    redoBtn.Enabled = false;
+               
+
                 }
                 catch (Exception exception)
                 {
@@ -324,10 +334,11 @@ namespace QLVT_DATHANGD17
                     try
                     {
                         delMaPX = ((DataRowView)phieuXuatBDS[phieuXuatBDS.Position])["MAPX"].ToString();
-                        cmdManager.execute(new DeleteAction(phieuXuatBDS));
+                        cmdManager.execute(new DeleteAction(phieuXuatBDS, "MAPX"));
                         this.phieuXuatTableAdapter.Connection.ConnectionString = Program.connstr;
                         this.phieuXuatTableAdapter.Update(this.qLVT_DATHANGDataSet.PhieuXuat);
                         undoBtn.Enabled = true;
+                        redoBtn.Enabled = false;
                     }
                     catch (Exception exception)
                     {
@@ -342,6 +353,7 @@ namespace QLVT_DATHANGD17
 
         private void undoBtn_ItemClick(object sender, ItemClickEventArgs e)
         {
+            
             cmdManager.undo();
             updatePXTableAdapter();
             updateCTPXTableAdapter();
@@ -354,6 +366,7 @@ namespace QLVT_DATHANGD17
 
         private void redoBtn_ItemClick(object sender, ItemClickEventArgs e)
         {
+
             cmdManager.redo();
             updatePXTableAdapter();
             updateCTPXTableAdapter();
@@ -372,7 +385,7 @@ namespace QLVT_DATHANGD17
             cTPXGridControl.Enabled = false;
             phieuXuatGridControl.Enabled = false;
             // Gọi tập lệnh của Binding Source;
-            cmdManager.execute(new InsertAction(cTPXBDS));
+            cmdManager.execute(new InsertAction(cTPXBDS, "MAVT"));
             saveVTBtn.Enabled = cancelBtn.Enabled = true;
             addBtn.Enabled = deleteBtn.Enabled = updateBtn.Enabled = refreshBtn.Enabled = addVTBtn.Enabled = deleteVTBtn.Enabled = saveBtn.Enabled = undoBtn.Enabled = false;
             // Mở phần chỉnh sửa
@@ -431,6 +444,7 @@ namespace QLVT_DATHANGD17
                 ((InsertAction)cmdManager.getLastUndoNode()).getData(); // lay data cho redo
                 updateCTPXTableAdapter();
                 undoBtn.Enabled = true;
+                redoBtn.Enabled = false;
                 // Tùy chỉnh lại trạng thái các button sau khi hoàn tất
                 phieuXuatGridControl.Enabled = true;
                 cTPXGridControl.Enabled = true;
@@ -441,6 +455,12 @@ namespace QLVT_DATHANGD17
                 saveVTBtn.Enabled = false;
                 thongTinGroupBox.Enabled = false;
                 chiTietGroupBox.Enabled = false;
+
+                // Cập nhật số lượng vật tư
+                string command = $"exec SP_CAPNHATSOLUONGVT '{mAVTTextEdit.Text.Trim()}', 0, {sOLUONGSpinEdit.Text.Trim()}";
+                Program.myReader = Program.ExecSqlDataReader(command);
+                if (Program.myReader != null)
+                    Program.myReader.Close();
             }
             catch (Exception exception)
             {

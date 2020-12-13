@@ -46,13 +46,12 @@
             this.cancelBtn = new DevExpress.XtraBars.BarButtonItem();
             this.saveBtn = new DevExpress.XtraBars.BarButtonItem();
             this.exchangeBtn = new DevExpress.XtraBars.BarButtonItem();
-            this.bar3 = new DevExpress.XtraBars.Bar();
-            this.nameLoginLB = new DevExpress.XtraBars.BarStaticItem();
-            this.roleLB = new DevExpress.XtraBars.BarStaticItem();
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
+            this.nameLoginLB = new DevExpress.XtraBars.BarStaticItem();
+            this.roleLB = new DevExpress.XtraBars.BarStaticItem();
             this.comboBoxBranch = new System.Windows.Forms.ComboBox();
             this.v_DS_PHANMANHBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.qLVT_DATHANG_DSPM = new QLVT_DATHANGD17.QLVT_DATHANG_DSPM();
@@ -70,7 +69,6 @@
             this.tableAdapterManager1 = new QLVT_DATHANGD17.QLVT_DATHANG_DSPMTableAdapters.TableAdapterManager();
             this.chiNhanhBDS = new System.Windows.Forms.BindingSource(this.components);
             this.chiNhanhTableAdapter = new QLVT_DATHANGD17.QLVT_DATHANGDataSetTableAdapters.ChiNhanhTableAdapter();
-            this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.exchangeGroup = new System.Windows.Forms.GroupBox();
             this.newExBtn = new System.Windows.Forms.Button();
             this.sP_CHECKTRUNGNVDataGridView = new System.Windows.Forms.DataGridView();
@@ -86,7 +84,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.chiNhanhChuyenCb = new System.Windows.Forms.ComboBox();
             this.v_DS_PHANMANHBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
             this.detailGroup = new System.Windows.Forms.GroupBox();
             this.maCNTE = new DevExpress.XtraEditors.TextEdit();
             this.maNVSpin = new DevExpress.XtraEditors.SpinEdit();
@@ -115,14 +112,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.phieuNhapBDS)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.phieuXuatBDS)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chiNhanhBDS)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
-            this.panelControl1.SuspendLayout();
             this.exchangeGroup.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.sP_CHECKTRUNGNVDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkTrungBDS)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.v_DS_PHANMANHBindingSource1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
-            this.panelControl2.SuspendLayout();
             this.detailGroup.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.maCNTE.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.maNVSpin.Properties)).BeginInit();
@@ -200,8 +193,7 @@
             // barManager1
             // 
             this.barManager1.Bars.AddRange(new DevExpress.XtraBars.Bar[] {
-            this.bar2,
-            this.bar3});
+            this.bar2});
             this.barManager1.DockControls.Add(this.barDockControlTop);
             this.barManager1.DockControls.Add(this.barDockControlBottom);
             this.barManager1.DockControls.Add(this.barDockControlLeft);
@@ -221,7 +213,6 @@
             this.roleLB});
             this.barManager1.MainMenu = this.bar2;
             this.barManager1.MaxItemId = 13;
-            this.barManager1.StatusBar = this.bar3;
             // 
             // bar2
             // 
@@ -327,20 +318,41 @@
             this.exchangeBtn.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             this.exchangeBtn.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.exchangeBtn_ItemClick);
             // 
-            // bar3
+            // barDockControlTop
             // 
-            this.bar3.BarName = "Status bar";
-            this.bar3.CanDockStyle = DevExpress.XtraBars.BarCanDockStyle.Bottom;
-            this.bar3.DockCol = 0;
-            this.bar3.DockRow = 0;
-            this.bar3.DockStyle = DevExpress.XtraBars.BarDockStyle.Bottom;
-            this.bar3.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
-            new DevExpress.XtraBars.LinkPersistInfo(this.nameLoginLB),
-            new DevExpress.XtraBars.LinkPersistInfo(this.roleLB)});
-            this.bar3.OptionsBar.AllowQuickCustomization = false;
-            this.bar3.OptionsBar.DrawDragBorder = false;
-            this.bar3.OptionsBar.UseWholeRow = true;
-            this.bar3.Text = "Status bar";
+            this.barDockControlTop.CausesValidation = false;
+            this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
+            this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
+            this.barDockControlTop.Manager = this.barManager1;
+            this.barDockControlTop.Margin = new System.Windows.Forms.Padding(4);
+            this.barDockControlTop.Size = new System.Drawing.Size(1910, 63);
+            // 
+            // barDockControlBottom
+            // 
+            this.barDockControlBottom.CausesValidation = false;
+            this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 733);
+            this.barDockControlBottom.Manager = this.barManager1;
+            this.barDockControlBottom.Margin = new System.Windows.Forms.Padding(4);
+            this.barDockControlBottom.Size = new System.Drawing.Size(1910, 0);
+            // 
+            // barDockControlLeft
+            // 
+            this.barDockControlLeft.CausesValidation = false;
+            this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
+            this.barDockControlLeft.Location = new System.Drawing.Point(0, 63);
+            this.barDockControlLeft.Manager = this.barManager1;
+            this.barDockControlLeft.Margin = new System.Windows.Forms.Padding(4);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 670);
+            // 
+            // barDockControlRight
+            // 
+            this.barDockControlRight.CausesValidation = false;
+            this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
+            this.barDockControlRight.Location = new System.Drawing.Point(1910, 63);
+            this.barDockControlRight.Manager = this.barManager1;
+            this.barDockControlRight.Margin = new System.Windows.Forms.Padding(4);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 670);
             // 
             // nameLoginLB
             // 
@@ -353,42 +365,6 @@
             this.roleLB.Caption = "barStaticItem2";
             this.roleLB.Id = 12;
             this.roleLB.Name = "roleLB";
-            // 
-            // barDockControlTop
-            // 
-            this.barDockControlTop.CausesValidation = false;
-            this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
-            this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
-            this.barDockControlTop.Manager = this.barManager1;
-            this.barDockControlTop.Margin = new System.Windows.Forms.Padding(4);
-            this.barDockControlTop.Size = new System.Drawing.Size(1784, 63);
-            // 
-            // barDockControlBottom
-            // 
-            this.barDockControlBottom.CausesValidation = false;
-            this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControlBottom.Location = new System.Drawing.Point(0, 1138);
-            this.barDockControlBottom.Manager = this.barManager1;
-            this.barDockControlBottom.Margin = new System.Windows.Forms.Padding(4);
-            this.barDockControlBottom.Size = new System.Drawing.Size(1784, 29);
-            // 
-            // barDockControlLeft
-            // 
-            this.barDockControlLeft.CausesValidation = false;
-            this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
-            this.barDockControlLeft.Location = new System.Drawing.Point(0, 63);
-            this.barDockControlLeft.Manager = this.barManager1;
-            this.barDockControlLeft.Margin = new System.Windows.Forms.Padding(4);
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 1075);
-            // 
-            // barDockControlRight
-            // 
-            this.barDockControlRight.CausesValidation = false;
-            this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(1784, 63);
-            this.barDockControlRight.Manager = this.barManager1;
-            this.barDockControlRight.Margin = new System.Windows.Forms.Padding(4);
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 1075);
             // 
             // comboBoxBranch
             // 
@@ -486,15 +462,6 @@
             // 
             this.chiNhanhTableAdapter.ClearBeforeFill = true;
             // 
-            // panelControl1
-            // 
-            this.panelControl1.Controls.Add(this.exchangeGroup);
-            this.panelControl1.Location = new System.Drawing.Point(955, 622);
-            this.panelControl1.Margin = new System.Windows.Forms.Padding(4);
-            this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(804, 514);
-            this.panelControl1.TabIndex = 12;
-            // 
             // exchangeGroup
             // 
             this.exchangeGroup.Controls.Add(this.newExBtn);
@@ -504,20 +471,20 @@
             this.exchangeGroup.Controls.Add(this.label1);
             this.exchangeGroup.Controls.Add(this.chiNhanhChuyenCb);
             this.exchangeGroup.Enabled = false;
-            this.exchangeGroup.Location = new System.Drawing.Point(6, 6);
+            this.exchangeGroup.Location = new System.Drawing.Point(994, 446);
             this.exchangeGroup.Margin = new System.Windows.Forms.Padding(4);
             this.exchangeGroup.Name = "exchangeGroup";
             this.exchangeGroup.Padding = new System.Windows.Forms.Padding(4);
-            this.exchangeGroup.Size = new System.Drawing.Size(780, 818);
+            this.exchangeGroup.Size = new System.Drawing.Size(905, 275);
             this.exchangeGroup.TabIndex = 0;
             this.exchangeGroup.TabStop = false;
             this.exchangeGroup.Text = "Chuyển CN";
             // 
             // newExBtn
             // 
-            this.newExBtn.Location = new System.Drawing.Point(453, 116);
+            this.newExBtn.Location = new System.Drawing.Point(716, 29);
             this.newExBtn.Name = "newExBtn";
-            this.newExBtn.Size = new System.Drawing.Size(142, 29);
+            this.newExBtn.Size = new System.Drawing.Size(107, 29);
             this.newExBtn.TabIndex = 5;
             this.newExBtn.Text = "Chuyển mới";
             this.newExBtn.UseVisualStyleBackColor = true;
@@ -539,12 +506,12 @@
             this.dataGridViewTextBoxColumn6,
             this.dataGridViewTextBoxColumn7});
             this.sP_CHECKTRUNGNVDataGridView.DataSource = this.checkTrungBDS;
-            this.sP_CHECKTRUNGNVDataGridView.Location = new System.Drawing.Point(20, 226);
+            this.sP_CHECKTRUNGNVDataGridView.Location = new System.Drawing.Point(31, 74);
             this.sP_CHECKTRUNGNVDataGridView.MultiSelect = false;
             this.sP_CHECKTRUNGNVDataGridView.Name = "sP_CHECKTRUNGNVDataGridView";
             this.sP_CHECKTRUNGNVDataGridView.ReadOnly = true;
             this.sP_CHECKTRUNGNVDataGridView.RowTemplate.Height = 28;
-            this.sP_CHECKTRUNGNVDataGridView.Size = new System.Drawing.Size(731, 277);
+            this.sP_CHECKTRUNGNVDataGridView.Size = new System.Drawing.Size(731, 180);
             this.sP_CHECKTRUNGNVDataGridView.TabIndex = 4;
             // 
             // dataGridViewTextBoxColumn2
@@ -596,7 +563,7 @@
             // 
             // huyChuyenBtn
             // 
-            this.huyChuyenBtn.Location = new System.Drawing.Point(319, 113);
+            this.huyChuyenBtn.Location = new System.Drawing.Point(601, 26);
             this.huyChuyenBtn.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.huyChuyenBtn.Name = "huyChuyenBtn";
             this.huyChuyenBtn.Size = new System.Drawing.Size(85, 32);
@@ -607,10 +574,10 @@
             // 
             // replaceExBtn
             // 
-            this.replaceExBtn.Location = new System.Drawing.Point(109, 113);
+            this.replaceExBtn.Location = new System.Drawing.Point(466, 24);
             this.replaceExBtn.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.replaceExBtn.Name = "replaceExBtn";
-            this.replaceExBtn.Size = new System.Drawing.Size(156, 32);
+            this.replaceExBtn.Size = new System.Drawing.Size(116, 32);
             this.replaceExBtn.TabIndex = 2;
             this.replaceExBtn.Text = "Chuyển đè";
             this.replaceExBtn.UseVisualStyleBackColor = true;
@@ -619,7 +586,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(38, 47);
+            this.label1.Location = new System.Drawing.Point(27, 34);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(115, 19);
             this.label1.TabIndex = 1;
@@ -627,8 +594,9 @@
             // 
             // chiNhanhChuyenCb
             // 
+            this.chiNhanhChuyenCb.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.chiNhanhChuyenCb.FormattingEnabled = true;
-            this.chiNhanhChuyenCb.Location = new System.Drawing.Point(158, 39);
+            this.chiNhanhChuyenCb.Location = new System.Drawing.Point(147, 26);
             this.chiNhanhChuyenCb.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.chiNhanhChuyenCb.Name = "chiNhanhChuyenCb";
             this.chiNhanhChuyenCb.Size = new System.Drawing.Size(300, 27);
@@ -638,15 +606,6 @@
             // 
             this.v_DS_PHANMANHBindingSource1.DataMember = "V_DS_PHANMANH";
             this.v_DS_PHANMANHBindingSource1.DataSource = this.qLVT_DATHANG_DSPM;
-            // 
-            // panelControl2
-            // 
-            this.panelControl2.Controls.Add(this.detailGroup);
-            this.panelControl2.Location = new System.Drawing.Point(0, 616);
-            this.panelControl2.Margin = new System.Windows.Forms.Padding(4);
-            this.panelControl2.Name = "panelControl2";
-            this.panelControl2.Size = new System.Drawing.Size(947, 522);
-            this.panelControl2.TabIndex = 13;
             // 
             // detailGroup
             // 
@@ -664,11 +623,11 @@
             this.detailGroup.Controls.Add(this.luongSpin);
             this.detailGroup.Controls.Add(nGAYSINHLabel);
             this.detailGroup.Controls.Add(this.ngaySinhDE);
-            this.detailGroup.Location = new System.Drawing.Point(12, 21);
+            this.detailGroup.Location = new System.Drawing.Point(44, 446);
             this.detailGroup.Margin = new System.Windows.Forms.Padding(4);
             this.detailGroup.Name = "detailGroup";
             this.detailGroup.Padding = new System.Windows.Forms.Padding(4);
-            this.detailGroup.Size = new System.Drawing.Size(919, 333);
+            this.detailGroup.Size = new System.Drawing.Size(919, 275);
             this.detailGroup.TabIndex = 0;
             this.detailGroup.TabStop = false;
             this.detailGroup.Text = "Thông tin";
@@ -805,7 +764,7 @@
             this.nhanVienGridControl.MainView = this.gridView1;
             this.nhanVienGridControl.MenuManager = this.barManager1;
             this.nhanVienGridControl.Name = "nhanVienGridControl";
-            this.nhanVienGridControl.Size = new System.Drawing.Size(1729, 524);
+            this.nhanVienGridControl.Size = new System.Drawing.Size(1887, 356);
             this.nhanVienGridControl.TabIndex = 17;
             this.nhanVienGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -822,11 +781,11 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(1810, 1146);
+            this.ClientSize = new System.Drawing.Size(1910, 733);
+            this.Controls.Add(this.detailGroup);
+            this.Controls.Add(this.exchangeGroup);
             this.Controls.Add(this.nhanVienGridControl);
             this.Controls.Add(this.comboBoxBranch);
-            this.Controls.Add(this.panelControl2);
-            this.Controls.Add(this.panelControl1);
             this.Controls.Add(this.barDockControlLeft);
             this.Controls.Add(this.barDockControlRight);
             this.Controls.Add(this.barDockControlBottom);
@@ -844,15 +803,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.phieuNhapBDS)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.phieuXuatBDS)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chiNhanhBDS)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
-            this.panelControl1.ResumeLayout(false);
             this.exchangeGroup.ResumeLayout(false);
             this.exchangeGroup.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.sP_CHECKTRUNGNVDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkTrungBDS)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.v_DS_PHANMANHBindingSource1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
-            this.panelControl2.ResumeLayout(false);
             this.detailGroup.ResumeLayout(false);
             this.detailGroup.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.maCNTE.Properties)).EndInit();
@@ -875,7 +830,6 @@
 
         private DevExpress.XtraBars.BarManager barManager1;
         private DevExpress.XtraBars.Bar bar2;
-        private DevExpress.XtraBars.Bar bar3;
         private DevExpress.XtraBars.BarDockControl barDockControlTop;
         private DevExpress.XtraBars.BarDockControl barDockControlBottom;
         private DevExpress.XtraBars.BarDockControl barDockControlLeft;
@@ -904,9 +858,7 @@
         private DevExpress.XtraBars.BarButtonItem saveBtn;
         private DevExpress.XtraBars.BarButtonItem refreshBtn;
         private DevExpress.XtraBars.BarButtonItem exchangeBtn;
-        private DevExpress.XtraEditors.PanelControl panelControl2;
         private System.Windows.Forms.GroupBox detailGroup;
-        private DevExpress.XtraEditors.PanelControl panelControl1;
         private System.Windows.Forms.GroupBox exchangeGroup;
         private DevExpress.XtraEditors.DateEdit ngaySinhDE;
         private DevExpress.XtraEditors.SpinEdit maNVSpin;
