@@ -132,7 +132,7 @@ namespace QLVT_DATHANGD17
 
         private void addBtn_ItemClick(object sender, ItemClickEventArgs e)
         {          
-            cmdManager.execute(new InsertAction(khoBDS,"MAKHO"));
+            cmdManager.prepare(new InsertAction(khoBDS,"MAKHO"));
             // Vô hiệu hóa phần xem grid
             modifyUIButtonState();
             maKhoTE.ReadOnly = false;
@@ -141,7 +141,7 @@ namespace QLVT_DATHANGD17
 
         private void updateBtn_ItemClick(object sender, ItemClickEventArgs e)
         {
-            cmdManager.execute(new UpdateAction(khoBDS, "MAKHO"));
+            cmdManager.prepare(new UpdateAction(khoBDS, "MAKHO"));
             modifyUIButtonState();
             maKhoTE.ReadOnly = true;
         }
@@ -151,7 +151,7 @@ namespace QLVT_DATHANGD17
         {
             vitri = khoBDS.Position;
             groupControl1.Enabled = true;
-            addBtn.Enabled = deleteBtn.Enabled = updateBtn.Enabled = refreshBtn.Enabled = false;
+            addBtn.Enabled = deleteBtn.Enabled = updateBtn.Enabled = refreshBtn.Enabled = redoBtn.Enabled = undoBtn.Enabled = false;
             saveBtn.Enabled = cancelBtn.Enabled = true;
             khoGridControl.Enabled = false;
         }
@@ -229,7 +229,7 @@ namespace QLVT_DATHANGD17
                         {
 
                             ((DataRowView)khoBDS.Current)["MACN"] = macn;
-                            ((InsertAction)cmdManager.getLastUndoNode()).getData(); // lay data cho redo
+                            cmdManager.commit(); // lay data cho redo
                             updateTableAdapter();                        
                             insertSession = false;
                         }
@@ -238,12 +238,12 @@ namespace QLVT_DATHANGD17
                 }
                 else
                 {
-                    ((UpdateAction)cmdManager.getLastUndoNode()).getData(); // lay data cho redo
+                    cmdManager.commit(); // lay data cho redo
                     updateTableAdapter();
                 }
-                undoBtn.Enabled = true;
-                redoBtn.Enabled = false;
+               
                 viewUIButtonState();
+               
             }
             catch (Exception exception)
             {
@@ -257,6 +257,23 @@ namespace QLVT_DATHANGD17
             addBtn.Enabled = updateBtn.Enabled = deleteBtn.Enabled = refreshBtn.Enabled = true;
             saveBtn.Enabled = cancelBtn.Enabled = false;
             groupControl1.Enabled = false;
+            if (cmdManager.undoStackSize() == 0)
+            {
+                undoBtn.Enabled = false;
+            }
+            else
+            {
+                undoBtn.Enabled = true;
+            }
+
+            if (cmdManager.redoStackSize() == 0)
+            {
+                redoBtn.Enabled = false;
+            }
+            else
+            {
+                redoBtn.Enabled = true;
+            }
         }
 
         private void cancelBtn_ItemClick(object sender, ItemClickEventArgs e)
@@ -266,14 +283,12 @@ namespace QLVT_DATHANGD17
                 khoBDS.CancelEdit();
                 insertSession = false;
             }
+            cmdManager.clearLastNode();
             viewUIButtonState();
             refreshBtn.PerformClick();
             khoBDS.Position = vitri;
-            cmdManager.clearLastNode();
-            if (cmdManager.undoStackSize() == 0)
-            {
-                undoBtn.Enabled = false;
-            }
+            
+
         }
 
         private void refreshBtn_ItemClick(object sender, ItemClickEventArgs e)

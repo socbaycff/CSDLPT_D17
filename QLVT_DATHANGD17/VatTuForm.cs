@@ -125,7 +125,7 @@ namespace QLVT_DATHANGD17
             modifyUIButtonState();
             
             // Gọi tập lệnh của Binding Source;
-            cmdManager.execute(new InsertAction(vatTuBDS,"MAVT"));
+            cmdManager.prepare(new InsertAction(vatTuBDS,"MAVT"));
 
             // Vô hiệu hóa phần xem grid
             maVTTE.Enabled = true;
@@ -135,7 +135,7 @@ namespace QLVT_DATHANGD17
 
         private void updateBtn_ItemClick(object sender, ItemClickEventArgs e)
         {
-            cmdManager.execute(new UpdateAction(vatTuBDS, "MAVT"));
+            cmdManager.prepare(new UpdateAction(vatTuBDS, "MAVT"));
           
             modifyUIButtonState();
             maVTTE.Enabled = false;
@@ -217,7 +217,7 @@ namespace QLVT_DATHANGD17
                         }
                         else
                         {
-                            ((InsertAction)cmdManager.getLastUndoNode()).getData(); // lay data cho redo
+                            cmdManager.commit(); // lay data cho redo
                             updateTableAdapter();
                             insertSession = false;
                         }
@@ -228,11 +228,9 @@ namespace QLVT_DATHANGD17
                 }
                 else
                 {
-                    ((UpdateAction)cmdManager.getLastUndoNode()).getData(); // lay data cho redo
+                    cmdManager.commit(); // lay data cho redo
                     updateTableAdapter();
                 }
-                undoBtn.Enabled = true;
-                redoBtn.Enabled = false;
                 viewUIButtonState();
             }
             catch (Exception exception)
@@ -248,14 +246,11 @@ namespace QLVT_DATHANGD17
                 vatTuBDS.CancelEdit();
                 insertSession = false;
             }
+            cmdManager.clearLastNode();// xoa node khi huy
             viewUIButtonState();
             refreshBtn.PerformClick();
             vatTuBDS.Position = vitri;
-            cmdManager.clearLastNode();// xoa node khi huy
-            if (cmdManager.undoStackSize() == 0)
-            {
-                undoBtn.Enabled = false;
-            }
+           
         }
 
         private void refreshBtn_ItemClick(object sender, ItemClickEventArgs e)
@@ -305,7 +300,7 @@ namespace QLVT_DATHANGD17
             groupBox1.Enabled = true;
             vattuGridControl.Enabled = false;
             saveBtn.Enabled = cancelBtn.Enabled = true;
-            addBtn.Enabled = deleteBtn.Enabled = updateBtn.Enabled = refreshBtn.Enabled = false;
+            addBtn.Enabled = deleteBtn.Enabled = updateBtn.Enabled = refreshBtn.Enabled = undoBtn.Enabled = redoBtn.Enabled = false;
         }
 
         private void viewUIButtonState()
@@ -314,6 +309,23 @@ namespace QLVT_DATHANGD17
             groupBox1.Enabled = false;
             addBtn.Enabled = updateBtn.Enabled = deleteBtn.Enabled = refreshBtn.Enabled = true;
             saveBtn.Enabled = cancelBtn.Enabled = false;
+            if (cmdManager.undoStackSize() == 0)
+            {
+                undoBtn.Enabled = false;
+            }
+            else
+            {
+                undoBtn.Enabled = true;
+            }
+
+            if (cmdManager.redoStackSize() == 0)
+            {
+                redoBtn.Enabled = false;
+            }
+            else
+            {
+                redoBtn.Enabled = true;
+            }
         }
     }
 }

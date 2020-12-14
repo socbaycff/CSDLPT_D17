@@ -15,6 +15,7 @@ namespace QLVT_DATHANGD17
         void execute();
         void undo();
         void redo();
+        void commit();
     }
 
 
@@ -41,27 +42,28 @@ namespace QLVT_DATHANGD17
             return redoStack.Count;
         }
 
-        public void initAction(Action action) {
-            action.redo();
-            undoStack.Push(action);
-        }
-        public void execute(Action action)
-        {
+        public void execute(Action action){ // dung cho action 1 giai doan (delete)
             action.execute();
             undoStack.Push(action);
-            redoStack.Clear();
+            redoStack.Clear(); // xoa redo khi user thao tac
         }
 
-        public void commit(Action action)
+        // prepare commit danh 2 loai action su dung 2 giai doan (insert,update)
+        public void prepare(Action action)
         {
             action.execute();
+            undoStack.Push(action);
+        }
+
+        public void commit(){ 
+            undoStack.Peek().commit();
+            redoStack.Clear();// xoa redo khi user thao tac
         }
 
         public void undo() {
-                Action action = undoStack.Pop();
-                action.undo();
-                redoStack.Push(action);
-          
+            Action action = undoStack.Pop();
+            action.undo();
+            redoStack.Push(action);
         }
 
         public void redo() {
@@ -73,7 +75,6 @@ namespace QLVT_DATHANGD17
             undoStack.Clear();
             redoStack.Clear();
         }
-
 
         // khi user chon update/insert nhung cancel ma k commit
         public void clearLastNode() {
@@ -88,7 +89,6 @@ namespace QLVT_DATHANGD17
     {
         BindingSource binding;
         Object prime; // khoa chinh
-  
         Object[] data;
         String primeName;
 
@@ -100,28 +100,22 @@ namespace QLVT_DATHANGD17
         public void execute()
         {
             // save lai data
-             data =  ((DataRowView)binding.Current).Row.ItemArray;
+            data =  ((DataRowView)binding.Current).Row.ItemArray;
             prime = data[0];
-            // thuc thi delet
+            // thuc thi delete tai vi tri user chon
            binding.RemoveCurrent(); // delete dong hien tai (user chi dinh)
         }
 
         public void redo()
         {
-            // save lai data
-            //    data = ((DataRowView)binding.Current).Row.ItemArray;
-            //  prime = data[0];
-
-            // thuc thi delet
+            // thuc thi delete tai khoa chinh
             int pos = binding.Find(primeName, prime);
             binding.RemoveAt(pos); // delete lai dong do
-
         }
 
         public void undo()
         {
             // insert lai data o vi tri cuoi (do k biet insert lai dung vi tri)
-
             binding.AddNew();
             DataRowView row = (DataRowView)binding.Current;
             for (int i = 0; i < data.Length; i++)
@@ -130,18 +124,17 @@ namespace QLVT_DATHANGD17
             }
          
             binding.EndEdit();
-            binding.ResetCurrentItem();
-           
-            binding.MoveLast();
+            binding.ResetCurrentItem();      
+            binding.MoveLast(); // di den vi tri vua insert lai
            
         }
+        public void commit() { }
     }
 
     // edit lai class se chay sau khi user nhap data, de co dc data redo
     class InsertAction : Action
     {
         public BindingSource binding;
-    //    int position;
         Object[] data;
         Object prime;
         String primeName;
@@ -152,18 +145,14 @@ namespace QLVT_DATHANGD17
         }
 
         // chay insert voi data user nhap, chay sau getdata()
-        virtual public void execute()
+        public void execute()
         {
             binding.AddNew(); // tao dong trong va nhay xuong cho edit
-            // save lai vi tri
-     //       position = binding.Position;
         }
 
         // chay khi user bam nut chuan bi insert
-       virtual public void redo() {
+         public void redo() {
             binding.AddNew(); // tao dong trong va nhay xuong cho edit
-            // save lai vi tri
-       //     position = binding.Position;
             // update lai data
             DataRowView row = (DataRowView)binding[binding.Position];
             for (int i = 0; i < data.Length; i++)
@@ -172,20 +161,19 @@ namespace QLVT_DATHANGD17
             }
             binding.EndEdit();
             binding.ResetCurrentItem();
-
+            binding.MoveLast(); // di den vi tri insert lai
         }
         // can goi de luu data cho redo
-        public void getData() {
+        public void commit() {
             data = ((DataRowView)binding.Current).Row.ItemArray;
             prime = data[0];
         }
 
-       virtual public void undo()
+        public void undo()
         {
             // delete record dc insert tai vi tri da save
             int pos = binding.Find(primeName, prime);
             binding.RemoveAt(pos);
-
         }
     }
 
@@ -199,18 +187,16 @@ namespace QLVT_DATHANGD17
         String primeName;
         Object[] oldData;
         Object[] newData;
-      //  int position;
         public UpdateAction(BindingSource binding, String primaryName) {
             this.binding = binding;
             primeName = primaryName;
         }
-        // giai doan 2
+        
         public void execute()
         {
             // save lai data
             oldData = ((DataRowView)binding.Current).Row.ItemArray;
-            prime = oldData[0];
-            //position = binding.Position;
+            prime = oldData[0]; // do khoa chinh khong dc thay doi khi update -> su dung luon old data
             
         }
         // khoi tao bat dau nhap lieu, giai doan 1
@@ -224,14 +210,14 @@ namespace QLVT_DATHANGD17
             }
             binding.EndEdit();
             binding.ResetCurrentItem();
-           
+            binding.Position = pos; // di chuyen den vi tri dong dc redo       
         }
 
         // can goi de luu data cho redo
-        public void getData()
+        public void commit()
         {
             binding.EndEdit();
-            binding.ResetCurrentItem(); // danh dau 2 dong
+            binding.ResetCurrentItem(); 
             newData = ((DataRowView)binding.Current).Row.ItemArray; 
         }
 

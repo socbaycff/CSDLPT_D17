@@ -173,15 +173,10 @@ namespace QLVT_DATHANGD17
         private void addBtn_ItemClick(object sender, ItemClickEventArgs e)
         {
             vitri1 = phieuXuatBDS.Position;
-            // Vô hiẹu hóa phần /Grid Control của đơn đặt hàng
-            phieuXuatGridControl.Enabled = false;
+            modifyUIState();
             // Gọi tập lệnh của Binding Source;
-            cmdManager.execute(new InsertAction(phieuXuatBDS,"MAPX"));
-            saveBtn.Enabled = cancelBtn.Enabled = true;
-            addBtn.Enabled = deleteBtn.Enabled = updateBtn.Enabled = refreshBtn.Enabled = addVTBtn.Enabled = deleteVTBtn.Enabled = saveVTBtn.Enabled = false;
-            // Mở phần chỉnh sửa
-            thongTinGroupBox.Enabled = true;
-            chiTietGroupBox.Enabled = false;
+            cmdManager.prepare(new InsertAction(phieuXuatBDS,"MAPX"));
+         
             mAPXTextEdit.ReadOnly = false;
             mANVSpinEdit.Enabled = true;
             mAKHOTextEdit.Enabled = true;
@@ -251,7 +246,7 @@ namespace QLVT_DATHANGD17
                     }
                     else
                     {
-                        ((InsertAction)cmdManager.getLastUndoNode()).getData(); // lay data cho redo
+                        cmdManager.commit(); // lay data cho redo
                         insertSession = false;
                         updatePXTableAdapter();
 
@@ -260,23 +255,14 @@ namespace QLVT_DATHANGD17
                 }
                 else
                 {
-                    ((UpdateAction)cmdManager.getLastUndoNode()).getData(); // lay data cho redo
+                    cmdManager.commit(); // lay data cho redo
                     updatePXTableAdapter();
                 }
 
-                // Tùy chỉnh lại trạng thái các button sau khi hoàn tất
-                phieuXuatGridControl.Enabled = true;
-                cTPXGridControl.Enabled = true;
-
-                addBtn.Enabled = updateBtn.Enabled = deleteBtn.Enabled = refreshBtn.Enabled = true;
-                addVTBtn.Enabled = deleteVTBtn.Enabled = true;
-                saveBtn.Enabled = cancelBtn.Enabled = false;
-                saveBtn.Enabled = false;
-                thongTinGroupBox.Enabled = false;
+                viewUIState();
                 mANVSpinEdit.ReadOnly = true;
                 mAKHOTextEdit.ReadOnly = true;
-                undoBtn.Enabled = true;
-                redoBtn.Enabled = false;
+
             }
             catch (Exception exception)
             {
@@ -287,12 +273,8 @@ namespace QLVT_DATHANGD17
         private void updateBtn_ItemClick(object sender, ItemClickEventArgs e)
         {
             vitri1 = phieuXuatBDS.Position;
-            cmdManager.execute(new UpdateAction(phieuXuatBDS, "MAPX"));
-            thongTinGroupBox.Enabled = true;
-            addBtn.Enabled = updateBtn.Enabled = deleteBtn.Enabled = refreshBtn.Enabled = false;
-            addVTBtn.Enabled = deleteVTBtn.Enabled = cancelBtn.Enabled = saveVTBtn.Enabled = false;
-            saveBtn.Enabled = cancelBtn.Enabled = true;
-            phieuXuatGridControl.Enabled = false;
+            cmdManager.prepare(new UpdateAction(phieuXuatBDS, "MAPX"));
+            modifyUIState();
             mAPXTextEdit.ReadOnly = true;
             mANVSpinEdit.ReadOnly = false;
             mAKHOTextEdit.ReadOnly = false;
@@ -380,17 +362,10 @@ namespace QLVT_DATHANGD17
         private void addVTBtn_ItemClick(object sender, ItemClickEventArgs e)
         {
             vitri2 = cTPXBDS.Position;
-
-            // Vô hiẹu hóa phần /Grid Control của đơn đặt hàng
-            cTPXGridControl.Enabled = false;
-            phieuXuatGridControl.Enabled = false;
+            modifyCTUIState();
             // Gọi tập lệnh của Binding Source;
-            cmdManager.execute(new InsertAction(cTPXBDS, "MAVT"));
-            saveVTBtn.Enabled = cancelBtn.Enabled = true;
-            addBtn.Enabled = deleteBtn.Enabled = updateBtn.Enabled = refreshBtn.Enabled = addVTBtn.Enabled = deleteVTBtn.Enabled = saveBtn.Enabled = undoBtn.Enabled = false;
-            // Mở phần chỉnh sửa
-            chiTietGroupBox.Enabled = true;
-            thongTinGroupBox.Enabled = false;
+            cmdManager.prepare(new InsertAction(cTPXBDS, "MAVT"));
+          
             mAVTTextEdit.ReadOnly = false;
             // Tự động điền các mã đơn đặt hàng hiện tại và mã vật tư
             mAPXTextEdit1.Text = mAPXTextEdit.Text;
@@ -441,20 +416,10 @@ namespace QLVT_DATHANGD17
                     return;
                 }
                 // chua kt ma vt ton tai
-                ((InsertAction)cmdManager.getLastUndoNode()).getData(); // lay data cho redo
+                cmdManager.commit(); // lay data cho redo
                 updateCTPXTableAdapter();
-                undoBtn.Enabled = true;
-                redoBtn.Enabled = false;
-                // Tùy chỉnh lại trạng thái các button sau khi hoàn tất
-                phieuXuatGridControl.Enabled = true;
-                cTPXGridControl.Enabled = true;
 
-                addBtn.Enabled = updateBtn.Enabled = deleteBtn.Enabled = refreshBtn.Enabled = true;
-                addVTBtn.Enabled = deleteVTBtn.Enabled = true;
-                saveBtn.Enabled = cancelBtn.Enabled = false;
-                saveVTBtn.Enabled = false;
-                thongTinGroupBox.Enabled = false;
-                chiTietGroupBox.Enabled = false;
+                viewUIState();
 
                 // Cập nhật số lượng vật tư
                 string command = $"exec SP_CAPNHATSOLUONGVT '{mAVTTextEdit.Text.Trim()}', 0, {sOLUONGSpinEdit.Text.Trim()}";
@@ -477,25 +442,68 @@ namespace QLVT_DATHANGD17
                 cTPXBDS.CancelEdit();
                 insertSession = false;
             }
-
-            phieuXuatGridControl.Enabled = true;
-            cTPXGridControl.Enabled = true;
-            thongTinGroupBox.Enabled = false;
-            chiTietGroupBox.Enabled = false;
-
-            addBtn.Enabled = updateBtn.Enabled = deleteBtn.Enabled = refreshBtn.Enabled = true;
-            addVTBtn.Enabled = deleteVTBtn.Enabled = true;
-            saveBtn.Enabled = false;
-            saveVTBtn.Enabled = cancelBtn.Enabled = false;
+            cmdManager.clearLastNode();
+            viewUIState();
 
             refreshBtn.PerformClick();
             cTPXBDS.Position = vitri2;
             phieuXuatBDS.Position = vitri1;
-            cmdManager.clearLastNode();
+            
+
+        }
+
+        private void viewUIState()
+        {
+            phieuXuatGridControl.Enabled = true;
+            cTPXGridControl.Enabled = true;
+
+            addBtn.Enabled = updateBtn.Enabled = deleteBtn.Enabled = refreshBtn.Enabled = true;
+            addVTBtn.Enabled = deleteVTBtn.Enabled = true;
+            saveVTBtn.Enabled = saveBtn.Enabled = cancelBtn.Enabled = false;
+
+            thongTinGroupBox.Enabled = false;
+            chiTietGroupBox.Enabled = false;
+
             if (cmdManager.undoStackSize() == 0)
             {
                 undoBtn.Enabled = false;
             }
+            else
+            {
+                undoBtn.Enabled = true;
+            }
+
+            if (cmdManager.redoStackSize() == 0)
+            {
+                redoBtn.Enabled = false;
+            }
+            else
+            {
+                redoBtn.Enabled = true;
+            }
+        }
+
+
+        private void modifyCTUIState()
+        {
+            cTPXGridControl.Enabled = false;
+            phieuXuatGridControl.Enabled = false;
+            saveVTBtn.Enabled = cancelBtn.Enabled = true;
+            addBtn.Enabled = deleteBtn.Enabled = updateBtn.Enabled = refreshBtn.Enabled = addVTBtn.Enabled = deleteVTBtn.Enabled = saveBtn.Enabled = undoBtn.Enabled = redoBtn.Enabled = false;
+            chiTietGroupBox.Enabled = true;
+            thongTinGroupBox.Enabled = false;
+        }
+
+
+        private void modifyUIState()
+        {
+            cTPXGridControl.Enabled = false;
+            phieuXuatGridControl.Enabled = false;
+            addBtn.Enabled = updateBtn.Enabled = deleteBtn.Enabled = refreshBtn.Enabled = undoBtn.Enabled = redoBtn.Enabled = false;
+            addVTBtn.Enabled = deleteVTBtn.Enabled = saveVTBtn.Enabled = false;
+            saveBtn.Enabled = cancelBtn.Enabled = true;
+            chiTietGroupBox.Enabled = false;
+            thongTinGroupBox.Enabled = true;
         }
     }
 }

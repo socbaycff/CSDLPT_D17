@@ -94,25 +94,7 @@ namespace QLVT_DATHANGD17
             this.cTDDHTableAdapter.Update(qLVT_DATHANGDataSet.CTDDH);
         }
 
-        private void addVTBtn_ItemClick(object sender, ItemClickEventArgs e)
-        {
-            vitri2 = ctddhBDS.Position;
-           
-            // Vô hiẹu hóa phần /Grid Control của đơn đặt hàng
-            cTDDHGridControl.Enabled = false;
-            datHangGridControl.Enabled = false;
-            // Gọi tập lệnh của Binding Source;
-            cmdManager.execute(new InsertAction(ctddhBDS,"MAVT"));
-            saveVTBtn.Enabled = cancelBtn.Enabled = true;
-            addBtn.Enabled = deleteBtn.Enabled = updateBtn.Enabled = refreshBtn.Enabled = addVTBtn.Enabled = deleteVTBtn.Enabled = saveBtn.Enabled = undoBtn.Enabled = false;
-            // Mở phần chỉnh sửa
-            chiTietGroup.Enabled = true;
-            thongTinGroup.Enabled = false;
-            mAVTTextEdit.ReadOnly = false;
-            // Tự động điền các mã đơn đặt hàng hiện tại và mã vật tư
-            masoDDHTE1.Text = masoDDHTE.Text;
-         //   textEditMaVT.Text = comboBoxPackageName.SelectedValue.ToString().Trim(); dong nay xu ly sau
-        }
+      
 
         private void refreshTableAdapter()
         {
@@ -234,20 +216,9 @@ namespace QLVT_DATHANGD17
                     return;
                 }
                 // chua kt ma vt ton tai
-                ((InsertAction)cmdManager.getLastUndoNode()).getData(); // lay data cho redo
+                cmdManager.commit(); // lay data cho redo
                 updateCTDDHTableAdapter();
-                undoBtn.Enabled = true;
-                redoBtn.Enabled = false;
-                // Tùy chỉnh lại trạng thái các button sau khi hoàn tất
-                datHangGridControl.Enabled = true;
-                cTDDHGridControl.Enabled = true;
-
-                addBtn.Enabled = updateBtn.Enabled = deleteBtn.Enabled = refreshBtn.Enabled = true;
-                addVTBtn.Enabled = deleteVTBtn.Enabled = true;
-                saveBtn.Enabled = cancelBtn.Enabled = false;
-                saveVTBtn.Enabled = false;
-                thongTinGroup.Enabled = false;
-                chiTietGroup.Enabled = false;
+                viewUIState();
             }
             catch (Exception exception)
             {
@@ -264,25 +235,15 @@ namespace QLVT_DATHANGD17
                 ctddhBDS.CancelEdit();
                 insertSession = false;
             }
-     
-            datHangGridControl.Enabled = true;
-            cTDDHGridControl.Enabled = true;
-            thongTinGroup.Enabled = false;
-            chiTietGroup.Enabled = false;
+            cmdManager.clearLastNode();
+            viewUIState();
 
-            addBtn.Enabled = updateBtn.Enabled = deleteBtn.Enabled = refreshBtn.Enabled = true;
-            addVTBtn.Enabled = deleteVTBtn.Enabled = true;
-            saveBtn.Enabled = false;
-            saveVTBtn.Enabled = cancelBtn.Enabled = false;
 
             refreshBtn.PerformClick();
             ctddhBDS.Position = vitri2;
             datHangBDS.Position = vitri1;
-            cmdManager.clearLastNode();
-            if (cmdManager.undoStackSize() == 0)
-            {
-                undoBtn.Enabled = false;
-            }
+            
+
         }
 
         private void undoBtn_ItemClick(object sender, ItemClickEventArgs e)
@@ -309,23 +270,52 @@ namespace QLVT_DATHANGD17
             undoBtn.Enabled = true;
         }
 
+        private void addVTBtn_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            vitri2 = ctddhBDS.Position;
+
+        
+            // Gọi tập lệnh của Binding Source;
+            cmdManager.prepare(new InsertAction(ctddhBDS, "MAVT"));
+            modifyCTUIState();
+            mAVTTextEdit.ReadOnly = false;
+            // Tự động điền các mã đơn đặt hàng hiện tại và mã vật tư
+            masoDDHTE1.Text = masoDDHTE.Text;
+           
+        }
+
+
         private void addBtn_ItemClick(object sender, ItemClickEventArgs e)
         {
             vitri1 = datHangBDS.Position;
-            // Vô hiẹu hóa phần /Grid Control của đơn đặt hàng
-            datHangGridControl.Enabled = false;
             // Gọi tập lệnh của Binding Source;
-            cmdManager.execute(new InsertAction(datHangBDS,"MasoDDH"));
-            saveBtn.Enabled = cancelBtn.Enabled = true;
-            addBtn.Enabled = deleteBtn.Enabled = updateBtn.Enabled = refreshBtn.Enabled = addVTBtn.Enabled = deleteVTBtn.Enabled = saveVTBtn.Enabled =  false;
-            // Mở phần chỉnh sửa
-            thongTinGroup.Enabled = true;
-            chiTietGroup.Enabled = false;
+            cmdManager.prepare(new InsertAction(datHangBDS,"MasoDDH"));
+
+            modifyUIState();
+            insertSession = true;
+
             masoDDHTE.ReadOnly = false;
             mANVSpinEdit.ReadOnly = false;
             mAKHOTextEdit.ReadOnly = false;
-            insertSession = true;
         }
+
+
+        private void updateBtn_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            cmdManager.prepare(new UpdateAction(datHangBDS, "MasoDDH"));
+            vitri1 = datHangBDS.Position;
+
+
+            modifyUIState();
+
+            masoDDHTE.ReadOnly = true;
+            mANVSpinEdit.ReadOnly = false;
+            mAKHOTextEdit.ReadOnly = false;
+
+        }
+
+
+
 
         private void saveBtn_ItemClick(object sender, ItemClickEventArgs e)
         {
@@ -389,7 +379,7 @@ namespace QLVT_DATHANGD17
                         return;
                     }
                     else {
-                        ((InsertAction)cmdManager.getLastUndoNode()).getData(); // lay data cho redo
+                        cmdManager.commit(); // lay data cho redo
                         insertSession = false;
                         updateDHTableAdapter();
                         
@@ -397,23 +387,15 @@ namespace QLVT_DATHANGD17
                     
                 } else
                 {
-                    ((UpdateAction)cmdManager.getLastUndoNode()).getData(); // lay data cho redo
+                    cmdManager.commit(); // lay data cho redo
                     updateDHTableAdapter();
                 }
-                
-                // Tùy chỉnh lại trạng thái các button sau khi hoàn tất
-                datHangGridControl.Enabled = true;
-                cTDDHGridControl.Enabled = true;
 
-                addBtn.Enabled = updateBtn.Enabled = deleteBtn.Enabled = refreshBtn.Enabled = true;
-                addVTBtn.Enabled = deleteVTBtn.Enabled = true;
-                saveBtn.Enabled = cancelBtn.Enabled = false;
-                saveBtn.Enabled = false;
-                thongTinGroup.Enabled = false;
+                // Tùy chỉnh lại trạng thái các button sau khi hoàn tất
+                viewUIState();
                 mANVSpinEdit.ReadOnly = true;
                 mAKHOTextEdit.ReadOnly = true;
-                undoBtn.Enabled = true;
-                redoBtn.Enabled = false;
+
             }
             catch (Exception exception)
             {
@@ -449,21 +431,7 @@ namespace QLVT_DATHANGD17
                 deleteBtn.Enabled = false;
         }
 
-        private void updateBtn_ItemClick(object sender, ItemClickEventArgs e)
-        {
-           
-            vitri1 = datHangBDS.Position;
-            cmdManager.execute(new UpdateAction(datHangBDS, "MasoDDH"));
-            thongTinGroup.Enabled = true;
-            addBtn.Enabled = updateBtn.Enabled = deleteBtn.Enabled = refreshBtn.Enabled = false;
-            addVTBtn.Enabled = deleteVTBtn.Enabled = cancelBtn.Enabled = saveVTBtn.Enabled = false;
-            saveBtn.Enabled = cancelBtn.Enabled = true;
-            datHangGridControl.Enabled = false;
-            masoDDHTE.ReadOnly = true;
-            mANVSpinEdit.ReadOnly = false;
-            mAKHOTextEdit.ReadOnly = false;
-
-        }
+     
 
         private void refreshBtn_ItemClick(object sender, ItemClickEventArgs e)
         {
@@ -492,5 +460,59 @@ namespace QLVT_DATHANGD17
                 deleteVTBtn.Enabled = false;
             }
         }
+
+        private void viewUIState() {
+            datHangGridControl.Enabled = true;
+            cTDDHGridControl.Enabled = true;
+
+            addBtn.Enabled = updateBtn.Enabled = deleteBtn.Enabled = refreshBtn.Enabled = true;
+            addVTBtn.Enabled = deleteVTBtn.Enabled = true;
+            saveVTBtn.Enabled = saveBtn.Enabled = cancelBtn.Enabled = false;
+       
+            thongTinGroup.Enabled = false;
+            chiTietGroup.Enabled = false;
+
+            if (cmdManager.undoStackSize() == 0)
+            {
+                undoBtn.Enabled = false;
+            }
+            else
+            {
+                undoBtn.Enabled = true;
+            }
+
+            if (cmdManager.redoStackSize() == 0)
+            {
+                redoBtn.Enabled = false;
+            }
+            else
+            {
+                redoBtn.Enabled = true;
+            }
+        }
+
+
+        private void modifyCTUIState()
+        {
+            cTDDHGridControl.Enabled = false;
+            datHangGridControl.Enabled = false;
+            saveVTBtn.Enabled = cancelBtn.Enabled = true;
+            addBtn.Enabled = deleteBtn.Enabled = updateBtn.Enabled = refreshBtn.Enabled = addVTBtn.Enabled = deleteVTBtn.Enabled = saveBtn.Enabled = undoBtn.Enabled = redoBtn.Enabled = false;
+            chiTietGroup.Enabled = true;
+            thongTinGroup.Enabled = false;
+        }
+
+
+        private void modifyUIState()
+        {
+            cTDDHGridControl.Enabled = false;
+            datHangGridControl.Enabled = false;
+            addBtn.Enabled = updateBtn.Enabled = deleteBtn.Enabled = refreshBtn.Enabled = undoBtn.Enabled = redoBtn.Enabled = false;
+            addVTBtn.Enabled = deleteVTBtn.Enabled = saveVTBtn.Enabled = false;
+            saveBtn.Enabled = cancelBtn.Enabled = true;        
+            chiTietGroup.Enabled = false;
+            thongTinGroup.Enabled = true;
+        }
+
     }
 }

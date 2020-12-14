@@ -636,6 +636,7 @@
             this.tableCell20.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
             new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[NGAY]")});
             this.tableCell20.Name = "tableCell20";
+            this.tableCell20.ProcessDuplicatesMode = DevExpress.XtraReports.UI.ProcessDuplicatesMode.Merge;
             this.tableCell20.StyleName = "DetailData2";
             this.tableCell20.StylePriority.UseBorders = false;
             this.tableCell20.TextFormatString = "{0:dd/MM/yyyy}";

@@ -143,7 +143,7 @@ namespace QLVT_DATHANGD17
         private void addBtn_ItemClick(object sender, ItemClickEventArgs e)
         {
             // thuc thi insert  
-            cmdManager.execute(new InsertAction(nhanVienBDS,"MANV"));
+            cmdManager.prepare(new InsertAction(nhanVienBDS,"MANV"));
             modifyUIButtonState();
             // Cho phép nhập mới mã nhân viên và mà chi nhánh
             maNVSpin.Enabled = true;
@@ -154,7 +154,7 @@ namespace QLVT_DATHANGD17
         private void updateBtn_ItemClick(object sender, ItemClickEventArgs e)
         {
             // save lai trang thai de undo
-            cmdManager.execute(new UpdateAction(nhanVienBDS,"MANV"));
+            cmdManager.prepare(new UpdateAction(nhanVienBDS,"MANV"));
             modifyUIButtonState();
             maNVSpin.Enabled = false; // update k dc doi ma nv
         }
@@ -228,22 +228,19 @@ namespace QLVT_DATHANGD17
                     ((DataRowView)nhanVienBDS.Current)["MACN"] = macn; // set chi nhanh la chi nhanh server dang nhap
                     ((DataRowView)nhanVienBDS.Current)["TrangThaiXoa"] = 0; // set trang thai xoa cho record vua moi insert la 0
                     insertSession = false;
-                    ((InsertAction)cmdManager.getLastUndoNode()).getData(); // lay data cho redo
+                    cmdManager.commit(); // lay data cho redo
                     updateTableAdapter();
                     
                 }
                 else {
-                    ((UpdateAction)cmdManager.getLastUndoNode()).getData(); // lay data cho redo
+                    cmdManager.commit(); // lay data cho redo
                     updateTableAdapter();
 
                 }
-                // Cập nhật xuống database
-                
-                undoBtn.Enabled = true;
-                redoBtn.Enabled = false;
+
                 // Tùy chỉnh lại trạng thái các button sau khi hoàn tất
                 viewUIButtonState();
-               
+
             }
             catch (Exception exception)
             {
@@ -261,15 +258,12 @@ namespace QLVT_DATHANGD17
                 insertSession = false;
             }
             // Bặt tắt các phần nhập dữ liệu tương ứng
+            cmdManager.clearLastNode();
             viewUIButtonState();
+
             refreshBtn.PerformClick();
             phieuNhapBDS.Position = vitri;
-            // update trang thai stack 
-            cmdManager.clearLastNode();
-            if (cmdManager.undoStackSize() == 0)
-            {
-                undoBtn.Enabled = false;
-            }
+            
 
         }
 
@@ -457,7 +451,24 @@ namespace QLVT_DATHANGD17
             detailGroup.Enabled = false;
             nhanVienGridControl.Enabled = true;
             saveBtn.Enabled = cancelBtn.Enabled = false;
-            addBtn.Enabled = deleteBtn.Enabled = updateBtn.Enabled = refreshBtn.Enabled = exchangeBtn.Enabled = undoBtn.Enabled = redoBtn.Enabled = true;
+            addBtn.Enabled = deleteBtn.Enabled = updateBtn.Enabled = refreshBtn.Enabled = exchangeBtn.Enabled  = true;
+
+            if (cmdManager.undoStackSize() == 0)
+            {
+                undoBtn.Enabled = false;
+            }
+            else {
+                undoBtn.Enabled = true;
+            }
+
+            if (cmdManager.redoStackSize() == 0)
+            {
+                redoBtn.Enabled = false;
+            }
+            else
+            {
+                redoBtn.Enabled = true;
+            }
         }
 
         private void startChangingBranchModeUIButtonState()
