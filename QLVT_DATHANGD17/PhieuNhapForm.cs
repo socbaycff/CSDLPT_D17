@@ -41,12 +41,16 @@ namespace QLVT_DATHANGD17
             this.cTPNTableAdapter.Connection.ConnectionString = Program.connstr;
             this.cTPNTableAdapter.Fill(this.qLVT_DATHANGDataSet.CTPN);
             // TODO: This line of code loads data into the 'qLVT_DATHANGDataSet.DatHang' table. You can move, or remove it, as needed.
+            this.datHangTableAdapter.Connection.ConnectionString = Program.connstr;
             this.datHangTableAdapter.Fill(this.qLVT_DATHANGDataSet.DatHang);
             // TODO: This line of code loads data into the 'qLVT_DATHANGDataSet.Kho' table. You can move, or remove it, as needed.
+            this.khoTableAdapter.Connection.ConnectionString = Program.connstr;
             this.khoTableAdapter.Fill(this.qLVT_DATHANGDataSet.Kho);
             // TODO: This line of code loads data into the 'qLVT_DATHANGDataSet.NhanVien' table. You can move, or remove it, as needed.
+            this.nhanVienTableAdapter.Connection.ConnectionString = Program.connstr;
             this.nhanVienTableAdapter.Fill(this.qLVT_DATHANGDataSet.NhanVien);
             // TODO: This line of code loads data into the 'qLVT_DATHANGDataSet.CTDDH' table. You can move, or remove it, as needed.
+            this.cTDDHTableAdapter.Connection.ConnectionString = Program.connstr;
             this.cTDDHTableAdapter.Fill(this.qLVT_DATHANGDataSet.CTDDH);
 
         }
@@ -196,15 +200,9 @@ namespace QLVT_DATHANGD17
                 nGAYDateEdit.Focus();
                 return;
             }
-            if ((int)mANVSpinEdit.Value < 0 )
+            if ((int)mANVSpinEdit.Value < 0)
             {
                 MessageBox.Show("Mã không đúng", "Sai thông tin", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-            if (nhanVienBDS.Find("MANV", int.Parse(mANVSpinEdit.Text.Trim())) == -1)
-            {
-                MessageBox.Show("Mã nhân viên không tồn tại", "Sai thông tin", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                mAVTTextEdit.Focus();
                 return;
             }
 
@@ -218,6 +216,34 @@ namespace QLVT_DATHANGD17
             if (datHangBDS.Find("MasoDDH", masoDDHTextEdit.Text.Trim()) == -1)
             {
                 MessageBox.Show("Mã DDH không tồn tại", "Sai thông tin", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                mAVTTextEdit.Focus();
+                return;
+            }
+
+         
+            // check khong ton tai o cn hoac check da xoa
+            Convert.ToInt32(mANVSpinEdit.Text.Trim());
+            int nvpos = 0;
+            for (; nvpos < nhanVienBDS.Count; nvpos++)
+            {
+
+                if (((DataRowView)nhanVienBDS[nvpos])["MANV"].ToString().Trim() == mANVSpinEdit.Text.Trim())
+                {
+                    int ttx = Convert.ToInt32(((DataRowView)nhanVienBDS[nvpos])["TrangThaiXoa"]);
+                    string ten = ((DataRowView)nhanVienBDS[nvpos])["TEN"].ToString();
+                    break;
+                }
+            }
+
+            if (nvpos == nhanVienBDS.Count)
+            {
+                MessageBox.Show("Mã nhân viên không tồn tại", "Sai thông tin", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                mAVTTextEdit.Focus();
+                return;
+            }
+            if (Convert.ToInt32(((DataRowView)nhanVienBDS[nvpos])["TrangThaiXoa"]) == 1)
+            {
+                MessageBox.Show("Nhân viên này đã chuyển cn", "Sai thông tin", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 mAVTTextEdit.Focus();
                 return;
             }
@@ -237,11 +263,11 @@ namespace QLVT_DATHANGD17
                 {
                    
                     // Kiểm tra tính hợp lệ của MAPN
-                    string command = $"exec SP_KiemTraPhieuNhap '{mAPNTextEdit.Text.Trim()}'";
+                    string command = $"exec SP_TimPN '{mAPNTextEdit.Text.Trim()}'";
                     Program.myReader = Program.ExecSqlDataReader(command);
                     if (Program.myReader != null)
                     {
-                        MessageBox.Show(command);
+                     //   MessageBox.Show(command);
                         Program.myReader.Read();
                         MessageBox.Show($"Phiếu nhập đã được lập vào: {Program.myReader.GetDateTime(0)} - Thêm thất bại");
                         Program.myReader.Close();

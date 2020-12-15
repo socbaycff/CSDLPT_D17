@@ -45,6 +45,15 @@ namespace QLVT_DATHANGD17
             this.phieuXuatTableAdapter.Connection.ConnectionString = Program.connstr;
             this.phieuXuatTableAdapter.Fill(this.qLVT_DATHANGDataSet.PhieuXuat);
 
+            // TODO: This line of code loads data into the 'qLVT_DATHANGDataSet.Vattu' table. You can move, or remove it, as needed.
+            this.vattuTableAdapter.Connection.ConnectionString = Program.connstr;
+            this.vattuTableAdapter.Fill(this.qLVT_DATHANGDataSet.Vattu);
+            // TODO: This line of code loads data into the 'qLVT_DATHANGDataSet.NhanVien' table. You can move, or remove it, as needed.
+            this.nhanVienTableAdapter.Connection.ConnectionString = Program.connstr;
+            this.nhanVienTableAdapter.Fill(this.qLVT_DATHANGDataSet.NhanVien);
+            // TODO: This line of code loads data into the 'qLVT_DATHANGDataSet.Kho' table. You can move, or remove it, as needed.
+            this.khoTableAdapter.Connection.ConnectionString = Program.connstr;
+            this.khoTableAdapter.Fill(this.qLVT_DATHANGDataSet.Kho);
         }
 
         private void updatePXTableAdapter()
@@ -76,12 +85,7 @@ namespace QLVT_DATHANGD17
 
         private void PhieuXuatForm_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'qLVT_DATHANGDataSet.Vattu' table. You can move, or remove it, as needed.
-            this.vattuTableAdapter.Fill(this.qLVT_DATHANGDataSet.Vattu);
-            // TODO: This line of code loads data into the 'qLVT_DATHANGDataSet.NhanVien' table. You can move, or remove it, as needed.
-            this.nhanVienTableAdapter.Fill(this.qLVT_DATHANGDataSet.NhanVien);
-            // TODO: This line of code loads data into the 'qLVT_DATHANGDataSet.Kho' table. You can move, or remove it, as needed.
-            this.khoTableAdapter.Fill(this.qLVT_DATHANGDataSet.Kho);
+
             // Thiết lập một số thuộc tính mặc đinh cho các widget nhập dữ liệu theo ràng buộc của database
             //dONGIASpinEdit.Properties.MinValue = 1;
             //dONGIASpinEdit.Properties.MaxValue = 1000000000;
@@ -189,7 +193,7 @@ namespace QLVT_DATHANGD17
             thongTinGroupBox.Focus(); //  focus de lay
             if (mAPXTextEdit.Text.Trim() == "")
             {
-                MessageBox.Show("Mã đơn đặt hàng không được để trống", "Thiếu thông tin", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Mã phiếu xuất không được để trống", "Thiếu thông tin", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 mAPXTextEdit.Focus();
                 return;
             }
@@ -224,10 +228,27 @@ namespace QLVT_DATHANGD17
                 mAVTTextEdit.Focus();
                 return;
             }
+            // check khong ton tai o cn hoac check da xoa
+            Convert.ToInt32(mANVSpinEdit.Text.Trim());
+            int nvpos = 0;
+            for (; nvpos < nhanVienBDS.Count; nvpos++) {
 
-            if (nhanVienBDS.Find("MANV", int.Parse(mANVSpinEdit.Text.Trim())) == -1)
+                if (((DataRowView)nhanVienBDS[nvpos])["MANV"].ToString().Trim() == mANVSpinEdit.Text.Trim())
+                {
+                    int ttx = Convert.ToInt32(((DataRowView)nhanVienBDS[nvpos])["TrangThaiXoa"]);
+                    string ten = ((DataRowView)nhanVienBDS[nvpos])["TEN"].ToString();
+                    break;
+                }
+            }
+
+            if (nvpos == nhanVienBDS.Count)
             {
                 MessageBox.Show("Mã nhân viên không tồn tại", "Sai thông tin", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                mAVTTextEdit.Focus();
+                return;
+            }
+            if (Convert.ToInt32(((DataRowView)nhanVienBDS[nvpos])["TrangThaiXoa"]) == 1) {
+                MessageBox.Show("Nhân viên này đã chuyển cn", "Sai thông tin", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 mAVTTextEdit.Focus();
                 return;
             }
@@ -235,13 +256,13 @@ namespace QLVT_DATHANGD17
             {
                 if (insertSession)
                 {
-                    string command = $"exec SP_TimDDH '{mAPXTextEdit.Text.Trim()}'";
+                    string command = $"exec SP_TimPX '{mAPXTextEdit.Text.Trim()}'";
                     Program.myReader = Program.ExecSqlDataReader(command);
                     if (Program.myReader != null)
                     {
-                        MessageBox.Show(command);
+                      //  MessageBox.Show(command);
                         Program.myReader.Read();
-                        MessageBox.Show($"Đơn đặt hàng đã được lập vào: {Program.myReader.GetDateTime(0)}");
+                        MessageBox.Show($"Phiếu xuất đã được lập vào: {Program.myReader.GetDateTime(0)}");
                         Program.myReader.Close();
                         return;
                     }

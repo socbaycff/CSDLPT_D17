@@ -69,8 +69,8 @@ namespace QLVT_DATHANGD17
             mAKHOTextEdit.ReadOnly = true;
             masoDDHTE1.Properties.MaxLength = 8;
             mAVTTextEdit.Properties.MaxLength = 4;
-            soLuongSE.Properties.MinValue = 1;
-            donGiaSE.Properties.MinValue = 1;
+            //soLuongSE.Properties.MinValue = 1;
+            //donGiaSE.Properties.MinValue = 1;
         }
 
         private void updateDHTableAdapter()
@@ -357,10 +357,29 @@ namespace QLVT_DATHANGD17
                 mAVTTextEdit.Focus();
                 return;
             }
-            
-            if (nhanVienBDS.Find("MANV", int.Parse(mANVSpinEdit.Text.Trim())) == -1)
+
+            // check khong ton tai o cn hoac check da xoa
+           
+            int nvpos = 0;
+            for (; nvpos < nhanVienBDS.Count; nvpos++)
+            {
+                if (((DataRowView)nhanVienBDS[nvpos])["MANV"].ToString().Trim() == mANVSpinEdit.Text.Trim())
+                {
+                    int ttx = Convert.ToInt32(((DataRowView)nhanVienBDS[nvpos])["TrangThaiXoa"]);
+                    string ten = ((DataRowView)nhanVienBDS[nvpos])["TEN"].ToString();
+                    break;
+                }
+            }
+
+            if (nvpos == nhanVienBDS.Count)
             {
                 MessageBox.Show("Mã nhân viên không tồn tại", "Sai thông tin", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                mAVTTextEdit.Focus();
+                return;
+            }
+            if (Convert.ToInt32(((DataRowView)nhanVienBDS[nvpos])["TrangThaiXoa"]) == 1)
+            {
+                MessageBox.Show("Nhân viên này đã chuyển cn", "Sai thông tin", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 mAVTTextEdit.Focus();
                 return;
             }
@@ -372,7 +391,7 @@ namespace QLVT_DATHANGD17
                     Program.myReader = Program.ExecSqlDataReader(command);
                     if (Program.myReader != null)
                     {
-                        MessageBox.Show(command);
+                      //  MessageBox.Show(command);
                         Program.myReader.Read();
                         MessageBox.Show($"Đơn đặt hàng đã được lập vào: {Program.myReader.GetDateTime(0)}");
                         Program.myReader.Close();

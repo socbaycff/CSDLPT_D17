@@ -582,6 +582,7 @@
             this.masoDDHTextEdit.Location = new System.Drawing.Point(436, 45);
             this.masoDDHTextEdit.MenuManager = this.barManager1;
             this.masoDDHTextEdit.Name = "masoDDHTextEdit";
+            this.masoDDHTextEdit.Properties.ReadOnly = true;
             this.masoDDHTextEdit.Size = new System.Drawing.Size(150, 28);
             this.masoDDHTextEdit.TabIndex = 5;
             // 
