@@ -121,5 +121,10 @@ namespace QLVT_DATHANGD17
             mainForm = new MainForm();
             Application.Run(mainForm);
         }
+
+        //"Data Source=" + Program.servername + ";Initial Catalog=" +
+        //              Program.database + ";User ID=" +
+        //              Program.mlogin + ";password=" + Program.password;
+        public static String connectStringCN3 = @"Data Source=DESKTOP-S0IJQ88\SERVER3;Initial Catalog=QLVT_DATHANG;User ID=sa;Password=1234";
     }
 }

@@ -76,5 +76,16 @@ namespace QLVT_DATHANGD17.Properties {
                 return ((string)(this["QLVT_DATHANGConnectionString2"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=DESKTOP-S0IJQ88\\SERVER3;Initial Catalog=QLVT_DATHANG;Persist Security" +
+            " Info=True;User ID=sa;Password=1234")]
+        public string QLVT_DATHANGConnectionStringCN3 {
+            get {
+                return ((string)(this["QLVT_DATHANGConnectionStringCN3"]));
+            }
+        }
     }
 }

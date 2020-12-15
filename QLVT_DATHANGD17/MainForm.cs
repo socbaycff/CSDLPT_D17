@@ -232,7 +232,7 @@ namespace QLVT_DATHANGD17
 
         public void SignedInState() {
             showNVFormBtn.Enabled = showVTFormBtn.Enabled = phieuRibbon.Enabled = showKhoFormBtn.Enabled = true;
-            if (Program.userRole == "CongTy") { // role cong ty moi xem dc bao cao
+            if (Program.userRole == "CongTy" || Program.userRole == "ChiNhanh") { // role cong ty moi xem dc bao cao
                 baocaoribbon.Enabled = true;
             }
             if (Program.userRole == "User")

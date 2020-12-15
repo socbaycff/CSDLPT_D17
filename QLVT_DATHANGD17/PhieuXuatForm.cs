@@ -83,9 +83,10 @@ namespace QLVT_DATHANGD17
             // TODO: This line of code loads data into the 'qLVT_DATHANGDataSet.Kho' table. You can move, or remove it, as needed.
             this.khoTableAdapter.Fill(this.qLVT_DATHANGDataSet.Kho);
             // Thiết lập một số thuộc tính mặc đinh cho các widget nhập dữ liệu theo ràng buộc của database
-            dONGIASpinEdit.Properties.MinValue = 1;
-            dONGIASpinEdit.Properties.MaxValue = 1000000000;
-            sOLUONGSpinEdit.Properties.MinValue = 1;
+            //dONGIASpinEdit.Properties.MinValue = 1;
+            //dONGIASpinEdit.Properties.MaxValue = 1000000000;
+            //sOLUONGSpinEdit.Properties.MinValue = 1;
+            //sOLUONGSpinEdit.Properties.MinValue = 1000000000;
             mAPXTextEdit.Properties.MaxLength = 8;
             mAPXTextEdit1.Properties.MaxLength = 8;
             hOTENKHTextEdit.Properties.MaxLength = 100;
@@ -287,12 +288,10 @@ namespace QLVT_DATHANGD17
                 try
                 {
 
-                    cmdManager.execute(new DeleteAction(cTPXBDS,"MAVT"));
+                    cmdManager.execute(new DeleteVTAction(cTPXBDS,"MAVT",false));
                     updateCTPXTableAdapter();
                     undoBtn.Enabled = true;
                     redoBtn.Enabled = false;
-               
-
                 }
                 catch (Exception exception)
                 {
@@ -364,8 +363,8 @@ namespace QLVT_DATHANGD17
             vitri2 = cTPXBDS.Position;
             modifyCTUIState();
             // Gọi tập lệnh của Binding Source;
-            cmdManager.prepare(new InsertAction(cTPXBDS, "MAVT"));
-          
+            cmdManager.prepare(new InsertVTAction(cTPXBDS, "MAVT",false));
+            mAPXTextEdit1.ReadOnly = true;
             mAVTTextEdit.ReadOnly = false;
             // Tự động điền các mã đơn đặt hàng hiện tại và mã vật tư
             mAPXTextEdit1.Text = mAPXTextEdit.Text;
@@ -410,22 +409,29 @@ namespace QLVT_DATHANGD17
                     }
                 }
 
+              
+
                 if (checkIndex >= 0 && checkIndex != cTPXBDS.Position)
                 {
                     MessageBox.Show($"Chi tiết cho vật tư này đã được lập vui lòng chọn lại vât tư khác", "Sai thông tin", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
+
+                // kiem tra so luong co vuot qua so luong ddh
+                int pos = vattuBDS.Find("MAVT", mAVTTextEdit.Text.Trim());
+                int soLuonTon = Convert.ToInt32(((DataRowView)vattuBDS[pos])["SOLUONGTON"]);
+                int soLuongXuat = Convert.ToInt32(((DataRowView)cTPXBDS.Current)["SOLUONG"].ToString());
+                if (soLuongXuat > soLuonTon)
+                {
+                    MessageBox.Show($"Số lượng vật tư xuất vượt quá số lượng tồn", "Sai thông tin", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
                 // chua kt ma vt ton tai
                 cmdManager.commit(); // lay data cho redo
                 updateCTPXTableAdapter();
 
                 viewUIState();
-
-                // Cập nhật số lượng vật tư
-                string command = $"exec SP_CAPNHATSOLUONGVT '{mAVTTextEdit.Text.Trim()}', 0, {sOLUONGSpinEdit.Text.Trim()}";
-                Program.myReader = Program.ExecSqlDataReader(command);
-                if (Program.myReader != null)
-                    Program.myReader.Close();
             }
             catch (Exception exception)
             {

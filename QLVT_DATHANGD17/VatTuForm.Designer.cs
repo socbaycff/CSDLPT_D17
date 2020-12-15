@@ -112,9 +112,9 @@
             dVTLabel.Font = new System.Drawing.Font("Tahoma", 8F);
             dVTLabel.Location = new System.Drawing.Point(716, 38);
             dVTLabel.Name = "dVTLabel";
-            dVTLabel.Size = new System.Drawing.Size(83, 19);
+            dVTLabel.Size = new System.Drawing.Size(87, 19);
             dVTLabel.TabIndex = 4;
-            dVTLabel.Text = "Đơn vị tồn";
+            dVTLabel.Text = "Đơn vị tính";
             // 
             // sOLUONGTONLabel
             // 

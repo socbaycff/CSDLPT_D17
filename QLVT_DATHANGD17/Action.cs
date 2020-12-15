@@ -87,17 +87,17 @@ namespace QLVT_DATHANGD17
 
     class DeleteAction : Action
     {
-        BindingSource binding;
-        Object prime; // khoa chinh
-        Object[] data;
-        String primeName;
+        public BindingSource binding;
+        public Object prime; // khoa chinh
+        public Object[] data;
+        public String primeName;
 
         public DeleteAction(BindingSource binding, String primaryName) {
             this.binding = binding;
             this.primeName = primaryName;
         }
 
-        public void execute()
+       virtual public void execute()
         {
             // save lai data
             data =  ((DataRowView)binding.Current).Row.ItemArray;
@@ -106,14 +106,21 @@ namespace QLVT_DATHANGD17
            binding.RemoveCurrent(); // delete dong hien tai (user chi dinh)
         }
 
-        public void redo()
+        virtual public void redo()
         {
             // thuc thi delete tai khoa chinh
-            int pos = binding.Find(primeName, prime);
+            int pos;
+            for ( pos = 0; pos < binding.Count; pos++)
+            {
+                if (((DataRowView)binding[pos])[primeName].ToString().Trim() == prime.ToString().Trim()) {
+                    break;
+                }
+            }
+            //int pos = binding.Find(primeName, prime);
             binding.RemoveAt(pos); // delete lai dong do
         }
 
-        public void undo()
+        virtual public void undo()
         {
             // insert lai data o vi tri cuoi (do k biet insert lai dung vi tri)
             binding.AddNew();
@@ -131,12 +138,18 @@ namespace QLVT_DATHANGD17
         public void commit() { }
     }
 
+
+
+
+
+    
+
     // edit lai class se chay sau khi user nhap data, de co dc data redo
     class InsertAction : Action
     {
         public BindingSource binding;
-        Object[] data;
-        Object prime;
+        public Object[] data;
+        public Object prime;
         String primeName;
         public InsertAction(BindingSource binding, String primaryName)
         {
@@ -151,7 +164,7 @@ namespace QLVT_DATHANGD17
         }
 
         // chay khi user bam nut chuan bi insert
-         public void redo() {
+        virtual public void redo() {
             binding.AddNew(); // tao dong trong va nhay xuong cho edit
             // update lai data
             DataRowView row = (DataRowView)binding[binding.Position];
@@ -164,16 +177,113 @@ namespace QLVT_DATHANGD17
             binding.MoveLast(); // di den vi tri insert lai
         }
         // can goi de luu data cho redo
-        public void commit() {
+       virtual public void commit() {
             data = ((DataRowView)binding.Current).Row.ItemArray;
             prime = data[0];
         }
 
-        public void undo()
+        virtual public void undo()
         {
             // delete record dc insert tai vi tri da save
-            int pos = binding.Find(primeName, prime);
+            int pos;
+            for (pos = 0; pos < binding.Count; pos++)
+            {
+                if (((DataRowView)binding[pos])[primeName].ToString().Trim() == prime.ToString().Trim())
+                {
+                    break;
+                }
+            }
+         //   int pos = binding.Find(primeName, prime);
             binding.RemoveAt(pos);
+        }
+    }
+
+    class InsertVTAction : InsertAction {
+        bool isPN;
+        public InsertVTAction(BindingSource binding, string primaryName, bool isPhieuNhap) : base(binding, primaryName)
+        {
+            isPN = isPhieuNhap;
+        }
+        public override void commit()
+        {
+            data = ((DataRowView)binding.Current).Row.ItemArray;
+            prime = data[1];
+            // cap nhat so luong
+            int mode; // mode cong/ tru
+            if (isPN)
+            {
+                mode = 0;
+            }
+            else
+            {
+                mode = 1;
+            }
+            String mavt = base.data[1].ToString();
+            int soluong = Convert.ToInt32(base.data[2]);
+            string command = $"exec SP_CAPNHATSOLUONGVT '{mavt}', {mode}, {soluong}";
+            Program.myReader = Program.ExecSqlDataReader(command);
+            if (Program.myReader != null)
+            {
+                Program.myReader.Read();
+
+                // MessageBox.Show($"Mã nhân viên đã tồn tại với thông tin: {Program.myReader.GetString(0)} {Program.myReader.GetString(1)} - {Program.myReader.GetString(2)}");
+                Program.myReader.Close();
+                return;
+            }
+        }
+
+        public override void undo()
+        {
+            base.undo();
+            // cap nhat so luong
+            int mode; // mode cong/ tru
+            if (isPN)
+            {
+                mode = 1;
+            }
+            else
+            {
+                mode = 0;
+            }
+            String mavt = base.data[1].ToString();
+            int soluong = Convert.ToInt32(base.data[2]);
+            string command = $"exec SP_CAPNHATSOLUONGVT '{mavt}', {mode}, {soluong}";
+            Program.myReader = Program.ExecSqlDataReader(command);
+            if (Program.myReader != null)
+            {
+                Program.myReader.Read();
+
+                // MessageBox.Show($"Mã nhân viên đã tồn tại với thông tin: {Program.myReader.GetString(0)} {Program.myReader.GetString(1)} - {Program.myReader.GetString(2)}");
+                Program.myReader.Close();
+                return;
+            }
+        }
+
+        public override void redo()
+        {
+            base.redo();
+            // cap nhat so luong
+            int mode; // mode cong/ tru
+            if (isPN)
+            {
+                mode = 0;
+            }
+            else
+            {
+                mode = 1;
+            }
+            String mavt = base.data[1].ToString();
+            int soluong = Convert.ToInt32(base.data[2]);
+            string command = $"exec SP_CAPNHATSOLUONGVT '{mavt}', {mode}, {soluong}";
+            Program.myReader = Program.ExecSqlDataReader(command);
+            if (Program.myReader != null)
+            {
+                Program.myReader.Read();
+
+                // MessageBox.Show($"Mã nhân viên đã tồn tại với thông tin: {Program.myReader.GetString(0)} {Program.myReader.GetString(1)} - {Program.myReader.GetString(2)}");
+                Program.myReader.Close();
+                return;
+            }
         }
     }
 
@@ -233,6 +343,102 @@ namespace QLVT_DATHANGD17
             binding.EndEdit();
             binding.ResetCurrentItem();
             binding.Position = pos;
+        }
+    }
+
+    // cac class VTAction se them thao tac cap nhap so luong
+    class DeleteVTAction : DeleteAction
+    {
+        private bool isPN;
+        public DeleteVTAction(BindingSource binding, string primaryName, bool isNhap) : base(binding, primaryName)
+        {
+            isPN = isNhap;
+        }
+
+        public override void execute()
+        {
+            // save lai data
+            data = ((DataRowView)binding.Current).Row.ItemArray;
+            prime = data[1];
+            // thuc thi delete tai vi tri user chon
+            binding.RemoveCurrent(); // delete dong hien tai (user chi dinh)
+            // cap nhat so luong
+            int mode; // mode cong/ tru
+            if (isPN) // phieu nhap xoa la tru so luong
+            {
+                mode = 1;
+            }
+            else
+            { // phieu xuat xoa la cong so luong
+                mode = 0;
+            }
+          
+            String mavt = base.data[1].ToString();
+            int soluong = Convert.ToInt32(base.data[2]);
+            string command = $"exec SP_CAPNHATSOLUONGVT '{mavt}', {mode}, {soluong}";
+            Program.myReader = Program.ExecSqlDataReader(command);
+            if (Program.myReader != null)
+            {
+                Program.myReader.Read();
+
+                // MessageBox.Show($"Mã nhân viên đã tồn tại với thông tin: {Program.myReader.GetString(0)} {Program.myReader.GetString(1)} - {Program.myReader.GetString(2)}");
+                Program.myReader.Close();
+                return;
+            }
+        }
+
+        public override void undo()
+        {
+            base.undo();
+            // cap nhat so luong
+            int mode; // mode cong/ tru
+            if (isPN)
+            {
+                mode = 0;
+            }
+            else
+            {
+                mode = 1;
+            }
+            String mavt = base.data[1].ToString();
+            int soluong = Convert.ToInt32(base.data[2]);
+            string command = $"exec SP_CAPNHATSOLUONGVT '{mavt}', {mode}, {soluong}";
+            Program.myReader = Program.ExecSqlDataReader(command);
+            if (Program.myReader != null)
+            {
+                Program.myReader.Read();
+
+                // MessageBox.Show($"Mã nhân viên đã tồn tại với thông tin: {Program.myReader.GetString(0)} {Program.myReader.GetString(1)} - {Program.myReader.GetString(2)}");
+                Program.myReader.Close();
+                return;
+            }
+        }
+
+        public override void redo()
+        {
+            base.redo();
+            // cap nhat so luong
+            int mode; // mode cong/ tru
+            if (isPN) // phieu nhap xoa la tru so luong
+            {
+                mode = 1;
+            }
+            else
+            { // phieu xuat xoa la cong so luong
+                mode = 0;
+            }
+            String mavt = base.data[1].ToString();
+            int soluong = Convert.ToInt32(base.data[2]);
+            string command = $"exec SP_CAPNHATSOLUONGVT '{mavt}', {mode}, {soluong}";
+            Program.myReader = Program.ExecSqlDataReader(command);
+            if (Program.myReader != null)
+            {
+                Program.myReader.Read();
+
+                // MessageBox.Show($"Mã nhân viên đã tồn tại với thông tin: {Program.myReader.GetString(0)} {Program.myReader.GetString(1)} - {Program.myReader.GetString(2)}");
+                Program.myReader.Close();
+                return;
+            }
         }
     }
 }

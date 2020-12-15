@@ -109,6 +109,14 @@ namespace QLVT_DATHANGD17
             comboBoxBranch.DisplayMember = "TENCN";
             comboBoxBranch.ValueMember = "TENSERVER";
             comboBoxBranch.SelectedIndex = Program.mChinhanh;
+            if (Program.userRole == "CongTy")
+            {
+                comboBoxBranch.Enabled = true;
+            }
+            else
+            {
+                comboBoxBranch.Enabled = false;
+            }
 
         }
 

@@ -151,6 +151,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>QLVT_DATHANGDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="QLVT_DATHANGDataSet1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QLVT_DATHANGDataSet1.xsd</DependentUpon>
+    </Compile>
     <Compile Include="QLVT_DATHANG_DSPM.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -185,6 +190,12 @@
     </Compile>
     <Compile Include="XtraReport_DDHChuaNhap.Designer.cs">
       <DependentUpon>XtraReport_DDHChuaNhap.cs</DependentUpon>
+    </Compile>
+    <Compile Include="XtraReport_DSNhanVien.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="XtraReport_DSNhanVien.Designer.cs">
+      <DependentUpon>XtraReport_DSNhanVien.cs</DependentUpon>
     </Compile>
     <Compile Include="XtraReport_DSNV.cs">
       <SubType>Component</SubType>
@@ -275,6 +286,9 @@
     <EmbeddedResource Include="XtraReport_DDHChuaNhap.resx">
       <DependentUpon>XtraReport_DDHChuaNhap.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="XtraReport_DSNhanVien.resx">
+      <DependentUpon>XtraReport_DSNhanVien.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="XtraReport_DSNV.resx">
       <DependentUpon>XtraReport_DSNV.cs</DependentUpon>
     </EmbeddedResource>
@@ -314,6 +328,17 @@
     </None>
     <None Include="QLVT_DATHANGDataSet.xss">
       <DependentUpon>QLVT_DATHANGDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="QLVT_DATHANGDataSet1.xsc">
+      <DependentUpon>QLVT_DATHANGDataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="QLVT_DATHANGDataSet1.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>QLVT_DATHANGDataSet1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="QLVT_DATHANGDataSet1.xss">
+      <DependentUpon>QLVT_DATHANGDataSet1.xsd</DependentUpon>
     </None>
     <None Include="QLVT_DATHANG_DSPM.xsc">
       <DependentUpon>QLVT_DATHANG_DSPM.xsd</DependentUpon>

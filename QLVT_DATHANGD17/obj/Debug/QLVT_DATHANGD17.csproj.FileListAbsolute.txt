@@ -424,3 +424,4 @@ C:\Users\Khang\Desktop\pt\CSDLPT_D17\QLVT_DATHANGD17\obj\Debug\QLVT_DATHANGD17.X
 C:\Users\Khang\Desktop\pt\CSDLPT_D17\QLVT_DATHANGD17\obj\Debug\QLVT_DATHANGD17.XtraReport_TongHopNX.resources
 C:\Users\Khang\Desktop\pt\CSDLPT_D17\QLVT_DATHANGD17\obj\Debug\QLVT_DATHANGD17.csproj.GenerateResource.Cache
 C:\Users\Khang\Desktop\pt\CSDLPT_D17\QLVT_DATHANGD17\obj\Debug\QLVT_DATHANGD17.exe.licenses
+C:\Users\Khang\Desktop\pt\CSDLPT_D17\QLVT_DATHANGD17\obj\Debug\QLVT_DATHANGD17.XtraReport_DSNhanVien.resources

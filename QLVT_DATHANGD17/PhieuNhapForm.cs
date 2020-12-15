@@ -260,6 +260,7 @@ namespace QLVT_DATHANGD17
                 }
 
                 viewUIState();
+                datHangComboBox.Enabled = true;
             }
             catch (Exception exception)
             {
@@ -281,6 +282,8 @@ namespace QLVT_DATHANGD17
 
         private void redoBtn_ItemClick(object sender, ItemClickEventArgs e)
         {
+
+
             cmdManager.redo();
             updatePNTableAdapter();
             updateCTPNTableAdapter();
@@ -328,6 +331,7 @@ namespace QLVT_DATHANGD17
             masoDDHTextEdit.Enabled = true;
             mANVSpinEdit.Enabled = true;
             mAKHOTextEdit.Enabled = true;
+            datHangComboBox.Enabled = false;
         }
 
         private void cancelBtn_ItemClick(object sender, ItemClickEventArgs e)
@@ -341,7 +345,7 @@ namespace QLVT_DATHANGD17
 
             cmdManager.clearLastNode();
             viewUIState();
-
+            datHangComboBox.Enabled = true;
 
             refreshBtn.PerformClick();
             cTPNBDS.Position = vitri2;
@@ -377,7 +381,7 @@ namespace QLVT_DATHANGD17
                 return;
             }
             // Gọi tập lệnh của Binding Source;
-            cmdManager.prepare(new InsertAction(cTPNBDS,"MAVT"));
+            cmdManager.prepare(new InsertVTAction(cTPNBDS,"MAVT",true));
             // Khởi động lại các giá trị hiện tại từ phiếu nhập sang chi tiết phiếu nhập
 
 
@@ -466,6 +470,17 @@ namespace QLVT_DATHANGD17
                 MessageBox.Show($"Chi tiết phiếu nhập này đã được lập vui lòng chọn lại vât tư khác", "Sai thông tin", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+
+            // kiem tra so luong co vuot qua so luong ddh
+            int soLuongDDH = Convert.ToInt32(((DataRowView)cTDDHBDS.Current)["SOLUONG"]);
+            int soLuongNhap = Convert.ToInt32(((DataRowView)cTPNBDS.Current)["SOLUONG"].ToString());
+            if (soLuongNhap > soLuongDDH)
+            {
+                MessageBox.Show($"Số lượng vật tư nhập vuọt quá ", "Sai thông tin", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // xac nhan
             string mapn = mAPNTextEdit1.Text.Trim();
             string mavt = mAVTTextEdit.Text.Trim();
             try
@@ -482,9 +497,6 @@ namespace QLVT_DATHANGD17
                 return;
             }
 
-            // tam thoi chua cap nhat so luong trong kho
-            // chua lam
-
             viewUIState();
         }
 
@@ -492,20 +504,22 @@ namespace QLVT_DATHANGD17
         {
 
             if (MessageBox.Show("Bạn có thật sự muốn xóa đơn đặt hàng này ?? ", "Xác nhận", MessageBoxButtons.OKCancel) == DialogResult.OK)
-                try
-                {
+                //try
+                //{
 
-                    cmdManager.execute(new DeleteAction(cTPNBDS, "MAVT"));
+                    cmdManager.execute(new DeleteVTAction(cTPNBDS, "MAVT", true));
+                    // cap nhat so luong vt
+
                     updateCTPNTableAdapter();
                     undoBtn.Enabled = true;
                     redoBtn.Enabled = false;
-                }
-                catch (Exception exception)
-                {
-                    MessageBox.Show("Xóa chi tiết đơn hàng không thành công :3", "Lỗi khi xóa", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    this.cTPNTableAdapter.Fill(this.qLVT_DATHANGDataSet.CTPN);
+            //    }
+                //catch (Exception exception)
+                //{
+                //    MessageBox.Show($"Xóa chi tiết đơn hàng không thành công :3 {exception.Message}", "Lỗi khi xóa", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //    this.cTPNTableAdapter.Fill(this.qLVT_DATHANGDataSet.CTPN);
 
-                }
+                //}
 
             if (cTPNBDS.Count == 0)
                 deleteVTBtn.Enabled = false;
@@ -564,6 +578,15 @@ namespace QLVT_DATHANGD17
             saveBtn.Enabled = cancelBtn.Enabled = true;
             chiTietGroupBox.Enabled = false;
             thongTinGroupBox.Enabled = true;
+        }
+
+        private void phieuNhapGridControl_Click(object sender, EventArgs e) // su dung de cap nhat  dathangbds cho ctpn
+        {
+            // find vi tri cua row
+            String masoddh = ((DataRowView)phieuNhapBDS.Current)["MasoDDH"].ToString();
+            int pos = datHangBDS.Find("MasoDDH", masoddh);
+            // doi vi tri den row do
+            datHangBDS.Position = pos;
         }
     }
 }

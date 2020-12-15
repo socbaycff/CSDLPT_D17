@@ -25,8 +25,9 @@ namespace QLVT_DATHANGD17
         private void showPreviewBtn_Click(object sender, EventArgs e)
         {
 
-
-            XtraReport_DSNV rpt = new XtraReport_DSNV();
+            
+            XtraReport_DSNhanVien rpt = new XtraReport_DSNhanVien(comboBoxBranch.Text.Trim());
+            rpt.rptTitle.Text = $"Danh sách nhân viên {comboBoxBranch.Text.Trim()}";
             ReportPrintTool print = new ReportPrintTool(rpt);
             print.PreviewForm.SaveState = false;
             print.PreviewForm.StartPosition = FormStartPosition.CenterScreen;
@@ -73,6 +74,13 @@ namespace QLVT_DATHANGD17
             comboBoxBranch.DisplayMember = "TENCN";
             comboBoxBranch.ValueMember = "TENSERVER";
             comboBoxBranch.SelectedIndex = Program.mChinhanh;
+            if (Program.userRole == "CongTy")
+            {
+                comboBoxBranch.Enabled = true;
+            }
+            else {
+                comboBoxBranch.Enabled = false;
+            }
         }
     }
 }
