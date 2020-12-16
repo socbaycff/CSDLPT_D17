@@ -209,7 +209,22 @@ namespace QLVT_DATHANGD17
                 diaChiTE.Focus();
                 return;
             }
-           
+
+            string command1 = $"exec SP_TimTenKho '{tenKhoTE.Text.Trim()}'";
+            Program.myReader = Program.ExecSqlDataReader(command1);
+            if (Program.myReader != null)
+            {
+                if (Program.myReader.Read())
+                {
+                    MessageBox.Show($"Tên kho đã tồn tại");
+
+                    Program.myReader.Close();
+                    return;
+                }
+               
+                Program.myReader.Close();
+            }
+
             try
             {
                 if (insertSession)

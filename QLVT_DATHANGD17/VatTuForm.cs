@@ -200,6 +200,17 @@ namespace QLVT_DATHANGD17
                 SLTTE.Value = 0;
                 return;
             }
+
+            // kiem tra unique ten vt
+            int i = 0;
+            for (; i < vatTuBDS.Count; i++) {
+                if (tenVTTE.Text.Trim() == ((DataRowView)vatTuBDS[i])["TENVT"].ToString()) {
+                    MessageBox.Show("Tên vật tư trùng", "Sai thông tin", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    tenVTTE.Focus();
+                    return;
+                }
+            }
+
             try
             {
                 if (insertSession)

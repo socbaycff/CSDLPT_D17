@@ -87,10 +87,10 @@ namespace QLVT_DATHANGD17
         {
 
             // Thiết lập một số thuộc tính mặc đinh cho các widget nhập dữ liệu theo ràng buộc của database
-            //dONGIASpinEdit.Properties.MinValue = 1;
-            //dONGIASpinEdit.Properties.MaxValue = 1000000000;
-            //sOLUONGSpinEdit.Properties.MinValue = 1;
-            //sOLUONGSpinEdit.Properties.MinValue = 1000000000;
+            dONGIASpinEdit.Properties.MinValue = 1;
+            dONGIASpinEdit.Properties.MaxValue = 1000000000;
+            sOLUONGSpinEdit.Properties.MinValue = 1;
+            sOLUONGSpinEdit.Properties.MaxValue = 1000000000;
             mAPXTextEdit.Properties.MaxLength = 8;
             mAPXTextEdit1.Properties.MaxLength = 8;
             hOTENKHTextEdit.Properties.MaxLength = 100;

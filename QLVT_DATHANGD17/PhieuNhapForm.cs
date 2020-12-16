@@ -105,6 +105,7 @@ namespace QLVT_DATHANGD17
             mAKHOTextEdit.Properties.MaxLength = 4;
             mAVTTextEdit.Properties.MaxLength = 4;
             sOLUONGSpinEdit.Properties.MinValue = 1;
+            sOLUONGSpinEdit.Properties.MaxValue = 1000000000;
             qLVT_DATHANGDataSet.EnforceConstraints = false;
 
             refreshTableAdapter();

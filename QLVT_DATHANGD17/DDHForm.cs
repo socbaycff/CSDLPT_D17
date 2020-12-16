@@ -69,8 +69,10 @@ namespace QLVT_DATHANGD17
             mAKHOTextEdit.ReadOnly = true;
             masoDDHTE1.Properties.MaxLength = 8;
             mAVTTextEdit.Properties.MaxLength = 4;
-            //soLuongSE.Properties.MinValue = 1;
-            //donGiaSE.Properties.MinValue = 1;
+            soLuongSE.Properties.MinValue = 1;
+            soLuongSE.Properties.MaxValue = 1000000000;
+            donGiaSE.Properties.MinValue = 1;
+            donGiaSE.Properties.MaxValue = 1000000000;
         }
 
         private void updateDHTableAdapter()
